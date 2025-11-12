@@ -160,82 +160,6 @@ def generate_missing_cleanup_queries(analysis: Dict, cwe_name: str) -> List[Dict
 
     return queries
 
-
-def generate_specific_vulnerability_queries(cwe_name: str, analysis: Dict) -> List[Dict]:
-    """Generate CWE-specific queries based on the CWE type."""
-    queries = []
-    cwe_lower = cwe_name.lower()
-
-    func_calls = analysis.get('common_function_calls', [])
-    func_dict = {f['function']: f['count'] for f in func_calls}
-
-    # CWE-226: Sensitive Information Uncleared Before Release
-    if '226' in cwe_name or 'sensitive information' in cwe_lower:
-        queries.extend([
-            {
-                'query_id': 'sensitive_info_in_stack_memory',
-                'cwe_name': cwe_name,
-                'message': 'Sensitive data stored in stack-allocated memory without cleanup',
-                'category': 'sensitive_data_exposure',
-                'severity': 'error',
-                'precision': 'medium',
-                'query_type': 'stack_sensitive_data'
-            },
-            {
-                'query_id': 'password_not_cleared',
-                'cwe_name': cwe_name,
-                'message': 'Password variable not cleared before function return',
-                'category': 'sensitive_data_exposure',
-                'severity': 'error',
-                'precision': 'high',
-                'query_type': 'password_not_cleared'
-            }
-        ])
-        # Add this to the generate_specific_vulnerability_patterns function in generate_c_codeql.py
-
-# CWE-123: Write-What-Where Condition
-    elif '123' in cwe_name or 'write what where' in cwe_lower:
-        queries.extend([
-        {
-            'query_id': f'{cwe_name.lower().replace(" ", "_")}_unchecked_pointer_write',
-            'cwe_name': cwe_name,
-            'message': 'Detects pointer writes without validation of address which can lead to write-what-where conditions',
-            'severity': 'error',
-            'precision': 'high',
-            'query_type': 'write_what_where'
-#             'query': '''
-# import cpp
-
-# from PointerFieldAccess pfa, Assignment assign
-# where 
-#   assign.getLValue() = pfa and
-#   not exists(IfStmt guard | 
-#     guard.getCondition().getAChild*() = pfa.getQualifier() and
-#     guard.getAChild+() = assign
-#   )
-# select assign, "Pointer write without validation of address can lead to write-what-where condition"
-# '''
-        }
-    ])
-
-    # CWE-252/253: Unchecked Return Value
-    elif '252' in cwe_name or '253' in cwe_name or 'return value' in cwe_lower:
-        # Check if fgets is in the function calls
-        if any('fgets' in f.lower() for f in func_dict.keys()):
-            queries.append({
-                'query_id': 'unchecked_fgets_return',
-                'cwe_name': cwe_name,
-                'message': 'Return value of fgets not checked for NULL',
-                'category': 'unchecked_return_value',
-                'severity': 'warning',
-                'precision': 'high',
-                'query_type': 'unchecked_return',
-                'function_name': 'fgets'
-            })
-
-    return queries
-
-
 def write_dangerous_function_query(f, query: Dict):
     """Write CodeQL query for dangerous function detection."""
     func_name = query['function_name']
@@ -286,52 +210,6 @@ def write_missing_cleanup_query(f, query: Dict):
         f.write("  )\n")
         f.write(f"select auth, \"{query['message']}\"\n")
 
-
-def write_specific_vulnerability_query(f, query: Dict):
-    """Write CWE-specific vulnerability queries."""
-    if query['query_type'] == 'stack_sensitive_data':
-        f.write("from LocalVariable v\n")
-        f.write("where v.getType().getName().toLowerCase().matches(\"%password%\")\n")
-        f.write("  or v.getType().getName().toLowerCase().matches(\"%credential%\")\n")
-        f.write("  or v.getName().toLowerCase().matches(\"%password%\")\n")
-        f.write("  or v.getName().toLowerCase().matches(\"%pwd%\")\n")
-        f.write(f"select v, \"{query['message']}\"\n")
-    
-    elif query['query_type'] == 'password_not_cleared':
-        f.write("import semmle.code.cpp.controlflow.Guards\n\n")
-        f.write("from LocalVariable v, Function func\n")
-        f.write("where (v.getName().toLowerCase().matches(\"%password%\")\n")
-        f.write("       or v.getName().toLowerCase().matches(\"%pwd%\"))\n")
-        f.write("  and v.getFunction() = func\n")
-        f.write("  and not exists(FunctionCall cleanup |\n")
-        f.write("    cleanup.getTarget().getName().matches(\"%Zero%\") and\n")
-        f.write("    cleanup.getEnclosingFunction() = func\n")
-        f.write("  )\n")
-        f.write(f"select v, \"{query['message']}\"\n")
-    
-    elif query['query_type'] == 'unchecked_return':
-        func_name = query['function_name']
-        f.write("import cpp\n\n")
-        f.write("from FunctionCall fc\n")
-        f.write(f"where fc.getTarget().getName() = \"{func_name}\"\n")
-        f.write("  and not exists(ExprInVoidContext eivc | eivc.getExpr() = fc)\n")
-        f.write("  and not exists(IfStmt is | is.getCondition() = fc)\n")
-        f.write("  and not exists(IfStmt is |\n")
-        f.write("    is.getCondition().(BinaryOperation).getAnOperand*() = fc\n")
-        f.write("  )\n")
-        f.write(f"select fc, \"{query['message']}\"\n")
-    
-    elif query['query_type'] == 'write_what_where':
-        f.write("import cpp\n\n")
-        f.write("from PointerFieldAccess pfa, Assignment assign\n")
-        f.write("where\n")
-        f.write("  assign.getLValue() = pfa and\n")
-        f.write("  not exists(IfStmt guard |\n")
-        f.write("    guard.getCondition().getAChild*() = pfa.getQualifier() and\n")
-        f.write("    guard.getAChild+() = assign\n")
-        f.write("  )\n")
-        f.write(f"select assign, \"{query['message']}\"\n")
-
 def emit_codeql_query_file(query: Dict, filepath: str):
     """Write a single .ql file."""
     with open(filepath, 'w') as f:
@@ -376,8 +254,6 @@ def emit_codeql_query_file(query: Dict, filepath: str):
             write_dangerous_function_query(f, query)
         elif query_type in ['missing_cleanup', 'missing_free', 'missing_password_cleanup']:
             write_missing_cleanup_query(f, query)
-        elif query_type in ['stack_sensitive_data', 'password_not_cleared', 'unchecked_return']:
-            write_specific_vulnerability_query(f, query)
         else:
             # Fallback
             f.write("\nfrom Expr expr\n")
@@ -431,10 +307,6 @@ def main():
     # Generate queries for missing cleanup
     cleanup_queries = generate_missing_cleanup_queries(analysis, cwe_name)
     queries.extend(cleanup_queries)
-
-    # Generate CWE-specific queries
-    specific_queries = generate_specific_vulnerability_queries(cwe_name, analysis)
-    queries.extend(specific_queries)
 
     if not queries:
         print("# No queries generated", file=sys.stderr)
