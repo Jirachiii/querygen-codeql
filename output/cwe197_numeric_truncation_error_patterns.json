@@ -1,0 +1,908 @@
+{
+  "num_files": 1008,
+  "common_subtrees": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 1008,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 1008,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 963,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 963,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,identifier,):))),;)",
+      "occurrence_count": 948,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,identifier)",
+      "occurrence_count": 840,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;)",
+      "occurrence_count": 705,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 705,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,\"),):))",
+      "occurrence_count": 705,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 702,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 702,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,):)))",
+      "occurrence_count": 702,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,):))",
+      "occurrence_count": 702,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,]:])",
+      "occurrence_count": 702,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,number_literal),;)",
+      "occurrence_count": 696,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "assignment_expression(identifier,=:=,number_literal)",
+      "occurrence_count": 696,
+      "pattern_type": "assignment"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,):))),;)",
+      "occurrence_count": 696,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "binary_expression(identifier,-:-,number_literal)",
+      "occurrence_count": 684,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,binary_expression(identifier,-:-,number_literal)),;)",
+      "occurrence_count": 684,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "assignment_expression(identifier,=:=,binary_expression(identifier,-:-,number_literal))",
+      "occurrence_count": 684,
+      "pattern_type": "assignment"
+    }
+  ],
+  "common_function_calls": [
+    {
+      "function": "printLine",
+      "count": 3156
+    },
+    {
+      "function": "printHexCharLine",
+      "count": 1092
+    },
+    {
+      "function": "srand",
+      "count": 684
+    },
+    {
+      "function": "time",
+      "count": 684
+    },
+    {
+      "function": "printShortLine",
+      "count": 546
+    },
+    {
+      "function": "goodG2B",
+      "count": 414
+    },
+    {
+      "function": "atoi",
+      "count": 342
+    },
+    {
+      "function": "CLOSE_SOCKET",
+      "count": 342
+    },
+    {
+      "function": "goodG2B1",
+      "count": 270
+    },
+    {
+      "function": "goodG2B2",
+      "count": 270
+    },
+    {
+      "function": "WSAStartup",
+      "count": 228
+    },
+    {
+      "function": "MAKEWORD",
+      "count": 228
+    },
+    {
+      "function": "socket",
+      "count": 228
+    },
+    {
+      "function": "memset",
+      "count": 228
+    },
+    {
+      "function": "htons",
+      "count": 228
+    },
+    {
+      "function": "recv",
+      "count": 228
+    },
+    {
+      "function": "WSACleanup",
+      "count": 228
+    },
+    {
+      "function": "inet_addr",
+      "count": 114
+    },
+    {
+      "function": "connect",
+      "count": 114
+    },
+    {
+      "function": "fgets",
+      "count": 114
+    }
+  ],
+  "skeleton_patterns": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 1008,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 483,
+        "length": 26,
+        "snippet": "#include \"std_testcase.h\"\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 483,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 492,
+            "length": 16,
+            "snippet": "\"std_testcase.h\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 492,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "std_testcase.h",
+                "pos": 493,
+                "length": 14,
+                "snippet": "std_testcase.h"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 507,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 1008,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 492,
+        "length": 16,
+        "snippet": "\"std_testcase.h\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 492,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "std_testcase.h",
+            "pos": 493,
+            "length": 14,
+            "snippet": "std_testcase.h"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 507,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 963,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 1966,
+        "length": 21,
+        "snippet": "inet_addr(IP_ADDRESS)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "inet_addr",
+            "pos": 1966,
+            "length": 9,
+            "snippet": "inet_addr"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 1975,
+            "length": 12,
+            "snippet": "(IP_ADDRESS)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 1975,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "identifier",
+                "label": "IP_ADDRESS",
+                "pos": 1976,
+                "length": 10,
+                "snippet": "IP_ADDRESS"
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 1986,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 963,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 1975,
+        "length": 12,
+        "snippet": "(IP_ADDRESS)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 1975,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "identifier",
+            "label": "IP_ADDRESS",
+            "pos": 1976,
+            "length": 10,
+            "snippet": "IP_ADDRESS"
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 1986,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,identifier,):))),;)",
+      "occurrence_count": 948,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 2806,
+        "length": 28,
+        "snippet": "CLOSE_SOCKET(connectSocket);",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 2806,
+            "length": 27,
+            "snippet": "CLOSE_SOCKET(connectSocket)",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "CLOSE_SOCKET",
+                "pos": 2806,
+                "length": 12,
+                "snippet": "CLOSE_SOCKET"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 2818,
+                "length": 15,
+                "snippet": "(connectSocket)",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 2818,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "connectSocket",
+                    "pos": 2819,
+                    "length": 13,
+                    "snippet": "connectSocket"
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 2832,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 2833,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,identifier)",
+      "occurrence_count": 840,
+      "ast_structure": {
+        "type": "parameter_declaration",
+        "label": "",
+        "pos": 3984,
+        "length": 8,
+        "snippet": "int argc",
+        "children": [
+          {
+            "type": "primitive_type",
+            "label": "int",
+            "pos": 3984,
+            "length": 3,
+            "snippet": "int"
+          },
+          {
+            "type": "identifier",
+            "label": "argc",
+            "pos": 3988,
+            "length": 4,
+            "snippet": "argc"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;)",
+      "occurrence_count": 705,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 4093,
+        "length": 31,
+        "snippet": "printLine(\"Calling good()...\");",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 4093,
+            "length": 30,
+            "snippet": "printLine(\"Calling good()...\")",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "printLine",
+                "pos": 4093,
+                "length": 9,
+                "snippet": "printLine"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 4102,
+                "length": 21,
+                "snippet": "(\"Calling good()...\")",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 4102,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "string_literal",
+                    "label": "",
+                    "pos": 4103,
+                    "length": 19,
+                    "snippet": "\"Calling good()...\"",
+                    "children": [
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 4103,
+                        "length": 1,
+                        "snippet": "\""
+                      },
+                      {
+                        "type": "string_content",
+                        "label": "Calling good()...",
+                        "pos": 4104,
+                        "length": 17,
+                        "snippet": "Calling good()..."
+                      },
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 4121,
+                        "length": 1,
+                        "snippet": "\""
+                      }
+                    ]
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 4122,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 4123,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 705,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 4093,
+        "length": 30,
+        "snippet": "printLine(\"Calling good()...\")",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "printLine",
+            "pos": 4093,
+            "length": 9,
+            "snippet": "printLine"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 4102,
+            "length": 21,
+            "snippet": "(\"Calling good()...\")",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 4102,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "string_literal",
+                "label": "",
+                "pos": 4103,
+                "length": 19,
+                "snippet": "\"Calling good()...\"",
+                "children": [
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 4103,
+                    "length": 1,
+                    "snippet": "\""
+                  },
+                  {
+                    "type": "string_content",
+                    "label": "Calling good()...",
+                    "pos": 4104,
+                    "length": 17,
+                    "snippet": "Calling good()..."
+                  },
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 4121,
+                    "length": 1,
+                    "snippet": "\""
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 4122,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,\"),):))",
+      "occurrence_count": 705,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 4102,
+        "length": 21,
+        "snippet": "(\"Calling good()...\")",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 4102,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 4103,
+            "length": 19,
+            "snippet": "\"Calling good()...\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 4103,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "Calling good()...",
+                "pos": 4104,
+                "length": 17,
+                "snippet": "Calling good()..."
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 4121,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 4122,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 702,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 1054,
+        "length": 68,
+        "snippet": "CWE197_Numeric_Truncation_Error__int_connect_socket_to_char_01_bad()",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "CWE197_Numeric_Truncation_Error__int_connect_socket_to_char_01_bad",
+            "pos": 1054,
+            "length": 66,
+            "snippet": "CWE197_Numeric_Truncation_Error__int_connect_socket_to_char_01_bad"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 1120,
+            "length": 2,
+            "snippet": "()",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 1120,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 1121,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 702,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 1120,
+        "length": 2,
+        "snippet": "()",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 1120,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 1121,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,):)))",
+      "occurrence_count": 702,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 2906,
+        "length": 12,
+        "snippet": "WSACleanup()",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "WSACleanup",
+            "pos": 2906,
+            "length": 10,
+            "snippet": "WSACleanup"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 2916,
+            "length": 2,
+            "snippet": "()",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 2916,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 2917,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,):))",
+      "occurrence_count": 702,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 2916,
+        "length": 2,
+        "snippet": "()",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 2916,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 2917,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,]:])",
+      "occurrence_count": 702,
+      "ast_structure": {
+        "type": "array_declarator",
+        "label": "",
+        "pos": 4001,
+        "length": 6,
+        "snippet": "argv[]",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "argv",
+            "pos": 4001,
+            "length": 4,
+            "snippet": "argv"
+          },
+          {
+            "type": "[",
+            "label": "[",
+            "pos": 4005,
+            "length": 1,
+            "snippet": "["
+          },
+          {
+            "type": "]",
+            "label": "]",
+            "pos": 4006,
+            "length": 1,
+            "snippet": "]"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,number_literal),;)",
+      "occurrence_count": 696,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 1169,
+        "length": 10,
+        "snippet": "data = -1;",
+        "children": [
+          {
+            "type": "assignment_expression",
+            "label": "",
+            "pos": 1169,
+            "length": 9,
+            "snippet": "data = -1",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "data",
+                "pos": 1169,
+                "length": 4,
+                "snippet": "data"
+              },
+              {
+                "type": "=",
+                "label": "=",
+                "pos": 1174,
+                "length": 1,
+                "snippet": "="
+              },
+              {
+                "type": "number_literal",
+                "label": "-1",
+                "pos": 1176,
+                "length": 2,
+                "snippet": "-1"
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 1178,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    }
+  ]
+}

@@ -1,0 +1,1757 @@
+{
+  "num_files": 18,
+  "common_subtrees": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_def(#define,identifier,preproc_arg)",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "compound_statement({:{,declaration(primitive_type,array_declarator(identifier,[:[,identifier,]:]),;),declaration(primitive_type,pointer_declarator(*:*,identifier),;),comment,comment,expression_statement(assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):)))),;),comment,if_statement(if:if,parenthesized_expression((:(,binary_expression(identifier,==:==,null(NULL)),):)),compound_statement({:{,comment,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),expression_statement(call_expression(identifier,argument_list((:(,number_literal,):))),;),}:})),expression_statement(assignment_expression(subscript_expression(identifier,[:[,binary_expression(identifier,-:-,number_literal),]:]),=:=,char_literal(',escape_sequence,')),;),expression_statement(call_expression(identifier,argument_list((:(,identifier,):))),;),}:})",
+      "occurrence_count": 18,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "declaration(primitive_type,array_declarator(identifier,[:[,identifier,]:]),;)",
+      "occurrence_count": 18,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,identifier,]:])",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(primitive_type,pointer_declarator(*:*,identifier),;)",
+      "occurrence_count": 18,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):)))),;)",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):))))",
+      "occurrence_count": 18,
+      "pattern_type": "assignment"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 18,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "if_statement(if:if,parenthesized_expression((:(,binary_expression(identifier,==:==,null(NULL)),):)),compound_statement({:{,comment,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),expression_statement(call_expression(identifier,argument_list((:(,number_literal,):))),;),}:}))",
+      "occurrence_count": 18,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "parenthesized_expression((:(,binary_expression(identifier,==:==,null(NULL)),):))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "binary_expression(identifier,==:==,null(NULL))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "compound_statement({:{,comment,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),expression_statement(call_expression(identifier,argument_list((:(,number_literal,):))),;),}:})",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;)",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 18,
+      "pattern_type": "function_call"
+    }
+  ],
+  "common_function_calls": [
+    {
+      "function": "printLine",
+      "count": 189
+    },
+    {
+      "function": "exit",
+      "count": 51
+    },
+    {
+      "function": "fgets",
+      "count": 33
+    },
+    {
+      "function": "gets",
+      "count": 18
+    },
+    {
+      "function": "good1",
+      "count": 18
+    },
+    {
+      "function": "srand",
+      "count": 18
+    },
+    {
+      "function": "time",
+      "count": 18
+    },
+    {
+      "function": "good2",
+      "count": 13
+    },
+    {
+      "function": "staticReturnsTrue",
+      "count": 2
+    },
+    {
+      "function": "globalReturnsTrue",
+      "count": 2
+    },
+    {
+      "function": "globalReturnsTrueOrFalse",
+      "count": 2
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_01_good",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_01_bad",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_02_good",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_02_bad",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_03_good",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_03_bad",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_04_good",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_04_bad",
+      "count": 1
+    },
+    {
+      "function": "CWE242_Use_of_Inherently_Dangerous_Function__basic_05_good",
+      "count": 1
+    }
+  ],
+  "skeleton_patterns": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 435,
+        "length": 26,
+        "snippet": "#include \"std_testcase.h\"\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 435,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 444,
+            "length": 16,
+            "snippet": "\"std_testcase.h\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 444,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "std_testcase.h",
+                "pos": 445,
+                "length": 14,
+                "snippet": "std_testcase.h"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 459,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 444,
+        "length": 16,
+        "snippet": "\"std_testcase.h\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 444,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "std_testcase.h",
+            "pos": 445,
+            "length": 14,
+            "snippet": "std_testcase.h"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 459,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_def(#define,identifier,preproc_arg)",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "preproc_def",
+        "label": "",
+        "pos": 462,
+        "length": 21,
+        "snippet": "#define DEST_SIZE 10\n",
+        "children": [
+          {
+            "type": "#define",
+            "label": "#define",
+            "pos": 462,
+            "length": 7,
+            "snippet": "#define"
+          },
+          {
+            "type": "identifier",
+            "label": "DEST_SIZE",
+            "pos": 470,
+            "length": 9,
+            "snippet": "DEST_SIZE"
+          },
+          {
+            "type": "preproc_arg",
+            "label": "10",
+            "pos": 480,
+            "length": 2,
+            "snippet": "10"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 506,
+        "length": 59,
+        "snippet": "CWE242_Use_of_Inherently_Dangerous_Function__basic_01_bad()",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "CWE242_Use_of_Inherently_Dangerous_Function__basic_01_bad",
+            "pos": 506,
+            "length": 57,
+            "snippet": "CWE242_Use_of_Inherently_Dangerous_Function__basic_01_bad"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 563,
+            "length": 2,
+            "snippet": "()",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 563,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 564,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 563,
+        "length": 2,
+        "snippet": "()",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 563,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 564,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "compound_statement({:{,declaration(primitive_type,array_declarator(identifier,[:[,identifier,]:]),;),declaration(primitive_type,pointer_declarator(*:*,identifier),;),comment,comment,expression_statement(assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):)))),;),comment,if_statement(if:if,parenthesized_expression((:(,binary_expression(identifier,==:==,null(NULL)),):)),compound_statement({:{,comment,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),expression_statement(call_expression(identifier,argument_list((:(,number_literal,):))),;),}:})),expression_statement(assignment_expression(subscript_expression(identifier,[:[,binary_expression(identifier,-:-,number_literal),]:]),=:=,char_literal(',escape_sequence,')),;),expression_statement(call_expression(identifier,argument_list((:(,identifier,):))),;),}:})",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "compound_statement",
+        "label": "",
+        "pos": 572,
+        "length": 567,
+        "snippet": "{\n        char dest[DEST_SIZE];\n        char *result;\n        /* FLAW: gets is inherently dangerous and cannot be used safely. */\n        /* INCIDENTAL CWE120 Buffer Overflow since gets is inherently dangerous and is\n         * an unbounded copy. */\n        result = gets(dest);\n        /* Verify return value */\n        if (result == NULL)\n        {\n            /* error condition */\n            printLine(\"Error Condition: alter control flow to indicate action taken\");\n            exit(1);\n        }\n        dest[DEST_SIZE-1] = '\\0';\n        printLine(dest);\n    }",
+        "children": [
+          {
+            "type": "{",
+            "label": "{",
+            "pos": 572,
+            "length": 1,
+            "snippet": "{"
+          },
+          {
+            "type": "declaration",
+            "label": "",
+            "pos": 582,
+            "length": 21,
+            "snippet": "char dest[DEST_SIZE];",
+            "children": [
+              {
+                "type": "primitive_type",
+                "label": "char",
+                "pos": 582,
+                "length": 4,
+                "snippet": "char"
+              },
+              {
+                "type": "array_declarator",
+                "label": "",
+                "pos": 587,
+                "length": 15,
+                "snippet": "dest[DEST_SIZE]",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "dest",
+                    "pos": 587,
+                    "length": 4,
+                    "snippet": "dest"
+                  },
+                  {
+                    "type": "[",
+                    "label": "[",
+                    "pos": 591,
+                    "length": 1,
+                    "snippet": "["
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "DEST_SIZE",
+                    "pos": 592,
+                    "length": 9,
+                    "snippet": "DEST_SIZE"
+                  },
+                  {
+                    "type": "]",
+                    "label": "]",
+                    "pos": 601,
+                    "length": 1,
+                    "snippet": "]"
+                  }
+                ]
+              },
+              {
+                "type": ";",
+                "label": ";",
+                "pos": 602,
+                "length": 1,
+                "snippet": ";"
+              }
+            ]
+          },
+          {
+            "type": "declaration",
+            "label": "",
+            "pos": 612,
+            "length": 13,
+            "snippet": "char *result;",
+            "children": [
+              {
+                "type": "primitive_type",
+                "label": "char",
+                "pos": 612,
+                "length": 4,
+                "snippet": "char"
+              },
+              {
+                "type": "pointer_declarator",
+                "label": "",
+                "pos": 617,
+                "length": 7,
+                "snippet": "*result",
+                "children": [
+                  {
+                    "type": "*",
+                    "label": "*",
+                    "pos": 617,
+                    "length": 1,
+                    "snippet": "*"
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "result",
+                    "pos": 618,
+                    "length": 6,
+                    "snippet": "result"
+                  }
+                ]
+              },
+              {
+                "type": ";",
+                "label": ";",
+                "pos": 624,
+                "length": 1,
+                "snippet": ";"
+              }
+            ]
+          },
+          {
+            "type": "comment",
+            "label": "/* FLAW: gets is inherently dangerous and cannot be used safely. */",
+            "pos": 634,
+            "length": 67,
+            "snippet": "/* FLAW: gets is inherently dangerous and cannot be used safely. */"
+          },
+          {
+            "type": "comment",
+            "label": "        \n         * an unbounded copy. */",
+            "pos": 710,
+            "length": 111,
+            "snippet": "/* INCIDENTAL CWE120 Buffer Overflow since gets is inherently dangerous and is\n         * an unbounded copy. */"
+          },
+          {
+            "type": "expression_statement",
+            "label": "",
+            "pos": 830,
+            "length": 20,
+            "snippet": "result = gets(dest);",
+            "children": [
+              {
+                "type": "assignment_expression",
+                "label": "",
+                "pos": 830,
+                "length": 19,
+                "snippet": "result = gets(dest)",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "result",
+                    "pos": 830,
+                    "length": 6,
+                    "snippet": "result"
+                  },
+                  {
+                    "type": "=",
+                    "label": "=",
+                    "pos": 837,
+                    "length": 1,
+                    "snippet": "="
+                  },
+                  {
+                    "type": "call_expression",
+                    "label": "",
+                    "pos": 839,
+                    "length": 10,
+                    "snippet": "gets(dest)",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "gets",
+                        "pos": 839,
+                        "length": 4,
+                        "snippet": "gets"
+                      },
+                      {
+                        "type": "argument_list",
+                        "label": "",
+                        "pos": 843,
+                        "length": 6,
+                        "snippet": "(dest)",
+                        "children": [
+                          {
+                            "type": "(",
+                            "label": "(",
+                            "pos": 843,
+                            "length": 1,
+                            "snippet": "("
+                          },
+                          {
+                            "type": "identifier",
+                            "label": "dest",
+                            "pos": 844,
+                            "length": 4,
+                            "snippet": "dest"
+                          },
+                          {
+                            "type": ")",
+                            "label": ")",
+                            "pos": 848,
+                            "length": 1,
+                            "snippet": ")"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": ";",
+                "label": ";",
+                "pos": 849,
+                "length": 1,
+                "snippet": ";"
+              }
+            ]
+          },
+          {
+            "type": "comment",
+            "label": "/* Verify return value */",
+            "pos": 859,
+            "length": 25,
+            "snippet": "/* Verify return value */"
+          },
+          {
+            "type": "if_statement",
+            "label": "",
+            "pos": 893,
+            "length": 181,
+            "snippet": "if (result == NULL)\n        {\n            /* error condition */\n            printLine(\"Error Condition: alter control flow to indicate action taken\");\n            exit(1);\n        }",
+            "children": [
+              {
+                "type": "if",
+                "label": "if",
+                "pos": 893,
+                "length": 2,
+                "snippet": "if"
+              },
+              {
+                "type": "parenthesized_expression",
+                "label": "",
+                "pos": 896,
+                "length": 16,
+                "snippet": "(result == NULL)",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 896,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "binary_expression",
+                    "label": "",
+                    "pos": 897,
+                    "length": 14,
+                    "snippet": "result == NULL",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "result",
+                        "pos": 897,
+                        "length": 6,
+                        "snippet": "result"
+                      },
+                      {
+                        "type": "==",
+                        "label": "==",
+                        "pos": 904,
+                        "length": 2,
+                        "snippet": "=="
+                      },
+                      {
+                        "type": "null",
+                        "label": "",
+                        "pos": 907,
+                        "length": 4,
+                        "snippet": "NULL",
+                        "children": [
+                          {
+                            "type": "NULL",
+                            "label": "NULL",
+                            "pos": 907,
+                            "length": 4,
+                            "snippet": "NULL"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 911,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              },
+              {
+                "type": "compound_statement",
+                "label": "",
+                "pos": 921,
+                "length": 153,
+                "snippet": "{\n            /* error condition */\n            printLine(\"Error Condition: alter control flow to indicate action taken\");\n            exit(1);\n        }",
+                "children": [
+                  {
+                    "type": "{",
+                    "label": "{",
+                    "pos": 921,
+                    "length": 1,
+                    "snippet": "{"
+                  },
+                  {
+                    "type": "comment",
+                    "label": "/* error condition */",
+                    "pos": 935,
+                    "length": 21,
+                    "snippet": "/* error condition */"
+                  },
+                  {
+                    "type": "expression_statement",
+                    "label": "",
+                    "pos": 969,
+                    "length": 74,
+                    "snippet": "printLine(\"Error Condition: alter control flow to indicate action taken\");",
+                    "children": [
+                      {
+                        "type": "call_expression",
+                        "label": "",
+                        "pos": 969,
+                        "length": 73,
+                        "snippet": "printLine(\"Error Condition: alter control flow to indicate action taken\")",
+                        "children": [
+                          {
+                            "type": "identifier",
+                            "label": "printLine",
+                            "pos": 969,
+                            "length": 9,
+                            "snippet": "printLine"
+                          },
+                          {
+                            "type": "argument_list",
+                            "label": "",
+                            "pos": 978,
+                            "length": 64,
+                            "snippet": "(\"Error Condition: alter control flow to indicate action taken\")",
+                            "children": [
+                              {
+                                "type": "(",
+                                "label": "(",
+                                "pos": 978,
+                                "length": 1,
+                                "snippet": "("
+                              },
+                              {
+                                "type": "string_literal",
+                                "label": "",
+                                "pos": 979,
+                                "length": 62,
+                                "snippet": "\"Error Condition: alter control flow to indicate action taken\"",
+                                "children": [
+                                  {
+                                    "type": "\"",
+                                    "label": "\"",
+                                    "pos": 979,
+                                    "length": 1,
+                                    "snippet": "\""
+                                  },
+                                  {
+                                    "type": "string_content",
+                                    "label": "Error Condition: alter control flow to indicate action taken",
+                                    "pos": 980,
+                                    "length": 60,
+                                    "snippet": "Error Condition: alter control flow to indicate action taken"
+                                  },
+                                  {
+                                    "type": "\"",
+                                    "label": "\"",
+                                    "pos": 1040,
+                                    "length": 1,
+                                    "snippet": "\""
+                                  }
+                                ]
+                              },
+                              {
+                                "type": ")",
+                                "label": ")",
+                                "pos": 1041,
+                                "length": 1,
+                                "snippet": ")"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": ";",
+                        "label": ";",
+                        "pos": 1042,
+                        "length": 1,
+                        "snippet": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expression_statement",
+                    "label": "",
+                    "pos": 1056,
+                    "length": 8,
+                    "snippet": "exit(1);",
+                    "children": [
+                      {
+                        "type": "call_expression",
+                        "label": "",
+                        "pos": 1056,
+                        "length": 7,
+                        "snippet": "exit(1)",
+                        "children": [
+                          {
+                            "type": "identifier",
+                            "label": "exit",
+                            "pos": 1056,
+                            "length": 4,
+                            "snippet": "exit"
+                          },
+                          {
+                            "type": "argument_list",
+                            "label": "",
+                            "pos": 1060,
+                            "length": 3,
+                            "snippet": "(1)",
+                            "children": [
+                              {
+                                "type": "(",
+                                "label": "(",
+                                "pos": 1060,
+                                "length": 1,
+                                "snippet": "("
+                              },
+                              {
+                                "type": "number_literal",
+                                "label": "1",
+                                "pos": 1061,
+                                "length": 1,
+                                "snippet": "1"
+                              },
+                              {
+                                "type": ")",
+                                "label": ")",
+                                "pos": 1062,
+                                "length": 1,
+                                "snippet": ")"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": ";",
+                        "label": ";",
+                        "pos": 1063,
+                        "length": 1,
+                        "snippet": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "}",
+                    "label": "}",
+                    "pos": 1073,
+                    "length": 1,
+                    "snippet": "}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "expression_statement",
+            "label": "",
+            "pos": 1083,
+            "length": 25,
+            "snippet": "dest[DEST_SIZE-1] = '\\0';",
+            "children": [
+              {
+                "type": "assignment_expression",
+                "label": "",
+                "pos": 1083,
+                "length": 24,
+                "snippet": "dest[DEST_SIZE-1] = '\\0'",
+                "children": [
+                  {
+                    "type": "subscript_expression",
+                    "label": "",
+                    "pos": 1083,
+                    "length": 17,
+                    "snippet": "dest[DEST_SIZE-1]",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "dest",
+                        "pos": 1083,
+                        "length": 4,
+                        "snippet": "dest"
+                      },
+                      {
+                        "type": "[",
+                        "label": "[",
+                        "pos": 1087,
+                        "length": 1,
+                        "snippet": "["
+                      },
+                      {
+                        "type": "binary_expression",
+                        "label": "",
+                        "pos": 1088,
+                        "length": 11,
+                        "snippet": "DEST_SIZE-1",
+                        "children": [
+                          {
+                            "type": "identifier",
+                            "label": "DEST_SIZE",
+                            "pos": 1088,
+                            "length": 9,
+                            "snippet": "DEST_SIZE"
+                          },
+                          {
+                            "type": "-",
+                            "label": "-",
+                            "pos": 1097,
+                            "length": 1,
+                            "snippet": "-"
+                          },
+                          {
+                            "type": "number_literal",
+                            "label": "1",
+                            "pos": 1098,
+                            "length": 1,
+                            "snippet": "1"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "]",
+                        "label": "]",
+                        "pos": 1099,
+                        "length": 1,
+                        "snippet": "]"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "=",
+                    "label": "=",
+                    "pos": 1101,
+                    "length": 1,
+                    "snippet": "="
+                  },
+                  {
+                    "type": "char_literal",
+                    "label": "",
+                    "pos": 1103,
+                    "length": 4,
+                    "snippet": "'\\0'",
+                    "children": [
+                      {
+                        "type": "'",
+                        "label": "'",
+                        "pos": 1103,
+                        "length": 1,
+                        "snippet": "'"
+                      },
+                      {
+                        "type": "escape_sequence",
+                        "label": "\\0",
+                        "pos": 1104,
+                        "length": 2,
+                        "snippet": "\\0"
+                      },
+                      {
+                        "type": "'",
+                        "label": "'",
+                        "pos": 1106,
+                        "length": 1,
+                        "snippet": "'"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": ";",
+                "label": ";",
+                "pos": 1107,
+                "length": 1,
+                "snippet": ";"
+              }
+            ]
+          },
+          {
+            "type": "expression_statement",
+            "label": "",
+            "pos": 1117,
+            "length": 16,
+            "snippet": "printLine(dest);",
+            "children": [
+              {
+                "type": "call_expression",
+                "label": "",
+                "pos": 1117,
+                "length": 15,
+                "snippet": "printLine(dest)",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "printLine",
+                    "pos": 1117,
+                    "length": 9,
+                    "snippet": "printLine"
+                  },
+                  {
+                    "type": "argument_list",
+                    "label": "",
+                    "pos": 1126,
+                    "length": 6,
+                    "snippet": "(dest)",
+                    "children": [
+                      {
+                        "type": "(",
+                        "label": "(",
+                        "pos": 1126,
+                        "length": 1,
+                        "snippet": "("
+                      },
+                      {
+                        "type": "identifier",
+                        "label": "dest",
+                        "pos": 1127,
+                        "length": 4,
+                        "snippet": "dest"
+                      },
+                      {
+                        "type": ")",
+                        "label": ")",
+                        "pos": 1131,
+                        "length": 1,
+                        "snippet": ")"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": ";",
+                "label": ";",
+                "pos": 1132,
+                "length": 1,
+                "snippet": ";"
+              }
+            ]
+          },
+          {
+            "type": "}",
+            "label": "}",
+            "pos": 1138,
+            "length": 1,
+            "snippet": "}"
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "declaration(primitive_type,array_declarator(identifier,[:[,identifier,]:]),;)",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "declaration",
+        "label": "",
+        "pos": 582,
+        "length": 21,
+        "snippet": "char dest[DEST_SIZE];",
+        "children": [
+          {
+            "type": "primitive_type",
+            "label": "char",
+            "pos": 582,
+            "length": 4,
+            "snippet": "char"
+          },
+          {
+            "type": "array_declarator",
+            "label": "",
+            "pos": 587,
+            "length": 15,
+            "snippet": "dest[DEST_SIZE]",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "dest",
+                "pos": 587,
+                "length": 4,
+                "snippet": "dest"
+              },
+              {
+                "type": "[",
+                "label": "[",
+                "pos": 591,
+                "length": 1,
+                "snippet": "["
+              },
+              {
+                "type": "identifier",
+                "label": "DEST_SIZE",
+                "pos": 592,
+                "length": 9,
+                "snippet": "DEST_SIZE"
+              },
+              {
+                "type": "]",
+                "label": "]",
+                "pos": 601,
+                "length": 1,
+                "snippet": "]"
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 602,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,identifier,]:])",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "array_declarator",
+        "label": "",
+        "pos": 587,
+        "length": 15,
+        "snippet": "dest[DEST_SIZE]",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "dest",
+            "pos": 587,
+            "length": 4,
+            "snippet": "dest"
+          },
+          {
+            "type": "[",
+            "label": "[",
+            "pos": 591,
+            "length": 1,
+            "snippet": "["
+          },
+          {
+            "type": "identifier",
+            "label": "DEST_SIZE",
+            "pos": 592,
+            "length": 9,
+            "snippet": "DEST_SIZE"
+          },
+          {
+            "type": "]",
+            "label": "]",
+            "pos": 601,
+            "length": 1,
+            "snippet": "]"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(primitive_type,pointer_declarator(*:*,identifier),;)",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "declaration",
+        "label": "",
+        "pos": 612,
+        "length": 13,
+        "snippet": "char *result;",
+        "children": [
+          {
+            "type": "primitive_type",
+            "label": "char",
+            "pos": 612,
+            "length": 4,
+            "snippet": "char"
+          },
+          {
+            "type": "pointer_declarator",
+            "label": "",
+            "pos": 617,
+            "length": 7,
+            "snippet": "*result",
+            "children": [
+              {
+                "type": "*",
+                "label": "*",
+                "pos": 617,
+                "length": 1,
+                "snippet": "*"
+              },
+              {
+                "type": "identifier",
+                "label": "result",
+                "pos": 618,
+                "length": 6,
+                "snippet": "result"
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 624,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "pointer_declarator",
+        "label": "",
+        "pos": 617,
+        "length": 7,
+        "snippet": "*result",
+        "children": [
+          {
+            "type": "*",
+            "label": "*",
+            "pos": 617,
+            "length": 1,
+            "snippet": "*"
+          },
+          {
+            "type": "identifier",
+            "label": "result",
+            "pos": 618,
+            "length": 6,
+            "snippet": "result"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):)))),;)",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 830,
+        "length": 20,
+        "snippet": "result = gets(dest);",
+        "children": [
+          {
+            "type": "assignment_expression",
+            "label": "",
+            "pos": 830,
+            "length": 19,
+            "snippet": "result = gets(dest)",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "result",
+                "pos": 830,
+                "length": 6,
+                "snippet": "result"
+              },
+              {
+                "type": "=",
+                "label": "=",
+                "pos": 837,
+                "length": 1,
+                "snippet": "="
+              },
+              {
+                "type": "call_expression",
+                "label": "",
+                "pos": 839,
+                "length": 10,
+                "snippet": "gets(dest)",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "gets",
+                    "pos": 839,
+                    "length": 4,
+                    "snippet": "gets"
+                  },
+                  {
+                    "type": "argument_list",
+                    "label": "",
+                    "pos": 843,
+                    "length": 6,
+                    "snippet": "(dest)",
+                    "children": [
+                      {
+                        "type": "(",
+                        "label": "(",
+                        "pos": 843,
+                        "length": 1,
+                        "snippet": "("
+                      },
+                      {
+                        "type": "identifier",
+                        "label": "dest",
+                        "pos": 844,
+                        "length": 4,
+                        "snippet": "dest"
+                      },
+                      {
+                        "type": ")",
+                        "label": ")",
+                        "pos": 848,
+                        "length": 1,
+                        "snippet": ")"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 849,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):))))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "assignment_expression",
+        "label": "",
+        "pos": 830,
+        "length": 19,
+        "snippet": "result = gets(dest)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "result",
+            "pos": 830,
+            "length": 6,
+            "snippet": "result"
+          },
+          {
+            "type": "=",
+            "label": "=",
+            "pos": 837,
+            "length": 1,
+            "snippet": "="
+          },
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 839,
+            "length": 10,
+            "snippet": "gets(dest)",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "gets",
+                "pos": 839,
+                "length": 4,
+                "snippet": "gets"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 843,
+                "length": 6,
+                "snippet": "(dest)",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 843,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "dest",
+                    "pos": 844,
+                    "length": 4,
+                    "snippet": "dest"
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 848,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "assignment"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 839,
+        "length": 10,
+        "snippet": "gets(dest)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "gets",
+            "pos": 839,
+            "length": 4,
+            "snippet": "gets"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 843,
+            "length": 6,
+            "snippet": "(dest)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 843,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "identifier",
+                "label": "dest",
+                "pos": 844,
+                "length": 4,
+                "snippet": "dest"
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 848,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 843,
+        "length": 6,
+        "snippet": "(dest)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 843,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "identifier",
+            "label": "dest",
+            "pos": 844,
+            "length": 4,
+            "snippet": "dest"
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 848,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "if_statement(if:if,parenthesized_expression((:(,binary_expression(identifier,==:==,null(NULL)),):)),compound_statement({:{,comment,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),expression_statement(call_expression(identifier,argument_list((:(,number_literal,):))),;),}:}))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "if_statement",
+        "label": "",
+        "pos": 893,
+        "length": 181,
+        "snippet": "if (result == NULL)\n        {\n            /* error condition */\n            printLine(\"Error Condition: alter control flow to indicate action taken\");\n            exit(1);\n        }",
+        "children": [
+          {
+            "type": "if",
+            "label": "if",
+            "pos": 893,
+            "length": 2,
+            "snippet": "if"
+          },
+          {
+            "type": "parenthesized_expression",
+            "label": "",
+            "pos": 896,
+            "length": 16,
+            "snippet": "(result == NULL)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 896,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "binary_expression",
+                "label": "",
+                "pos": 897,
+                "length": 14,
+                "snippet": "result == NULL",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "result",
+                    "pos": 897,
+                    "length": 6,
+                    "snippet": "result"
+                  },
+                  {
+                    "type": "==",
+                    "label": "==",
+                    "pos": 904,
+                    "length": 2,
+                    "snippet": "=="
+                  },
+                  {
+                    "type": "null",
+                    "label": "",
+                    "pos": 907,
+                    "length": 4,
+                    "snippet": "NULL",
+                    "children": [
+                      {
+                        "type": "NULL",
+                        "label": "NULL",
+                        "pos": 907,
+                        "length": 4,
+                        "snippet": "NULL"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 911,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          },
+          {
+            "type": "compound_statement",
+            "label": "",
+            "pos": 921,
+            "length": 153,
+            "snippet": "{\n            /* error condition */\n            printLine(\"Error Condition: alter control flow to indicate action taken\");\n            exit(1);\n        }",
+            "children": [
+              {
+                "type": "{",
+                "label": "{",
+                "pos": 921,
+                "length": 1,
+                "snippet": "{"
+              },
+              {
+                "type": "comment",
+                "label": "/* error condition */",
+                "pos": 935,
+                "length": 21,
+                "snippet": "/* error condition */"
+              },
+              {
+                "type": "expression_statement",
+                "label": "",
+                "pos": 969,
+                "length": 74,
+                "snippet": "printLine(\"Error Condition: alter control flow to indicate action taken\");",
+                "children": [
+                  {
+                    "type": "call_expression",
+                    "label": "",
+                    "pos": 969,
+                    "length": 73,
+                    "snippet": "printLine(\"Error Condition: alter control flow to indicate action taken\")",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "printLine",
+                        "pos": 969,
+                        "length": 9,
+                        "snippet": "printLine"
+                      },
+                      {
+                        "type": "argument_list",
+                        "label": "",
+                        "pos": 978,
+                        "length": 64,
+                        "snippet": "(\"Error Condition: alter control flow to indicate action taken\")",
+                        "children": [
+                          {
+                            "type": "(",
+                            "label": "(",
+                            "pos": 978,
+                            "length": 1,
+                            "snippet": "("
+                          },
+                          {
+                            "type": "string_literal",
+                            "label": "",
+                            "pos": 979,
+                            "length": 62,
+                            "snippet": "\"Error Condition: alter control flow to indicate action taken\"",
+                            "children": [
+                              {
+                                "type": "\"",
+                                "label": "\"",
+                                "pos": 979,
+                                "length": 1,
+                                "snippet": "\""
+                              },
+                              {
+                                "type": "string_content",
+                                "label": "Error Condition: alter control flow to indicate action taken",
+                                "pos": 980,
+                                "length": 60,
+                                "snippet": "Error Condition: alter control flow to indicate action taken"
+                              },
+                              {
+                                "type": "\"",
+                                "label": "\"",
+                                "pos": 1040,
+                                "length": 1,
+                                "snippet": "\""
+                              }
+                            ]
+                          },
+                          {
+                            "type": ")",
+                            "label": ")",
+                            "pos": 1041,
+                            "length": 1,
+                            "snippet": ")"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": ";",
+                    "label": ";",
+                    "pos": 1042,
+                    "length": 1,
+                    "snippet": ";"
+                  }
+                ]
+              },
+              {
+                "type": "expression_statement",
+                "label": "",
+                "pos": 1056,
+                "length": 8,
+                "snippet": "exit(1);",
+                "children": [
+                  {
+                    "type": "call_expression",
+                    "label": "",
+                    "pos": 1056,
+                    "length": 7,
+                    "snippet": "exit(1)",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "exit",
+                        "pos": 1056,
+                        "length": 4,
+                        "snippet": "exit"
+                      },
+                      {
+                        "type": "argument_list",
+                        "label": "",
+                        "pos": 1060,
+                        "length": 3,
+                        "snippet": "(1)",
+                        "children": [
+                          {
+                            "type": "(",
+                            "label": "(",
+                            "pos": 1060,
+                            "length": 1,
+                            "snippet": "("
+                          },
+                          {
+                            "type": "number_literal",
+                            "label": "1",
+                            "pos": 1061,
+                            "length": 1,
+                            "snippet": "1"
+                          },
+                          {
+                            "type": ")",
+                            "label": ")",
+                            "pos": 1062,
+                            "length": 1,
+                            "snippet": ")"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": ";",
+                    "label": ";",
+                    "pos": 1063,
+                    "length": 1,
+                    "snippet": ";"
+                  }
+                ]
+              },
+              {
+                "type": "}",
+                "label": "}",
+                "pos": 1073,
+                "length": 1,
+                "snippet": "}"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    }
+  ]
+}

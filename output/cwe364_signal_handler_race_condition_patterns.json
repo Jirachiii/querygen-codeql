@@ -1,0 +1,1090 @@
+{
+  "num_files": 20,
+  "common_subtrees": [
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,]:])",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "pointer_declarator(*:*,array_declarator(identifier,[:[,]:]))",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type,identifier),,,parameter_declaration(primitive_type,pointer_declarator(*:*,array_declarator(identifier,[:[,]:]))),):)))",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,parameter_declaration(primitive_type,identifier),,,parameter_declaration(primitive_type,pointer_declarator(*:*,array_declarator(identifier,[:[,]:]))),):))",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,identifier)",
+      "occurrence_count": 19,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,pointer_declarator(*:*,array_declarator(identifier,[:[,]:])))",
+      "occurrence_count": 19,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 19,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "type_definition(typedef,struct_specifier(struct:struct,type_identifier,field_declaration_list({:{,field_declaration(type_identifier,field_identifier,;),}:})),type_identifier,;)",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "struct_specifier(struct:struct,type_identifier,field_declaration_list({:{,field_declaration(type_identifier,field_identifier,;),}:}))",
+      "occurrence_count": 18,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "field_declaration_list({:{,field_declaration(type_identifier,field_identifier,;),}:})",
+      "occurrence_count": 18,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "field_declaration(type_identifier,field_identifier,;)",
+      "occurrence_count": 18,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "declaration(type_identifier,init_declarator(pointer_declarator(*:*,identifier),=:=,null(NULL)),;)",
+      "occurrence_count": 18,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "init_declarator(pointer_declarator(*:*,identifier),=:=,null(NULL))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_definition(storage_class_specifier(static),primitive_type,function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type,identifier),):))),compound_statement({:{,if_statement(if:if,parenthesized_expression((:(,binary_expression(identifier,!=:!=,null(NULL)),):)),compound_statement({:{,expression_statement(assignment_expression(field_expression(identifier,->:->,field_identifier),=:=,number_literal),;),}:})),}:}))",
+      "occurrence_count": 18,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type,identifier),):)))",
+      "occurrence_count": 18,
+      "pattern_type": "other"
+    }
+  ],
+  "common_function_calls": [
+    {
+      "function": "signal",
+      "count": 168
+    },
+    {
+      "function": "free",
+      "count": 102
+    },
+    {
+      "function": "printLine",
+      "count": 87
+    },
+    {
+      "function": "malloc",
+      "count": 51
+    },
+    {
+      "function": "exit",
+      "count": 51
+    },
+    {
+      "function": "good1",
+      "count": 18
+    },
+    {
+      "function": "srand",
+      "count": 18
+    },
+    {
+      "function": "time",
+      "count": 18
+    },
+    {
+      "function": "good2",
+      "count": 13
+    },
+    {
+      "function": "staticReturnsTrue",
+      "count": 2
+    },
+    {
+      "function": "globalReturnsTrue",
+      "count": 2
+    },
+    {
+      "function": "globalReturnsTrueOrFalse",
+      "count": 2
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_01_good",
+      "count": 1
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_01_bad",
+      "count": 1
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_02_good",
+      "count": 1
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_02_bad",
+      "count": 1
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_03_good",
+      "count": 1
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_03_bad",
+      "count": 1
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_04_good",
+      "count": 1
+    },
+    {
+      "function": "CWE364_Signal_Handler_Race_Condition__basic_04_bad",
+      "count": 1
+    }
+  ],
+  "skeleton_patterns": [
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "pointer_declarator",
+        "label": "",
+        "pos": 17197,
+        "length": 15,
+        "snippet": "* info_compiler",
+        "children": [
+          {
+            "type": "*",
+            "label": "*",
+            "pos": 17197,
+            "length": 1,
+            "snippet": "*"
+          },
+          {
+            "type": "identifier",
+            "label": "info_compiler",
+            "pos": 17199,
+            "length": 13,
+            "snippet": "info_compiler"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 17215,
+        "length": 6,
+        "snippet": "\"INFO\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 17215,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "INFO",
+            "pos": 17216,
+            "length": 4,
+            "snippet": "INFO"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 17220,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,]:])",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "array_declarator",
+        "label": "",
+        "pos": 24985,
+        "length": 14,
+        "snippet": "info_version[]",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "info_version",
+            "pos": 24985,
+            "length": 12,
+            "snippet": "info_version"
+          },
+          {
+            "type": "[",
+            "label": "[",
+            "pos": 24997,
+            "length": 1,
+            "snippet": "["
+          },
+          {
+            "type": "]",
+            "label": "]",
+            "pos": 24998,
+            "length": 1,
+            "snippet": "]"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 27848,
+        "length": 6,
+        "snippet": "main()",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "main",
+            "pos": 27848,
+            "length": 4,
+            "snippet": "main"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 27852,
+            "length": 2,
+            "snippet": "()",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 27852,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 27853,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 27852,
+        "length": 2,
+        "snippet": "()",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 27852,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 27853,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "pointer_declarator(*:*,array_declarator(identifier,[:[,]:]))",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "pointer_declarator",
+        "label": "",
+        "pos": 27928,
+        "length": 7,
+        "snippet": "*argv[]",
+        "children": [
+          {
+            "type": "*",
+            "label": "*",
+            "pos": 27928,
+            "length": 1,
+            "snippet": "*"
+          },
+          {
+            "type": "array_declarator",
+            "label": "",
+            "pos": 27929,
+            "length": 6,
+            "snippet": "argv[]",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "argv",
+                "pos": 27929,
+                "length": 4,
+                "snippet": "argv"
+              },
+              {
+                "type": "[",
+                "label": "[",
+                "pos": 27933,
+                "length": 1,
+                "snippet": "["
+              },
+              {
+                "type": "]",
+                "label": "]",
+                "pos": 27934,
+                "length": 1,
+                "snippet": "]"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type,identifier),,,parameter_declaration(primitive_type,pointer_declarator(*:*,array_declarator(identifier,[:[,]:]))),):)))",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 27948,
+        "length": 28,
+        "snippet": "main(int argc, char* argv[])",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "main",
+            "pos": 27948,
+            "length": 4,
+            "snippet": "main"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 27952,
+            "length": 24,
+            "snippet": "(int argc, char* argv[])",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 27952,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "parameter_declaration",
+                "label": "",
+                "pos": 27953,
+                "length": 8,
+                "snippet": "int argc",
+                "children": [
+                  {
+                    "type": "primitive_type",
+                    "label": "int",
+                    "pos": 27953,
+                    "length": 3,
+                    "snippet": "int"
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "argc",
+                    "pos": 27957,
+                    "length": 4,
+                    "snippet": "argc"
+                  }
+                ]
+              },
+              {
+                "type": ",",
+                "label": ",",
+                "pos": 27961,
+                "length": 1,
+                "snippet": ","
+              },
+              {
+                "type": "parameter_declaration",
+                "label": "",
+                "pos": 27963,
+                "length": 12,
+                "snippet": "char* argv[]",
+                "children": [
+                  {
+                    "type": "primitive_type",
+                    "label": "char",
+                    "pos": 27963,
+                    "length": 4,
+                    "snippet": "char"
+                  },
+                  {
+                    "type": "pointer_declarator",
+                    "label": "",
+                    "pos": 27967,
+                    "length": 8,
+                    "snippet": "* argv[]",
+                    "children": [
+                      {
+                        "type": "*",
+                        "label": "*",
+                        "pos": 27967,
+                        "length": 1,
+                        "snippet": "*"
+                      },
+                      {
+                        "type": "array_declarator",
+                        "label": "",
+                        "pos": 27969,
+                        "length": 6,
+                        "snippet": "argv[]",
+                        "children": [
+                          {
+                            "type": "identifier",
+                            "label": "argv",
+                            "pos": 27969,
+                            "length": 4,
+                            "snippet": "argv"
+                          },
+                          {
+                            "type": "[",
+                            "label": "[",
+                            "pos": 27973,
+                            "length": 1,
+                            "snippet": "["
+                          },
+                          {
+                            "type": "]",
+                            "label": "]",
+                            "pos": 27974,
+                            "length": 1,
+                            "snippet": "]"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 27975,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,parameter_declaration(primitive_type,identifier),,,parameter_declaration(primitive_type,pointer_declarator(*:*,array_declarator(identifier,[:[,]:]))),):))",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 27952,
+        "length": 24,
+        "snippet": "(int argc, char* argv[])",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 27952,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "parameter_declaration",
+            "label": "",
+            "pos": 27953,
+            "length": 8,
+            "snippet": "int argc",
+            "children": [
+              {
+                "type": "primitive_type",
+                "label": "int",
+                "pos": 27953,
+                "length": 3,
+                "snippet": "int"
+              },
+              {
+                "type": "identifier",
+                "label": "argc",
+                "pos": 27957,
+                "length": 4,
+                "snippet": "argc"
+              }
+            ]
+          },
+          {
+            "type": ",",
+            "label": ",",
+            "pos": 27961,
+            "length": 1,
+            "snippet": ","
+          },
+          {
+            "type": "parameter_declaration",
+            "label": "",
+            "pos": 27963,
+            "length": 12,
+            "snippet": "char* argv[]",
+            "children": [
+              {
+                "type": "primitive_type",
+                "label": "char",
+                "pos": 27963,
+                "length": 4,
+                "snippet": "char"
+              },
+              {
+                "type": "pointer_declarator",
+                "label": "",
+                "pos": 27967,
+                "length": 8,
+                "snippet": "* argv[]",
+                "children": [
+                  {
+                    "type": "*",
+                    "label": "*",
+                    "pos": 27967,
+                    "length": 1,
+                    "snippet": "*"
+                  },
+                  {
+                    "type": "array_declarator",
+                    "label": "",
+                    "pos": 27969,
+                    "length": 6,
+                    "snippet": "argv[]",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "argv",
+                        "pos": 27969,
+                        "length": 4,
+                        "snippet": "argv"
+                      },
+                      {
+                        "type": "[",
+                        "label": "[",
+                        "pos": 27973,
+                        "length": 1,
+                        "snippet": "["
+                      },
+                      {
+                        "type": "]",
+                        "label": "]",
+                        "pos": 27974,
+                        "length": 1,
+                        "snippet": "]"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 27975,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,identifier)",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "parameter_declaration",
+        "label": "",
+        "pos": 27953,
+        "length": 8,
+        "snippet": "int argc",
+        "children": [
+          {
+            "type": "primitive_type",
+            "label": "int",
+            "pos": 27953,
+            "length": 3,
+            "snippet": "int"
+          },
+          {
+            "type": "identifier",
+            "label": "argc",
+            "pos": 27957,
+            "length": 4,
+            "snippet": "argc"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,pointer_declarator(*:*,array_declarator(identifier,[:[,]:])))",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "parameter_declaration",
+        "label": "",
+        "pos": 27963,
+        "length": 12,
+        "snippet": "char* argv[]",
+        "children": [
+          {
+            "type": "primitive_type",
+            "label": "char",
+            "pos": 27963,
+            "length": 4,
+            "snippet": "char"
+          },
+          {
+            "type": "pointer_declarator",
+            "label": "",
+            "pos": 27967,
+            "length": 8,
+            "snippet": "* argv[]",
+            "children": [
+              {
+                "type": "*",
+                "label": "*",
+                "pos": 27967,
+                "length": 1,
+                "snippet": "*"
+              },
+              {
+                "type": "array_declarator",
+                "label": "",
+                "pos": 27969,
+                "length": 6,
+                "snippet": "argv[]",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "argv",
+                    "pos": 27969,
+                    "length": 4,
+                    "snippet": "argv"
+                  },
+                  {
+                    "type": "[",
+                    "label": "[",
+                    "pos": 27973,
+                    "length": 1,
+                    "snippet": "["
+                  },
+                  {
+                    "type": "]",
+                    "label": "]",
+                    "pos": 27974,
+                    "length": 1,
+                    "snippet": "]"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 19,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 0,
+        "length": 31,
+        "snippet": "#include <AvailabilityMacros.h>",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 0,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "system_lib_string",
+            "label": "<AvailabilityMacros.h>",
+            "pos": 9,
+            "length": 22,
+            "snippet": "<AvailabilityMacros.h>"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 492,
+        "length": 26,
+        "snippet": "#include \"std_testcase.h\"\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 492,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 501,
+            "length": 16,
+            "snippet": "\"std_testcase.h\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 501,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "std_testcase.h",
+                "pos": 502,
+                "length": 14,
+                "snippet": "std_testcase.h"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 516,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "type_definition(typedef,struct_specifier(struct:struct,type_identifier,field_declaration_list({:{,field_declaration(type_identifier,field_identifier,;),}:})),type_identifier,;)",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "type_definition",
+        "label": "",
+        "pos": 540,
+        "length": 76,
+        "snippet": "typedef struct _structSigAtomic\n{\n    sig_atomic_t val;\n}   structSigAtomic;",
+        "children": [
+          {
+            "type": "typedef",
+            "label": "typedef",
+            "pos": 540,
+            "length": 7,
+            "snippet": "typedef"
+          },
+          {
+            "type": "struct_specifier",
+            "label": "",
+            "pos": 548,
+            "length": 49,
+            "snippet": "struct _structSigAtomic\n{\n    sig_atomic_t val;\n}",
+            "children": [
+              {
+                "type": "struct",
+                "label": "struct",
+                "pos": 548,
+                "length": 6,
+                "snippet": "struct"
+              },
+              {
+                "type": "type_identifier",
+                "label": "_structSigAtomic",
+                "pos": 555,
+                "length": 16,
+                "snippet": "_structSigAtomic"
+              },
+              {
+                "type": "field_declaration_list",
+                "label": "",
+                "pos": 572,
+                "length": 25,
+                "snippet": "{\n    sig_atomic_t val;\n}",
+                "children": [
+                  {
+                    "type": "{",
+                    "label": "{",
+                    "pos": 572,
+                    "length": 1,
+                    "snippet": "{"
+                  },
+                  {
+                    "type": "field_declaration",
+                    "label": "",
+                    "pos": 578,
+                    "length": 17,
+                    "snippet": "sig_atomic_t val;",
+                    "children": [
+                      {
+                        "type": "type_identifier",
+                        "label": "sig_atomic_t",
+                        "pos": 578,
+                        "length": 12,
+                        "snippet": "sig_atomic_t"
+                      },
+                      {
+                        "type": "field_identifier",
+                        "label": "val",
+                        "pos": 591,
+                        "length": 3,
+                        "snippet": "val"
+                      },
+                      {
+                        "type": ";",
+                        "label": ";",
+                        "pos": 594,
+                        "length": 1,
+                        "snippet": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "}",
+                    "label": "}",
+                    "pos": 596,
+                    "length": 1,
+                    "snippet": "}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "type_identifier",
+            "label": "structSigAtomic",
+            "pos": 600,
+            "length": 15,
+            "snippet": "structSigAtomic"
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 615,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "struct_specifier(struct:struct,type_identifier,field_declaration_list({:{,field_declaration(type_identifier,field_identifier,;),}:}))",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "struct_specifier",
+        "label": "",
+        "pos": 548,
+        "length": 49,
+        "snippet": "struct _structSigAtomic\n{\n    sig_atomic_t val;\n}",
+        "children": [
+          {
+            "type": "struct",
+            "label": "struct",
+            "pos": 548,
+            "length": 6,
+            "snippet": "struct"
+          },
+          {
+            "type": "type_identifier",
+            "label": "_structSigAtomic",
+            "pos": 555,
+            "length": 16,
+            "snippet": "_structSigAtomic"
+          },
+          {
+            "type": "field_declaration_list",
+            "label": "",
+            "pos": 572,
+            "length": 25,
+            "snippet": "{\n    sig_atomic_t val;\n}",
+            "children": [
+              {
+                "type": "{",
+                "label": "{",
+                "pos": 572,
+                "length": 1,
+                "snippet": "{"
+              },
+              {
+                "type": "field_declaration",
+                "label": "",
+                "pos": 578,
+                "length": 17,
+                "snippet": "sig_atomic_t val;",
+                "children": [
+                  {
+                    "type": "type_identifier",
+                    "label": "sig_atomic_t",
+                    "pos": 578,
+                    "length": 12,
+                    "snippet": "sig_atomic_t"
+                  },
+                  {
+                    "type": "field_identifier",
+                    "label": "val",
+                    "pos": 591,
+                    "length": 3,
+                    "snippet": "val"
+                  },
+                  {
+                    "type": ";",
+                    "label": ";",
+                    "pos": 594,
+                    "length": 1,
+                    "snippet": ";"
+                  }
+                ]
+              },
+              {
+                "type": "}",
+                "label": "}",
+                "pos": 596,
+                "length": 1,
+                "snippet": "}"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "field_declaration_list({:{,field_declaration(type_identifier,field_identifier,;),}:})",
+      "occurrence_count": 18,
+      "ast_structure": {
+        "type": "field_declaration_list",
+        "label": "",
+        "pos": 572,
+        "length": 25,
+        "snippet": "{\n    sig_atomic_t val;\n}",
+        "children": [
+          {
+            "type": "{",
+            "label": "{",
+            "pos": 572,
+            "length": 1,
+            "snippet": "{"
+          },
+          {
+            "type": "field_declaration",
+            "label": "",
+            "pos": 578,
+            "length": 17,
+            "snippet": "sig_atomic_t val;",
+            "children": [
+              {
+                "type": "type_identifier",
+                "label": "sig_atomic_t",
+                "pos": 578,
+                "length": 12,
+                "snippet": "sig_atomic_t"
+              },
+              {
+                "type": "field_identifier",
+                "label": "val",
+                "pos": 591,
+                "length": 3,
+                "snippet": "val"
+              },
+              {
+                "type": ";",
+                "label": ";",
+                "pos": 594,
+                "length": 1,
+                "snippet": ";"
+              }
+            ]
+          },
+          {
+            "type": "}",
+            "label": "}",
+            "pos": 596,
+            "length": 1,
+            "snippet": "}"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    }
+  ]
+}

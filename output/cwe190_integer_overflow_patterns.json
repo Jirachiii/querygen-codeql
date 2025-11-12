@@ -1,0 +1,1000 @@
+{
+  "num_files": 5040,
+  "common_subtrees": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 5040,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 5040,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 4740,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 4740,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,identifier,):))),;)",
+      "occurrence_count": 4720,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;)",
+      "occurrence_count": 4415,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 4415,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,\"),):))",
+      "occurrence_count": 4415,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,identifier)",
+      "occurrence_count": 4200,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 3510,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 3510,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,]:])",
+      "occurrence_count": 3510,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,number_literal),;)",
+      "occurrence_count": 3495,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "assignment_expression(identifier,=:=,number_literal)",
+      "occurrence_count": 3495,
+      "pattern_type": "assignment"
+    },
+    {
+      "signature": "else_clause(else:else,compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),}:}))",
+      "occurrence_count": 3480,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),}:})",
+      "occurrence_count": 3480,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,):)))",
+      "occurrence_count": 3455,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,):))",
+      "occurrence_count": 3455,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,):))),;)",
+      "occurrence_count": 3430,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_ifdef(#ifdef,identifier,function_definition(primitive_type,function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type,identifier),,,parameter_declaration(primitive_type,pointer_declarator(*:*,array_declarator(identifier,[:[,]:]))),):))),compound_statement({:{,comment,expression_statement(call_expression(identifier,argument_list((:(,cast_expression((:(,type_descriptor(sized_type_specifier(unsigned)),):),call_expression(identifier,argument_list((:(,null(NULL),):)))),):))),;),preproc_ifdef(#ifndef,identifier,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),expression_statement(call_expression(identifier,argument_list((:(,):))),;),expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),#endif),comment,preproc_ifdef(#ifndef,identifier,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),expression_statement(call_expression(identifier,argument_list((:(,):))),;),expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),#endif),comment,return_statement(return:return,number_literal,;),}:})),#endif)",
+      "occurrence_count": 3420,
+      "pattern_type": "control_flow"
+    }
+  ],
+  "common_function_calls": [
+    {
+      "function": "printLine",
+      "count": 22330
+    },
+    {
+      "function": "printIntLine",
+      "count": 6525
+    },
+    {
+      "function": "srand",
+      "count": 3420
+    },
+    {
+      "function": "time",
+      "count": 3420
+    },
+    {
+      "function": "fscanf",
+      "count": 2300
+    },
+    {
+      "function": "goodG2B",
+      "count": 2250
+    },
+    {
+      "function": "printHexCharLine",
+      "count": 2175
+    },
+    {
+      "function": "printLongLongLine",
+      "count": 2175
+    },
+    {
+      "function": "printUnsignedLine",
+      "count": 2175
+    },
+    {
+      "function": "goodB2G",
+      "count": 2070
+    },
+    {
+      "function": "RAND32",
+      "count": 1840
+    },
+    {
+      "function": "atoi",
+      "count": 1380
+    },
+    {
+      "function": "CLOSE_SOCKET",
+      "count": 1380
+    },
+    {
+      "function": "goodB2G1",
+      "count": 1350
+    },
+    {
+      "function": "goodB2G2",
+      "count": 1350
+    },
+    {
+      "function": "goodG2B1",
+      "count": 1170
+    },
+    {
+      "function": "goodG2B2",
+      "count": 1170
+    },
+    {
+      "function": "WSAStartup",
+      "count": 920
+    },
+    {
+      "function": "MAKEWORD",
+      "count": 920
+    },
+    {
+      "function": "socket",
+      "count": 920
+    }
+  ],
+  "skeleton_patterns": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 5040,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 549,
+        "length": 26,
+        "snippet": "#include \"std_testcase.h\"\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 549,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 558,
+            "length": 16,
+            "snippet": "\"std_testcase.h\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 558,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "std_testcase.h",
+                "pos": 559,
+                "length": 14,
+                "snippet": "std_testcase.h"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 573,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 5040,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 558,
+        "length": 16,
+        "snippet": "\"std_testcase.h\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 558,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "std_testcase.h",
+            "pos": 559,
+            "length": 14,
+            "snippet": "std_testcase.h"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 573,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 4740,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 892,
+        "length": 24,
+        "snippet": "printHexCharLine(result)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "printHexCharLine",
+            "pos": 892,
+            "length": 16,
+            "snippet": "printHexCharLine"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 908,
+            "length": 8,
+            "snippet": "(result)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 908,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "identifier",
+                "label": "result",
+                "pos": 909,
+                "length": 6,
+                "snippet": "result"
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 915,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 4740,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 908,
+        "length": 8,
+        "snippet": "(result)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 908,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "identifier",
+            "label": "result",
+            "pos": 909,
+            "length": 6,
+            "snippet": "result"
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 915,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,identifier,):))),;)",
+      "occurrence_count": 4720,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 892,
+        "length": 25,
+        "snippet": "printHexCharLine(result);",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 892,
+            "length": 24,
+            "snippet": "printHexCharLine(result)",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "printHexCharLine",
+                "pos": 892,
+                "length": 16,
+                "snippet": "printHexCharLine"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 908,
+                "length": 8,
+                "snippet": "(result)",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 908,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "result",
+                    "pos": 909,
+                    "length": 6,
+                    "snippet": "result"
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 915,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 916,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;)",
+      "occurrence_count": 4415,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 1718,
+        "length": 67,
+        "snippet": "printLine(\"data value is too large to perform arithmetic safely.\");",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 1718,
+            "length": 66,
+            "snippet": "printLine(\"data value is too large to perform arithmetic safely.\")",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "printLine",
+                "pos": 1718,
+                "length": 9,
+                "snippet": "printLine"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 1727,
+                "length": 57,
+                "snippet": "(\"data value is too large to perform arithmetic safely.\")",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 1727,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "string_literal",
+                    "label": "",
+                    "pos": 1728,
+                    "length": 55,
+                    "snippet": "\"data value is too large to perform arithmetic safely.\"",
+                    "children": [
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 1728,
+                        "length": 1,
+                        "snippet": "\""
+                      },
+                      {
+                        "type": "string_content",
+                        "label": "data value is too large to perform arithmetic safely.",
+                        "pos": 1729,
+                        "length": 53,
+                        "snippet": "data value is too large to perform arithmetic safely."
+                      },
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 1782,
+                        "length": 1,
+                        "snippet": "\""
+                      }
+                    ]
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 1783,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 1784,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 4415,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 1718,
+        "length": 66,
+        "snippet": "printLine(\"data value is too large to perform arithmetic safely.\")",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "printLine",
+            "pos": 1718,
+            "length": 9,
+            "snippet": "printLine"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 1727,
+            "length": 57,
+            "snippet": "(\"data value is too large to perform arithmetic safely.\")",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 1727,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "string_literal",
+                "label": "",
+                "pos": 1728,
+                "length": 55,
+                "snippet": "\"data value is too large to perform arithmetic safely.\"",
+                "children": [
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 1728,
+                    "length": 1,
+                    "snippet": "\""
+                  },
+                  {
+                    "type": "string_content",
+                    "label": "data value is too large to perform arithmetic safely.",
+                    "pos": 1729,
+                    "length": 53,
+                    "snippet": "data value is too large to perform arithmetic safely."
+                  },
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 1782,
+                    "length": 1,
+                    "snippet": "\""
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 1783,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,\"),):))",
+      "occurrence_count": 4415,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 1727,
+        "length": 57,
+        "snippet": "(\"data value is too large to perform arithmetic safely.\")",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 1727,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 1728,
+            "length": 55,
+            "snippet": "\"data value is too large to perform arithmetic safely.\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 1728,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "data value is too large to perform arithmetic safely.",
+                "pos": 1729,
+                "length": 53,
+                "snippet": "data value is too large to perform arithmetic safely."
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 1782,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 1783,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "parameter_declaration(primitive_type,identifier)",
+      "occurrence_count": 4200,
+      "ast_structure": {
+        "type": "parameter_declaration",
+        "label": "",
+        "pos": 2228,
+        "length": 8,
+        "snippet": "int argc",
+        "children": [
+          {
+            "type": "primitive_type",
+            "label": "int",
+            "pos": 2228,
+            "length": 3,
+            "snippet": "int"
+          },
+          {
+            "type": "identifier",
+            "label": "argc",
+            "pos": 2232,
+            "length": 4,
+            "snippet": "argc"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 3510,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 598,
+        "length": 49,
+        "snippet": "CWE190_Integer_Overflow__char_fscanf_add_01_bad()",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "CWE190_Integer_Overflow__char_fscanf_add_01_bad",
+            "pos": 598,
+            "length": 47,
+            "snippet": "CWE190_Integer_Overflow__char_fscanf_add_01_bad"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 645,
+            "length": 2,
+            "snippet": "()",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 645,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 646,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 3510,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 645,
+        "length": 2,
+        "snippet": "()",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 645,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 646,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "array_declarator(identifier,[:[,]:])",
+      "occurrence_count": 3510,
+      "ast_structure": {
+        "type": "array_declarator",
+        "label": "",
+        "pos": 2245,
+        "length": 6,
+        "snippet": "argv[]",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "argv",
+            "pos": 2245,
+            "length": 4,
+            "snippet": "argv"
+          },
+          {
+            "type": "[",
+            "label": "[",
+            "pos": 2249,
+            "length": 1,
+            "snippet": "["
+          },
+          {
+            "type": "]",
+            "label": "]",
+            "pos": 2250,
+            "length": 1,
+            "snippet": "]"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,number_literal),;)",
+      "occurrence_count": 3495,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 1165,
+        "length": 9,
+        "snippet": "data = 2;",
+        "children": [
+          {
+            "type": "assignment_expression",
+            "label": "",
+            "pos": 1165,
+            "length": 8,
+            "snippet": "data = 2",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "data",
+                "pos": 1165,
+                "length": 4,
+                "snippet": "data"
+              },
+              {
+                "type": "=",
+                "label": "=",
+                "pos": 1170,
+                "length": 1,
+                "snippet": "="
+              },
+              {
+                "type": "number_literal",
+                "label": "2",
+                "pos": 1172,
+                "length": 1,
+                "snippet": "2"
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 1173,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "assignment_expression(identifier,=:=,number_literal)",
+      "occurrence_count": 3495,
+      "ast_structure": {
+        "type": "assignment_expression",
+        "label": "",
+        "pos": 1165,
+        "length": 8,
+        "snippet": "data = 2",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "data",
+            "pos": 1165,
+            "length": 4,
+            "snippet": "data"
+          },
+          {
+            "type": "=",
+            "label": "=",
+            "pos": 1170,
+            "length": 1,
+            "snippet": "="
+          },
+          {
+            "type": "number_literal",
+            "label": "2",
+            "pos": 1172,
+            "length": 1,
+            "snippet": "2"
+          }
+        ]
+      },
+      "pattern_type": "assignment"
+    },
+    {
+      "signature": "else_clause(else:else,compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;),}:}))",
+      "occurrence_count": 3480,
+      "ast_structure": {
+        "type": "else_clause",
+        "label": "",
+        "pos": 1699,
+        "length": 92,
+        "snippet": "else\n    {\n        printLine(\"data value is too large to perform arithmetic safely.\");\n    }",
+        "children": [
+          {
+            "type": "else",
+            "label": "else",
+            "pos": 1699,
+            "length": 4,
+            "snippet": "else"
+          },
+          {
+            "type": "compound_statement",
+            "label": "",
+            "pos": 1708,
+            "length": 83,
+            "snippet": "{\n        printLine(\"data value is too large to perform arithmetic safely.\");\n    }",
+            "children": [
+              {
+                "type": "{",
+                "label": "{",
+                "pos": 1708,
+                "length": 1,
+                "snippet": "{"
+              },
+              {
+                "type": "expression_statement",
+                "label": "",
+                "pos": 1718,
+                "length": 67,
+                "snippet": "printLine(\"data value is too large to perform arithmetic safely.\");",
+                "children": [
+                  {
+                    "type": "call_expression",
+                    "label": "",
+                    "pos": 1718,
+                    "length": 66,
+                    "snippet": "printLine(\"data value is too large to perform arithmetic safely.\")",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "printLine",
+                        "pos": 1718,
+                        "length": 9,
+                        "snippet": "printLine"
+                      },
+                      {
+                        "type": "argument_list",
+                        "label": "",
+                        "pos": 1727,
+                        "length": 57,
+                        "snippet": "(\"data value is too large to perform arithmetic safely.\")",
+                        "children": [
+                          {
+                            "type": "(",
+                            "label": "(",
+                            "pos": 1727,
+                            "length": 1,
+                            "snippet": "("
+                          },
+                          {
+                            "type": "string_literal",
+                            "label": "",
+                            "pos": 1728,
+                            "length": 55,
+                            "snippet": "\"data value is too large to perform arithmetic safely.\"",
+                            "children": [
+                              {
+                                "type": "\"",
+                                "label": "\"",
+                                "pos": 1728,
+                                "length": 1,
+                                "snippet": "\""
+                              },
+                              {
+                                "type": "string_content",
+                                "label": "data value is too large to perform arithmetic safely.",
+                                "pos": 1729,
+                                "length": 53,
+                                "snippet": "data value is too large to perform arithmetic safely."
+                              },
+                              {
+                                "type": "\"",
+                                "label": "\"",
+                                "pos": 1782,
+                                "length": 1,
+                                "snippet": "\""
+                              }
+                            ]
+                          },
+                          {
+                            "type": ")",
+                            "label": ")",
+                            "pos": 1783,
+                            "length": 1,
+                            "snippet": ")"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": ";",
+                    "label": ";",
+                    "pos": 1784,
+                    "length": 1,
+                    "snippet": ";"
+                  }
+                ]
+              },
+              {
+                "type": "}",
+                "label": "}",
+                "pos": 1790,
+                "length": 1,
+                "snippet": "}"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    }
+  ]
+}

@@ -1,0 +1,988 @@
+{
+  "num_files": 72,
+  "common_subtrees": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_call(preproc_directive,preproc_arg)",
+      "occurrence_count": 72,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 72,
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(primitive_type,init_declarator(identifier,=:=,number_literal),;)",
+      "occurrence_count": 72,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "init_declarator(identifier,=:=,number_literal)",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(type_identifier,identifier,;)",
+      "occurrence_count": 72,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "subscript_expression(identifier,[:[,number_literal,]:])",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parenthesized_expression((:(,binary_expression(call_expression(identifier,argument_list((:(,identifier,,,number_literal,,,identifier,):))),==:==,null(NULL)),):))",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "binary_expression(call_expression(identifier,argument_list((:(,identifier,,,number_literal,,,identifier,):))),==:==,null(NULL))",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,,,number_literal,,,identifier,):)))",
+      "occurrence_count": 72,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,,,number_literal,,,identifier,):))",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;)",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 72,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,\"),):))",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):)))),;)",
+      "occurrence_count": 72,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "assignment_expression(identifier,=:=,call_expression(identifier,argument_list((:(,identifier,):))))",
+      "occurrence_count": 72,
+      "pattern_type": "assignment"
+    }
+  ],
+  "common_function_calls": [
+    {
+      "function": "printLine",
+      "count": 960
+    },
+    {
+      "function": "CloseHandle",
+      "count": 204
+    },
+    {
+      "function": "strlen",
+      "count": 168
+    },
+    {
+      "function": "wcslen",
+      "count": 168
+    },
+    {
+      "function": "SecureZeroMemory",
+      "count": 132
+    },
+    {
+      "function": "ALLOCA",
+      "count": 102
+    },
+    {
+      "function": "fgets",
+      "count": 102
+    },
+    {
+      "function": "LogonUserA",
+      "count": 102
+    },
+    {
+      "function": "fgetws",
+      "count": 102
+    },
+    {
+      "function": "LogonUserW",
+      "count": 102
+    },
+    {
+      "function": "good1",
+      "count": 72
+    },
+    {
+      "function": "srand",
+      "count": 72
+    },
+    {
+      "function": "time",
+      "count": 72
+    },
+    {
+      "function": "good2",
+      "count": 52
+    },
+    {
+      "function": "staticReturnsTrue",
+      "count": 8
+    },
+    {
+      "function": "globalReturnsTrue",
+      "count": 8
+    },
+    {
+      "function": "globalReturnsTrueOrFalse",
+      "count": 8
+    },
+    {
+      "function": "staticReturnsFalse",
+      "count": 4
+    },
+    {
+      "function": "globalReturnsFalse",
+      "count": 4
+    },
+    {
+      "function": "CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_01_good",
+      "count": 1
+    }
+  ],
+  "skeleton_patterns": [
+    {
+      "signature": "preproc_include(#include,string_literal(\",string_content,\"))",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 554,
+        "length": 26,
+        "snippet": "#include \"std_testcase.h\"\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 554,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 563,
+            "length": 16,
+            "snippet": "\"std_testcase.h\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 563,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "std_testcase.h",
+                "pos": 564,
+                "length": 14,
+                "snippet": "std_testcase.h"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 578,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 563,
+        "length": 16,
+        "snippet": "\"std_testcase.h\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 563,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "std_testcase.h",
+            "pos": 564,
+            "length": 14,
+            "snippet": "std_testcase.h"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 578,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 581,
+        "length": 19,
+        "snippet": "#include <wchar.h>\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 581,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "system_lib_string",
+            "label": "<wchar.h>",
+            "pos": 590,
+            "length": 9,
+            "snippet": "<wchar.h>"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_call(preproc_directive,preproc_arg)",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "preproc_call",
+        "label": "",
+        "pos": 621,
+        "length": 37,
+        "snippet": "#pragma comment(lib, \"advapi32.lib\")\n",
+        "children": [
+          {
+            "type": "preproc_directive",
+            "label": "#pragma",
+            "pos": 621,
+            "length": 7,
+            "snippet": "#pragma"
+          },
+          {
+            "type": "preproc_arg",
+            "label": "comment(lib, \"advapi32.lib\")",
+            "pos": 629,
+            "length": 28,
+            "snippet": "comment(lib, \"advapi32.lib\")"
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,):)))",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 681,
+        "length": 79,
+        "snippet": "CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_01_bad()",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_01_bad",
+            "pos": 681,
+            "length": 77,
+            "snippet": "CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_01_bad"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 758,
+            "length": 2,
+            "snippet": "()",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 758,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 759,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "control_flow"
+    },
+    {
+      "signature": "parameter_list((:(,):))",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 758,
+        "length": 2,
+        "snippet": "()",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 758,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 759,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "pointer_declarator",
+        "label": "",
+        "pos": 782,
+        "length": 10,
+        "snippet": "* password",
+        "children": [
+          {
+            "type": "*",
+            "label": "*",
+            "pos": 782,
+            "length": 1,
+            "snippet": "*"
+          },
+          {
+            "type": "identifier",
+            "label": "password",
+            "pos": 784,
+            "length": 8,
+            "snippet": "password"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(primitive_type,init_declarator(identifier,=:=,number_literal),;)",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "declaration",
+        "label": "",
+        "pos": 837,
+        "length": 23,
+        "snippet": "size_t passwordLen = 0;",
+        "children": [
+          {
+            "type": "primitive_type",
+            "label": "size_t",
+            "pos": 837,
+            "length": 6,
+            "snippet": "size_t"
+          },
+          {
+            "type": "init_declarator",
+            "label": "",
+            "pos": 844,
+            "length": 15,
+            "snippet": "passwordLen = 0",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "passwordLen",
+                "pos": 844,
+                "length": 11,
+                "snippet": "passwordLen"
+              },
+              {
+                "type": "=",
+                "label": "=",
+                "pos": 856,
+                "length": 1,
+                "snippet": "="
+              },
+              {
+                "type": "number_literal",
+                "label": "0",
+                "pos": 858,
+                "length": 1,
+                "snippet": "0"
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 859,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "init_declarator(identifier,=:=,number_literal)",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "init_declarator",
+        "label": "",
+        "pos": 844,
+        "length": 15,
+        "snippet": "passwordLen = 0",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "passwordLen",
+            "pos": 844,
+            "length": 11,
+            "snippet": "passwordLen"
+          },
+          {
+            "type": "=",
+            "label": "=",
+            "pos": 856,
+            "length": 1,
+            "snippet": "="
+          },
+          {
+            "type": "number_literal",
+            "label": "0",
+            "pos": 858,
+            "length": 1,
+            "snippet": "0"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(type_identifier,identifier,;)",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "declaration",
+        "label": "",
+        "pos": 869,
+        "length": 13,
+        "snippet": "HANDLE hUser;",
+        "children": [
+          {
+            "type": "type_identifier",
+            "label": "HANDLE",
+            "pos": 869,
+            "length": 6,
+            "snippet": "HANDLE"
+          },
+          {
+            "type": "identifier",
+            "label": "hUser",
+            "pos": 876,
+            "length": 5,
+            "snippet": "hUser"
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 881,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "subscript_expression(identifier,[:[,number_literal,]:])",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "subscript_expression",
+        "label": "",
+        "pos": 993,
+        "length": 11,
+        "snippet": "password[0]",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "password",
+            "pos": 993,
+            "length": 8,
+            "snippet": "password"
+          },
+          {
+            "type": "[",
+            "label": "[",
+            "pos": 1001,
+            "length": 1,
+            "snippet": "["
+          },
+          {
+            "type": "number_literal",
+            "label": "0",
+            "pos": 1002,
+            "length": 1,
+            "snippet": "0"
+          },
+          {
+            "type": "]",
+            "label": "]",
+            "pos": 1003,
+            "length": 1,
+            "snippet": "]"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parenthesized_expression((:(,binary_expression(call_expression(identifier,argument_list((:(,identifier,,,number_literal,,,identifier,):))),==:==,null(NULL)),):))",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "parenthesized_expression",
+        "label": "",
+        "pos": 1024,
+        "length": 37,
+        "snippet": "(fgets(password, 100, stdin) == NULL)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 1024,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "binary_expression",
+            "label": "",
+            "pos": 1025,
+            "length": 35,
+            "snippet": "fgets(password, 100, stdin) == NULL",
+            "children": [
+              {
+                "type": "call_expression",
+                "label": "",
+                "pos": 1025,
+                "length": 27,
+                "snippet": "fgets(password, 100, stdin)",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "fgets",
+                    "pos": 1025,
+                    "length": 5,
+                    "snippet": "fgets"
+                  },
+                  {
+                    "type": "argument_list",
+                    "label": "",
+                    "pos": 1030,
+                    "length": 22,
+                    "snippet": "(password, 100, stdin)",
+                    "children": [
+                      {
+                        "type": "(",
+                        "label": "(",
+                        "pos": 1030,
+                        "length": 1,
+                        "snippet": "("
+                      },
+                      {
+                        "type": "identifier",
+                        "label": "password",
+                        "pos": 1031,
+                        "length": 8,
+                        "snippet": "password"
+                      },
+                      {
+                        "type": ",",
+                        "label": ",",
+                        "pos": 1039,
+                        "length": 1,
+                        "snippet": ","
+                      },
+                      {
+                        "type": "number_literal",
+                        "label": "100",
+                        "pos": 1041,
+                        "length": 3,
+                        "snippet": "100"
+                      },
+                      {
+                        "type": ",",
+                        "label": ",",
+                        "pos": 1044,
+                        "length": 1,
+                        "snippet": ","
+                      },
+                      {
+                        "type": "identifier",
+                        "label": "stdin",
+                        "pos": 1046,
+                        "length": 5,
+                        "snippet": "stdin"
+                      },
+                      {
+                        "type": ")",
+                        "label": ")",
+                        "pos": 1051,
+                        "length": 1,
+                        "snippet": ")"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "==",
+                "label": "==",
+                "pos": 1053,
+                "length": 2,
+                "snippet": "=="
+              },
+              {
+                "type": "null",
+                "label": "",
+                "pos": 1056,
+                "length": 4,
+                "snippet": "NULL",
+                "children": [
+                  {
+                    "type": "NULL",
+                    "label": "NULL",
+                    "pos": 1056,
+                    "length": 4,
+                    "snippet": "NULL"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 1060,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "binary_expression(call_expression(identifier,argument_list((:(,identifier,,,number_literal,,,identifier,):))),==:==,null(NULL))",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "binary_expression",
+        "label": "",
+        "pos": 1025,
+        "length": 35,
+        "snippet": "fgets(password, 100, stdin) == NULL",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 1025,
+            "length": 27,
+            "snippet": "fgets(password, 100, stdin)",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "fgets",
+                "pos": 1025,
+                "length": 5,
+                "snippet": "fgets"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 1030,
+                "length": 22,
+                "snippet": "(password, 100, stdin)",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 1030,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "password",
+                    "pos": 1031,
+                    "length": 8,
+                    "snippet": "password"
+                  },
+                  {
+                    "type": ",",
+                    "label": ",",
+                    "pos": 1039,
+                    "length": 1,
+                    "snippet": ","
+                  },
+                  {
+                    "type": "number_literal",
+                    "label": "100",
+                    "pos": 1041,
+                    "length": 3,
+                    "snippet": "100"
+                  },
+                  {
+                    "type": ",",
+                    "label": ",",
+                    "pos": 1044,
+                    "length": 1,
+                    "snippet": ","
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "stdin",
+                    "pos": 1046,
+                    "length": 5,
+                    "snippet": "stdin"
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 1051,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "==",
+            "label": "==",
+            "pos": 1053,
+            "length": 2,
+            "snippet": "=="
+          },
+          {
+            "type": "null",
+            "label": "",
+            "pos": 1056,
+            "length": 4,
+            "snippet": "NULL",
+            "children": [
+              {
+                "type": "NULL",
+                "label": "NULL",
+                "pos": 1056,
+                "length": 4,
+                "snippet": "NULL"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,,,number_literal,,,identifier,):)))",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 1025,
+        "length": 27,
+        "snippet": "fgets(password, 100, stdin)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "fgets",
+            "pos": 1025,
+            "length": 5,
+            "snippet": "fgets"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 1030,
+            "length": 22,
+            "snippet": "(password, 100, stdin)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 1030,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "identifier",
+                "label": "password",
+                "pos": 1031,
+                "length": 8,
+                "snippet": "password"
+              },
+              {
+                "type": ",",
+                "label": ",",
+                "pos": 1039,
+                "length": 1,
+                "snippet": ","
+              },
+              {
+                "type": "number_literal",
+                "label": "100",
+                "pos": 1041,
+                "length": 3,
+                "snippet": "100"
+              },
+              {
+                "type": ",",
+                "label": ",",
+                "pos": 1044,
+                "length": 1,
+                "snippet": ","
+              },
+              {
+                "type": "identifier",
+                "label": "stdin",
+                "pos": 1046,
+                "length": 5,
+                "snippet": "stdin"
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 1051,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,,,number_literal,,,identifier,):))",
+      "occurrence_count": 72,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 1030,
+        "length": 22,
+        "snippet": "(password, 100, stdin)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 1030,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "identifier",
+            "label": "password",
+            "pos": 1031,
+            "length": 8,
+            "snippet": "password"
+          },
+          {
+            "type": ",",
+            "label": ",",
+            "pos": 1039,
+            "length": 1,
+            "snippet": ","
+          },
+          {
+            "type": "number_literal",
+            "label": "100",
+            "pos": 1041,
+            "length": 3,
+            "snippet": "100"
+          },
+          {
+            "type": ",",
+            "label": ",",
+            "pos": 1044,
+            "length": 1,
+            "snippet": ","
+          },
+          {
+            "type": "identifier",
+            "label": "stdin",
+            "pos": 1046,
+            "length": 5,
+            "snippet": "stdin"
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 1051,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    }
+  ]
+}

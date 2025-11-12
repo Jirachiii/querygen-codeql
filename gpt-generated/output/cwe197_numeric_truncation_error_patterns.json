@@ -1,0 +1,1188 @@
+{
+  "num_files": 5,
+  "common_subtrees": [
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_def(#define,identifier,preproc_arg)",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type),):)))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,parameter_declaration(primitive_type),):))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "type_descriptor(sized_type_specifier(short))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))),;)",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):)))",
+      "occurrence_count": 5,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,escape_sequence,\")",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "else_clause(else:else,compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;),}:}))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;),}:})",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;)",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):)))",
+      "occurrence_count": 5,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "unary_expression(-:-,identifier)",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(primitive_type,identifier,;)",
+      "occurrence_count": 3,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 3,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "declaration(sized_type_specifier(short),init_declarator(identifier,=:=,cast_expression((:(,type_descriptor(sized_type_specifier(short)),):),identifier)),;)",
+      "occurrence_count": 3,
+      "pattern_type": "declaration"
+    },
+    {
+      "signature": "init_declarator(identifier,=:=,cast_expression((:(,type_descriptor(sized_type_specifier(short)),):),identifier))",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    }
+  ],
+  "common_function_calls": [
+    {
+      "function": "printf",
+      "count": 17
+    },
+    {
+      "function": "atoi",
+      "count": 4
+    },
+    {
+      "function": "fopen",
+      "count": 2
+    },
+    {
+      "function": "fscanf",
+      "count": 2
+    },
+    {
+      "function": "fclose",
+      "count": 2
+    },
+    {
+      "function": "strcpy",
+      "count": 2
+    },
+    {
+      "function": "fgets",
+      "count": 2
+    }
+  ],
+  "skeleton_patterns": [
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 0,
+        "length": 19,
+        "snippet": "#include <stdio.h>\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 0,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "system_lib_string",
+            "label": "<stdio.h>",
+            "pos": 9,
+            "length": 9,
+            "snippet": "<stdio.h>"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "preproc_def(#define,identifier,preproc_arg)",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "preproc_def",
+        "label": "",
+        "pos": 80,
+        "length": 27,
+        "snippet": "#define CHAR_ARRAY_SIZE 50\n",
+        "children": [
+          {
+            "type": "#define",
+            "label": "#define",
+            "pos": 80,
+            "length": 7,
+            "snippet": "#define"
+          },
+          {
+            "type": "identifier",
+            "label": "CHAR_ARRAY_SIZE",
+            "pos": 88,
+            "length": 15,
+            "snippet": "CHAR_ARRAY_SIZE"
+          },
+          {
+            "type": "preproc_arg",
+            "label": "50",
+            "pos": 104,
+            "length": 2,
+            "snippet": "50"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type),):)))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 221,
+        "length": 27,
+        "snippet": "vulnerable_file_input(void)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "vulnerable_file_input",
+            "pos": 221,
+            "length": 21,
+            "snippet": "vulnerable_file_input"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 242,
+            "length": 6,
+            "snippet": "(void)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 242,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "parameter_declaration",
+                "label": "",
+                "pos": 243,
+                "length": 4,
+                "snippet": "void",
+                "children": [
+                  {
+                    "type": "primitive_type",
+                    "label": "void",
+                    "pos": 243,
+                    "length": 4,
+                    "snippet": "void"
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 247,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,parameter_declaration(primitive_type),):))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 242,
+        "length": 6,
+        "snippet": "(void)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 242,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "parameter_declaration",
+            "label": "",
+            "pos": 243,
+            "length": 4,
+            "snippet": "void",
+            "children": [
+              {
+                "type": "primitive_type",
+                "label": "void",
+                "pos": 243,
+                "length": 4,
+                "snippet": "void"
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 247,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "type_descriptor(sized_type_specifier(short))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "type_descriptor",
+        "label": "",
+        "pos": 479,
+        "length": 5,
+        "snippet": "short",
+        "children": [
+          {
+            "type": "sized_type_specifier",
+            "label": "",
+            "pos": 479,
+            "length": 5,
+            "snippet": "short",
+            "children": [
+              {
+                "type": "short",
+                "label": "short",
+                "pos": 479,
+                "length": 5,
+                "snippet": "short"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))),;)",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 499,
+        "length": 42,
+        "snippet": "printf(\"Truncated data: %d\\n\", shortData);",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 499,
+            "length": 41,
+            "snippet": "printf(\"Truncated data: %d\\n\", shortData)",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "printf",
+                "pos": 499,
+                "length": 6,
+                "snippet": "printf"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 505,
+                "length": 35,
+                "snippet": "(\"Truncated data: %d\\n\", shortData)",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 505,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "string_literal",
+                    "label": "",
+                    "pos": 506,
+                    "length": 22,
+                    "snippet": "\"Truncated data: %d\\n\"",
+                    "children": [
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 506,
+                        "length": 1,
+                        "snippet": "\""
+                      },
+                      {
+                        "type": "string_content",
+                        "label": "Truncated data: %d",
+                        "pos": 507,
+                        "length": 18,
+                        "snippet": "Truncated data: %d"
+                      },
+                      {
+                        "type": "escape_sequence",
+                        "label": "\\n",
+                        "pos": 525,
+                        "length": 2,
+                        "snippet": "\\n"
+                      },
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 527,
+                        "length": 1,
+                        "snippet": "\""
+                      }
+                    ]
+                  },
+                  {
+                    "type": ",",
+                    "label": ",",
+                    "pos": 528,
+                    "length": 1,
+                    "snippet": ","
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "shortData",
+                    "pos": 530,
+                    "length": 9,
+                    "snippet": "shortData"
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 539,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 540,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):)))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 499,
+        "length": 41,
+        "snippet": "printf(\"Truncated data: %d\\n\", shortData)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "printf",
+            "pos": 499,
+            "length": 6,
+            "snippet": "printf"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 505,
+            "length": 35,
+            "snippet": "(\"Truncated data: %d\\n\", shortData)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 505,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "string_literal",
+                "label": "",
+                "pos": 506,
+                "length": 22,
+                "snippet": "\"Truncated data: %d\\n\"",
+                "children": [
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 506,
+                    "length": 1,
+                    "snippet": "\""
+                  },
+                  {
+                    "type": "string_content",
+                    "label": "Truncated data: %d",
+                    "pos": 507,
+                    "length": 18,
+                    "snippet": "Truncated data: %d"
+                  },
+                  {
+                    "type": "escape_sequence",
+                    "label": "\\n",
+                    "pos": 525,
+                    "length": 2,
+                    "snippet": "\\n"
+                  },
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 527,
+                    "length": 1,
+                    "snippet": "\""
+                  }
+                ]
+              },
+              {
+                "type": ",",
+                "label": ",",
+                "pos": 528,
+                "length": 1,
+                "snippet": ","
+              },
+              {
+                "type": "identifier",
+                "label": "shortData",
+                "pos": 530,
+                "length": 9,
+                "snippet": "shortData"
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 539,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 505,
+        "length": 35,
+        "snippet": "(\"Truncated data: %d\\n\", shortData)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 505,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 506,
+            "length": 22,
+            "snippet": "\"Truncated data: %d\\n\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 506,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "Truncated data: %d",
+                "pos": 507,
+                "length": 18,
+                "snippet": "Truncated data: %d"
+              },
+              {
+                "type": "escape_sequence",
+                "label": "\\n",
+                "pos": 525,
+                "length": 2,
+                "snippet": "\\n"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 527,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          },
+          {
+            "type": ",",
+            "label": ",",
+            "pos": 528,
+            "length": 1,
+            "snippet": ","
+          },
+          {
+            "type": "identifier",
+            "label": "shortData",
+            "pos": 530,
+            "length": 9,
+            "snippet": "shortData"
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 539,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,escape_sequence,\")",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 506,
+        "length": 22,
+        "snippet": "\"Truncated data: %d\\n\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 506,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "Truncated data: %d",
+            "pos": 507,
+            "length": 18,
+            "snippet": "Truncated data: %d"
+          },
+          {
+            "type": "escape_sequence",
+            "label": "\\n",
+            "pos": 525,
+            "length": 2,
+            "snippet": "\\n"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 527,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "else_clause(else:else,compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;),}:}))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "else_clause",
+        "label": "",
+        "pos": 548,
+        "length": 51,
+        "snippet": "else {\n        printf(\"File open failed.\\n\");\n    }",
+        "children": [
+          {
+            "type": "else",
+            "label": "else",
+            "pos": 548,
+            "length": 4,
+            "snippet": "else"
+          },
+          {
+            "type": "compound_statement",
+            "label": "",
+            "pos": 553,
+            "length": 46,
+            "snippet": "{\n        printf(\"File open failed.\\n\");\n    }",
+            "children": [
+              {
+                "type": "{",
+                "label": "{",
+                "pos": 553,
+                "length": 1,
+                "snippet": "{"
+              },
+              {
+                "type": "expression_statement",
+                "label": "",
+                "pos": 563,
+                "length": 30,
+                "snippet": "printf(\"File open failed.\\n\");",
+                "children": [
+                  {
+                    "type": "call_expression",
+                    "label": "",
+                    "pos": 563,
+                    "length": 29,
+                    "snippet": "printf(\"File open failed.\\n\")",
+                    "children": [
+                      {
+                        "type": "identifier",
+                        "label": "printf",
+                        "pos": 563,
+                        "length": 6,
+                        "snippet": "printf"
+                      },
+                      {
+                        "type": "argument_list",
+                        "label": "",
+                        "pos": 569,
+                        "length": 23,
+                        "snippet": "(\"File open failed.\\n\")",
+                        "children": [
+                          {
+                            "type": "(",
+                            "label": "(",
+                            "pos": 569,
+                            "length": 1,
+                            "snippet": "("
+                          },
+                          {
+                            "type": "string_literal",
+                            "label": "",
+                            "pos": 570,
+                            "length": 21,
+                            "snippet": "\"File open failed.\\n\"",
+                            "children": [
+                              {
+                                "type": "\"",
+                                "label": "\"",
+                                "pos": 570,
+                                "length": 1,
+                                "snippet": "\""
+                              },
+                              {
+                                "type": "string_content",
+                                "label": "File open failed.",
+                                "pos": 571,
+                                "length": 17,
+                                "snippet": "File open failed."
+                              },
+                              {
+                                "type": "escape_sequence",
+                                "label": "\\n",
+                                "pos": 588,
+                                "length": 2,
+                                "snippet": "\\n"
+                              },
+                              {
+                                "type": "\"",
+                                "label": "\"",
+                                "pos": 590,
+                                "length": 1,
+                                "snippet": "\""
+                              }
+                            ]
+                          },
+                          {
+                            "type": ")",
+                            "label": ")",
+                            "pos": 591,
+                            "length": 1,
+                            "snippet": ")"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": ";",
+                    "label": ";",
+                    "pos": 592,
+                    "length": 1,
+                    "snippet": ";"
+                  }
+                ]
+              },
+              {
+                "type": "}",
+                "label": "}",
+                "pos": 598,
+                "length": 1,
+                "snippet": "}"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;),}:})",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "compound_statement",
+        "label": "",
+        "pos": 553,
+        "length": 46,
+        "snippet": "{\n        printf(\"File open failed.\\n\");\n    }",
+        "children": [
+          {
+            "type": "{",
+            "label": "{",
+            "pos": 553,
+            "length": 1,
+            "snippet": "{"
+          },
+          {
+            "type": "expression_statement",
+            "label": "",
+            "pos": 563,
+            "length": 30,
+            "snippet": "printf(\"File open failed.\\n\");",
+            "children": [
+              {
+                "type": "call_expression",
+                "label": "",
+                "pos": 563,
+                "length": 29,
+                "snippet": "printf(\"File open failed.\\n\")",
+                "children": [
+                  {
+                    "type": "identifier",
+                    "label": "printf",
+                    "pos": 563,
+                    "length": 6,
+                    "snippet": "printf"
+                  },
+                  {
+                    "type": "argument_list",
+                    "label": "",
+                    "pos": 569,
+                    "length": 23,
+                    "snippet": "(\"File open failed.\\n\")",
+                    "children": [
+                      {
+                        "type": "(",
+                        "label": "(",
+                        "pos": 569,
+                        "length": 1,
+                        "snippet": "("
+                      },
+                      {
+                        "type": "string_literal",
+                        "label": "",
+                        "pos": 570,
+                        "length": 21,
+                        "snippet": "\"File open failed.\\n\"",
+                        "children": [
+                          {
+                            "type": "\"",
+                            "label": "\"",
+                            "pos": 570,
+                            "length": 1,
+                            "snippet": "\""
+                          },
+                          {
+                            "type": "string_content",
+                            "label": "File open failed.",
+                            "pos": 571,
+                            "length": 17,
+                            "snippet": "File open failed."
+                          },
+                          {
+                            "type": "escape_sequence",
+                            "label": "\\n",
+                            "pos": 588,
+                            "length": 2,
+                            "snippet": "\\n"
+                          },
+                          {
+                            "type": "\"",
+                            "label": "\"",
+                            "pos": 590,
+                            "length": 1,
+                            "snippet": "\""
+                          }
+                        ]
+                      },
+                      {
+                        "type": ")",
+                        "label": ")",
+                        "pos": 591,
+                        "length": 1,
+                        "snippet": ")"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": ";",
+                "label": ";",
+                "pos": 592,
+                "length": 1,
+                "snippet": ";"
+              }
+            ]
+          },
+          {
+            "type": "}",
+            "label": "}",
+            "pos": 598,
+            "length": 1,
+            "snippet": "}"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;)",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 563,
+        "length": 30,
+        "snippet": "printf(\"File open failed.\\n\");",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 563,
+            "length": 29,
+            "snippet": "printf(\"File open failed.\\n\")",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "printf",
+                "pos": 563,
+                "length": 6,
+                "snippet": "printf"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 569,
+                "length": 23,
+                "snippet": "(\"File open failed.\\n\")",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 569,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "string_literal",
+                    "label": "",
+                    "pos": 570,
+                    "length": 21,
+                    "snippet": "\"File open failed.\\n\"",
+                    "children": [
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 570,
+                        "length": 1,
+                        "snippet": "\""
+                      },
+                      {
+                        "type": "string_content",
+                        "label": "File open failed.",
+                        "pos": 571,
+                        "length": 17,
+                        "snippet": "File open failed."
+                      },
+                      {
+                        "type": "escape_sequence",
+                        "label": "\\n",
+                        "pos": 588,
+                        "length": 2,
+                        "snippet": "\\n"
+                      },
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 590,
+                        "length": 1,
+                        "snippet": "\""
+                      }
+                    ]
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 591,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 592,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):)))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 563,
+        "length": 29,
+        "snippet": "printf(\"File open failed.\\n\")",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "printf",
+            "pos": 563,
+            "length": 6,
+            "snippet": "printf"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 569,
+            "length": 23,
+            "snippet": "(\"File open failed.\\n\")",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 569,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "string_literal",
+                "label": "",
+                "pos": 570,
+                "length": 21,
+                "snippet": "\"File open failed.\\n\"",
+                "children": [
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 570,
+                    "length": 1,
+                    "snippet": "\""
+                  },
+                  {
+                    "type": "string_content",
+                    "label": "File open failed.",
+                    "pos": 571,
+                    "length": 17,
+                    "snippet": "File open failed."
+                  },
+                  {
+                    "type": "escape_sequence",
+                    "label": "\\n",
+                    "pos": 588,
+                    "length": 2,
+                    "snippet": "\\n"
+                  },
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 590,
+                    "length": 1,
+                    "snippet": "\""
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 591,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 569,
+        "length": 23,
+        "snippet": "(\"File open failed.\\n\")",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 569,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 570,
+            "length": 21,
+            "snippet": "\"File open failed.\\n\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 570,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "File open failed.",
+                "pos": 571,
+                "length": 17,
+                "snippet": "File open failed."
+              },
+              {
+                "type": "escape_sequence",
+                "label": "\\n",
+                "pos": 588,
+                "length": 2,
+                "snippet": "\\n"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 590,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 591,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "unary_expression(-:-,identifier)",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "unary_expression",
+        "label": "",
+        "pos": 911,
+        "length": 20,
+        "snippet": "-SAFE_CONVERSION_MAX",
+        "children": [
+          {
+            "type": "-",
+            "label": "-",
+            "pos": 911,
+            "length": 1,
+            "snippet": "-"
+          },
+          {
+            "type": "identifier",
+            "label": "SAFE_CONVERSION_MAX",
+            "pos": 912,
+            "length": 19,
+            "snippet": "SAFE_CONVERSION_MAX"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    }
+  ]
+}

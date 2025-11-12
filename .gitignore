@@ -1,0 +1,24 @@
+# CWEs folder
+CWEs/
+
+# Large AST files
+*_asts.json
+
+# CodeQL databases
+**/codeql-db-*/
+*.sarif
+
+# Compiled files
+*.o
+*.out
+*.exe
+
+# MacOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Other
+*.log

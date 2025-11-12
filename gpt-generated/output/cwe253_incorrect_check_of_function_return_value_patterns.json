@@ -1,0 +1,1101 @@
+{
+  "num_files": 5,
+  "common_subtrees": [
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type),):)))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,parameter_declaration(primitive_type),):))",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,escape_sequence,\")",
+      "occurrence_count": 5,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 4,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,\"),):))",
+      "occurrence_count": 4,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;)",
+      "occurrence_count": 4,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):)))",
+      "occurrence_count": 4,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))",
+      "occurrence_count": 4,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))),;)",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):)))",
+      "occurrence_count": 3,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 3,
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,identifier,):))",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):))),;)",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "compound_statement({:{,expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;),}:})",
+      "occurrence_count": 3,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parenthesized_expression((:(,binary_expression(identifier,!=:!=,number_literal),):))",
+      "occurrence_count": 2,
+      "pattern_type": "other"
+    },
+    {
+      "signature": "binary_expression(identifier,!=:!=,number_literal)",
+      "occurrence_count": 2,
+      "pattern_type": "other"
+    }
+  ],
+  "common_function_calls": [
+    {
+      "function": "printf",
+      "count": 15
+    },
+    {
+      "function": "perror",
+      "count": 3
+    },
+    {
+      "function": "malloc",
+      "count": 2
+    },
+    {
+      "function": "strcpy",
+      "count": 2
+    },
+    {
+      "function": "free",
+      "count": 2
+    },
+    {
+      "function": "fopen",
+      "count": 2
+    },
+    {
+      "function": "fclose",
+      "count": 2
+    },
+    {
+      "function": "scanf",
+      "count": 2
+    },
+    {
+      "function": "strcat",
+      "count": 2
+    },
+    {
+      "function": "strlen",
+      "count": 2
+    },
+    {
+      "function": "remove",
+      "count": 2
+    }
+  ],
+  "skeleton_patterns": [
+    {
+      "signature": "preproc_include(#include,system_lib_string)",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "preproc_include",
+        "label": "",
+        "pos": 0,
+        "length": 19,
+        "snippet": "#include <stdio.h>\n",
+        "children": [
+          {
+            "type": "#include",
+            "label": "#include",
+            "pos": 0,
+            "length": 8,
+            "snippet": "#include"
+          },
+          {
+            "type": "system_lib_string",
+            "label": "<stdio.h>",
+            "pos": 9,
+            "length": 9,
+            "snippet": "<stdio.h>"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "function_declarator(identifier,parameter_list((:(,parameter_declaration(primitive_type),):)))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "function_declarator",
+        "label": "",
+        "pos": 137,
+        "length": 26,
+        "snippet": "vulnerable_example_1(void)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "vulnerable_example_1",
+            "pos": 137,
+            "length": 20,
+            "snippet": "vulnerable_example_1"
+          },
+          {
+            "type": "parameter_list",
+            "label": "",
+            "pos": 157,
+            "length": 6,
+            "snippet": "(void)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 157,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "parameter_declaration",
+                "label": "",
+                "pos": 158,
+                "length": 4,
+                "snippet": "void",
+                "children": [
+                  {
+                    "type": "primitive_type",
+                    "label": "void",
+                    "pos": 158,
+                    "length": 4,
+                    "snippet": "void"
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 162,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "parameter_list((:(,parameter_declaration(primitive_type),):))",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "parameter_list",
+        "label": "",
+        "pos": 157,
+        "length": 6,
+        "snippet": "(void)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 157,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "parameter_declaration",
+            "label": "",
+            "pos": 158,
+            "length": 4,
+            "snippet": "void",
+            "children": [
+              {
+                "type": "primitive_type",
+                "label": "void",
+                "pos": 158,
+                "length": 4,
+                "snippet": "void"
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 162,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,\")",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 324,
+        "length": 7,
+        "snippet": "\"Hello\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 324,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "Hello",
+            "pos": 325,
+            "length": 5,
+            "snippet": "Hello"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 330,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "string_literal(\",string_content,escape_sequence,\")",
+      "occurrence_count": 5,
+      "ast_structure": {
+        "type": "string_literal",
+        "label": "",
+        "pos": 349,
+        "length": 22,
+        "snippet": "\"Buffer Content: %s\\n\"",
+        "children": [
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 349,
+            "length": 1,
+            "snippet": "\""
+          },
+          {
+            "type": "string_content",
+            "label": "Buffer Content: %s",
+            "pos": 350,
+            "length": 18,
+            "snippet": "Buffer Content: %s"
+          },
+          {
+            "type": "escape_sequence",
+            "label": "\\n",
+            "pos": 368,
+            "length": 2,
+            "snippet": "\\n"
+          },
+          {
+            "type": "\"",
+            "label": "\"",
+            "pos": 370,
+            "length": 1,
+            "snippet": "\""
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,\"),):)))",
+      "occurrence_count": 4,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 622,
+        "length": 35,
+        "snippet": "perror(\"Failed to allocate memory\")",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "perror",
+            "pos": 622,
+            "length": 6,
+            "snippet": "perror"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 628,
+            "length": 29,
+            "snippet": "(\"Failed to allocate memory\")",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 628,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "string_literal",
+                "label": "",
+                "pos": 629,
+                "length": 27,
+                "snippet": "\"Failed to allocate memory\"",
+                "children": [
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 629,
+                    "length": 1,
+                    "snippet": "\""
+                  },
+                  {
+                    "type": "string_content",
+                    "label": "Failed to allocate memory",
+                    "pos": 630,
+                    "length": 25,
+                    "snippet": "Failed to allocate memory"
+                  },
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 655,
+                    "length": 1,
+                    "snippet": "\""
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 656,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,\"),):))",
+      "occurrence_count": 4,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 628,
+        "length": 29,
+        "snippet": "(\"Failed to allocate memory\")",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 628,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 629,
+            "length": 27,
+            "snippet": "\"Failed to allocate memory\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 629,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "Failed to allocate memory",
+                "pos": 630,
+                "length": 25,
+                "snippet": "Failed to allocate memory"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 655,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 656,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))),;)",
+      "occurrence_count": 4,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 285,
+        "length": 37,
+        "snippet": "printf(\"File opened successfully\\n\");",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 285,
+            "length": 36,
+            "snippet": "printf(\"File opened successfully\\n\")",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "printf",
+                "pos": 285,
+                "length": 6,
+                "snippet": "printf"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 291,
+                "length": 30,
+                "snippet": "(\"File opened successfully\\n\")",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 291,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "string_literal",
+                    "label": "",
+                    "pos": 292,
+                    "length": 28,
+                    "snippet": "\"File opened successfully\\n\"",
+                    "children": [
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 292,
+                        "length": 1,
+                        "snippet": "\""
+                      },
+                      {
+                        "type": "string_content",
+                        "label": "File opened successfully",
+                        "pos": 293,
+                        "length": 24,
+                        "snippet": "File opened successfully"
+                      },
+                      {
+                        "type": "escape_sequence",
+                        "label": "\\n",
+                        "pos": 317,
+                        "length": 2,
+                        "snippet": "\\n"
+                      },
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 319,
+                        "length": 1,
+                        "snippet": "\""
+                      }
+                    ]
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 320,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 321,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):)))",
+      "occurrence_count": 4,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 285,
+        "length": 36,
+        "snippet": "printf(\"File opened successfully\\n\")",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "printf",
+            "pos": 285,
+            "length": 6,
+            "snippet": "printf"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 291,
+            "length": 30,
+            "snippet": "(\"File opened successfully\\n\")",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 291,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "string_literal",
+                "label": "",
+                "pos": 292,
+                "length": 28,
+                "snippet": "\"File opened successfully\\n\"",
+                "children": [
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 292,
+                    "length": 1,
+                    "snippet": "\""
+                  },
+                  {
+                    "type": "string_content",
+                    "label": "File opened successfully",
+                    "pos": 293,
+                    "length": 24,
+                    "snippet": "File opened successfully"
+                  },
+                  {
+                    "type": "escape_sequence",
+                    "label": "\\n",
+                    "pos": 317,
+                    "length": 2,
+                    "snippet": "\\n"
+                  },
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 319,
+                    "length": 1,
+                    "snippet": "\""
+                  }
+                ]
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 320,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),):))",
+      "occurrence_count": 4,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 291,
+        "length": 30,
+        "snippet": "(\"File opened successfully\\n\")",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 291,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 292,
+            "length": 28,
+            "snippet": "\"File opened successfully\\n\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 292,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "File opened successfully",
+                "pos": 293,
+                "length": 24,
+                "snippet": "File opened successfully"
+              },
+              {
+                "type": "escape_sequence",
+                "label": "\\n",
+                "pos": 317,
+                "length": 2,
+                "snippet": "\\n"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 319,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 320,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "pointer_declarator(*:*,identifier)",
+      "occurrence_count": 3,
+      "ast_structure": {
+        "type": "pointer_declarator",
+        "label": "",
+        "pos": 175,
+        "length": 7,
+        "snippet": "*buffer",
+        "children": [
+          {
+            "type": "*",
+            "label": "*",
+            "pos": 175,
+            "length": 1,
+            "snippet": "*"
+          },
+          {
+            "type": "identifier",
+            "label": "buffer",
+            "pos": 176,
+            "length": 6,
+            "snippet": "buffer"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "expression_statement(call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))),;)",
+      "occurrence_count": 3,
+      "ast_structure": {
+        "type": "expression_statement",
+        "label": "",
+        "pos": 342,
+        "length": 39,
+        "snippet": "printf(\"Buffer Content: %s\\n\", buffer);",
+        "children": [
+          {
+            "type": "call_expression",
+            "label": "",
+            "pos": 342,
+            "length": 38,
+            "snippet": "printf(\"Buffer Content: %s\\n\", buffer)",
+            "children": [
+              {
+                "type": "identifier",
+                "label": "printf",
+                "pos": 342,
+                "length": 6,
+                "snippet": "printf"
+              },
+              {
+                "type": "argument_list",
+                "label": "",
+                "pos": 348,
+                "length": 32,
+                "snippet": "(\"Buffer Content: %s\\n\", buffer)",
+                "children": [
+                  {
+                    "type": "(",
+                    "label": "(",
+                    "pos": 348,
+                    "length": 1,
+                    "snippet": "("
+                  },
+                  {
+                    "type": "string_literal",
+                    "label": "",
+                    "pos": 349,
+                    "length": 22,
+                    "snippet": "\"Buffer Content: %s\\n\"",
+                    "children": [
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 349,
+                        "length": 1,
+                        "snippet": "\""
+                      },
+                      {
+                        "type": "string_content",
+                        "label": "Buffer Content: %s",
+                        "pos": 350,
+                        "length": 18,
+                        "snippet": "Buffer Content: %s"
+                      },
+                      {
+                        "type": "escape_sequence",
+                        "label": "\\n",
+                        "pos": 368,
+                        "length": 2,
+                        "snippet": "\\n"
+                      },
+                      {
+                        "type": "\"",
+                        "label": "\"",
+                        "pos": 370,
+                        "length": 1,
+                        "snippet": "\""
+                      }
+                    ]
+                  },
+                  {
+                    "type": ",",
+                    "label": ",",
+                    "pos": 371,
+                    "length": 1,
+                    "snippet": ","
+                  },
+                  {
+                    "type": "identifier",
+                    "label": "buffer",
+                    "pos": 373,
+                    "length": 6,
+                    "snippet": "buffer"
+                  },
+                  {
+                    "type": ")",
+                    "label": ")",
+                    "pos": 379,
+                    "length": 1,
+                    "snippet": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": ";",
+            "label": ";",
+            "pos": 380,
+            "length": 1,
+            "snippet": ";"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):)))",
+      "occurrence_count": 3,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 342,
+        "length": 38,
+        "snippet": "printf(\"Buffer Content: %s\\n\", buffer)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "printf",
+            "pos": 342,
+            "length": 6,
+            "snippet": "printf"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 348,
+            "length": 32,
+            "snippet": "(\"Buffer Content: %s\\n\", buffer)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 348,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "string_literal",
+                "label": "",
+                "pos": 349,
+                "length": 22,
+                "snippet": "\"Buffer Content: %s\\n\"",
+                "children": [
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 349,
+                    "length": 1,
+                    "snippet": "\""
+                  },
+                  {
+                    "type": "string_content",
+                    "label": "Buffer Content: %s",
+                    "pos": 350,
+                    "length": 18,
+                    "snippet": "Buffer Content: %s"
+                  },
+                  {
+                    "type": "escape_sequence",
+                    "label": "\\n",
+                    "pos": 368,
+                    "length": 2,
+                    "snippet": "\\n"
+                  },
+                  {
+                    "type": "\"",
+                    "label": "\"",
+                    "pos": 370,
+                    "length": 1,
+                    "snippet": "\""
+                  }
+                ]
+              },
+              {
+                "type": ",",
+                "label": ",",
+                "pos": 371,
+                "length": 1,
+                "snippet": ","
+              },
+              {
+                "type": "identifier",
+                "label": "buffer",
+                "pos": 373,
+                "length": 6,
+                "snippet": "buffer"
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 379,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    },
+    {
+      "signature": "argument_list((:(,string_literal(\",string_content,escape_sequence,\"),,,identifier,):))",
+      "occurrence_count": 3,
+      "ast_structure": {
+        "type": "argument_list",
+        "label": "",
+        "pos": 348,
+        "length": 32,
+        "snippet": "(\"Buffer Content: %s\\n\", buffer)",
+        "children": [
+          {
+            "type": "(",
+            "label": "(",
+            "pos": 348,
+            "length": 1,
+            "snippet": "("
+          },
+          {
+            "type": "string_literal",
+            "label": "",
+            "pos": 349,
+            "length": 22,
+            "snippet": "\"Buffer Content: %s\\n\"",
+            "children": [
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 349,
+                "length": 1,
+                "snippet": "\""
+              },
+              {
+                "type": "string_content",
+                "label": "Buffer Content: %s",
+                "pos": 350,
+                "length": 18,
+                "snippet": "Buffer Content: %s"
+              },
+              {
+                "type": "escape_sequence",
+                "label": "\\n",
+                "pos": 368,
+                "length": 2,
+                "snippet": "\\n"
+              },
+              {
+                "type": "\"",
+                "label": "\"",
+                "pos": 370,
+                "length": 1,
+                "snippet": "\""
+              }
+            ]
+          },
+          {
+            "type": ",",
+            "label": ",",
+            "pos": 371,
+            "length": 1,
+            "snippet": ","
+          },
+          {
+            "type": "identifier",
+            "label": "buffer",
+            "pos": 373,
+            "length": 6,
+            "snippet": "buffer"
+          },
+          {
+            "type": ")",
+            "label": ")",
+            "pos": 379,
+            "length": 1,
+            "snippet": ")"
+          }
+        ]
+      },
+      "pattern_type": "other"
+    },
+    {
+      "signature": "call_expression(identifier,argument_list((:(,identifier,):)))",
+      "occurrence_count": 3,
+      "ast_structure": {
+        "type": "call_expression",
+        "label": "",
+        "pos": 392,
+        "length": 12,
+        "snippet": "free(buffer)",
+        "children": [
+          {
+            "type": "identifier",
+            "label": "free",
+            "pos": 392,
+            "length": 4,
+            "snippet": "free"
+          },
+          {
+            "type": "argument_list",
+            "label": "",
+            "pos": 396,
+            "length": 8,
+            "snippet": "(buffer)",
+            "children": [
+              {
+                "type": "(",
+                "label": "(",
+                "pos": 396,
+                "length": 1,
+                "snippet": "("
+              },
+              {
+                "type": "identifier",
+                "label": "buffer",
+                "pos": 397,
+                "length": 6,
+                "snippet": "buffer"
+              },
+              {
+                "type": ")",
+                "label": ")",
+                "pos": 403,
+                "length": 1,
+                "snippet": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "pattern_type": "function_call"
+    }
+  ]
+}
