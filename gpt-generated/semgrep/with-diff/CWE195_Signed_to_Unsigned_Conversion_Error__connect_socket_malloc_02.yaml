@@ -1,0 +1,30 @@
+rules:
+  - id: CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_02
+    message: "Potential signed to unsigned conversion error when using malloc with data from an insecure source"
+    severity: ERROR
+    metadata:
+      cwe: "CWE195"
+    languages: [c]
+    patterns:
+      - pattern: |
+          int data;
+          ...
+          /* POTENTIAL FLAW: Conversion error when data is read from an insecure source */
+          data = ...; // data read from socket or other insecure source
+          ...
+          if (data < 100) {
+              char * dataBuffer = (char *)malloc(data);
+              if (dataBuffer == NULL) {exit(-1);}
+              ...
+          }
+      - pattern-not: |
+          int data;
+          ...
+          /* FIX: Use a positive integer less than InitialDataSize */
+          data = 100-1;
+          ...
+          if (data < 100) {
+              char * dataBuffer = (char *)malloc(data);
+              if (dataBuffer == NULL) {exit(-1);}
+              ...
+          }

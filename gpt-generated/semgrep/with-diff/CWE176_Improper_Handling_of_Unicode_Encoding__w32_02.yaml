@@ -1,0 +1,12 @@
+rules:
+  - id: CWE176_Improper_Handling_of_Unicode_Encoding__w32_02
+    message: "Improper handling of Unicode encoding can lead to vulnerabilities."
+    severity: ERROR
+    metadata:
+      cwe: "CWE176"
+    languages: [c]
+    patterns:
+      - pattern: |
+          WideCharToMultiByte(..., ..., ..., -1, ..., ..., 0, 0);
+      - pattern-not: |
+          WideCharToMultiByte(..., ..., ..., -1, ..., requiredSize, 0, 0);

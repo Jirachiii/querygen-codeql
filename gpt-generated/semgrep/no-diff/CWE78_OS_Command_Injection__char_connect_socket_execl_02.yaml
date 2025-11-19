@@ -1,0 +1,21 @@
+rules:
+  - id: CWE78_OS_Command_Injection__char_connect_socket_execl_02
+    message: "Potential OS Command Injection via execl with untrusted input"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-78"
+    languages: [c, cpp]
+    patterns:
+      # Pattern to match the vulnerable use of execl with a dynamic argument 
+      - pattern: |
+          EXECL($CMD_PATH, $CMD_PATH, $ARG1, $DYNAMIC_ARG, ...);
+
+      # Exclude cases where the command argument is safely constructed
+      - pattern-not: |
+          {
+            char * $DYNAMIC_ARG;
+            ...
+            strcat($DYNAMIC_ARG, "*.*");
+            ...
+            EXECL($CMD_PATH, $CMD_PATH, $ARG1, $DYNAMIC_ARG, ...);
+          }

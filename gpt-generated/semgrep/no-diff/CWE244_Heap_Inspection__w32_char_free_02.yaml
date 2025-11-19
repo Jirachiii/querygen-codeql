@@ -1,0 +1,15 @@
+rules:
+  - id: CWE244_Heap_Inspection__w32_char_free_02
+    message: "Failure to clear sensitive data from heap before freeing memory."
+    severity: ERROR
+    metadata:
+      cwe: "CWE244"
+    languages: [c, cpp]
+    patterns:
+      # Detect free() on a password buffer
+      - pattern: |
+          free(password);
+      # Exclude cases where the password is cleared before freeing
+      - pattern-not: |
+          SecureZeroMemory(password, ...);
+          free(password);

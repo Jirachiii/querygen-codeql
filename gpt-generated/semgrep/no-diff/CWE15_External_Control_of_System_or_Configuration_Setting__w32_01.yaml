@@ -1,0 +1,21 @@
+rules:
+  - id: CWE15_External_Control_of_System_or_Configuration_Setting__w32_01
+    message: "Potential external control of system or configuration setting"
+    severity: ERROR
+    metadata:
+      cwe: "CWE15"
+    languages: [c]
+    patterns:
+      - pattern: |
+          ... = recv(..., $DATA, ..., ...);
+          ...
+          if (!SetComputerNameA($DATA))
+          {
+            ...
+          }
+      - pattern-not: |
+          strcpy($DATA, "hostname");
+          if (!SetComputerNameA($DATA))
+          {
+            ...
+          }

@@ -1,0 +1,16 @@
+rules:
+  - id: CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_02
+    message: "Reliance on DNS lookups in security decision detected. This can lead to vulnerabilities."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-247"
+    languages: [c, cpp]
+    patterns:
+      # Detect the use of reverse DNS result in a security decision
+      - pattern: |
+          if (strcmp(hostInfo->h_name, $SECRET_HOSTNAME) == 0) {
+            ...
+          }
+      # Exclude the safe scenario where the hostname is only logged
+      - pattern-not: |
+          fprintf($FILE, "Host name: %s\n", hostInfo->h_name);

@@ -1,0 +1,12 @@
+rules:
+  - id: CWE134_Uncontrolled_Format_String__char_connect_socket_fprintf_02
+    message: "Uncontrolled format string in fprintf function"
+    severity: ERROR
+    metadata:
+      cwe: "CWE134"
+    languages: [c]
+    patterns:
+      - pattern: |
+          fprintf($F, $DATA);
+      - pattern-not: |
+          fprintf($F, "%s", $DATA);

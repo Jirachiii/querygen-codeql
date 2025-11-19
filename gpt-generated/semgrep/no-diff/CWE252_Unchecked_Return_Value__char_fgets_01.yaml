@@ -1,0 +1,14 @@
+rules:
+  - id: CWE252_Unchecked_Return_Value__char_fgets_01
+    message: "Unchecked return value of fgets may lead to vulnerabilities"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-252"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          fgets($DATA, $SIZE, $STREAM);
+      - pattern-not: |
+          if (fgets($DATA, $SIZE, $STREAM) == NULL) {
+            ...
+          }

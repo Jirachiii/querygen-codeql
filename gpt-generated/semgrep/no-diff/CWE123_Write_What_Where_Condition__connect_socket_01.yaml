@@ -1,0 +1,13 @@
+rules:
+  - id: CWE123_Write_What_Where_Condition__connect_socket_01
+    message: "Detected potential write-what-where condition vulnerability (CWE-123)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE123"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          recv($CONNECT_SOCKET, (char*)&$DATA, sizeof($DATA), 0)
+      - pattern-not: |
+          /* FIX: don't overwrite linked list pointers */
+          ;

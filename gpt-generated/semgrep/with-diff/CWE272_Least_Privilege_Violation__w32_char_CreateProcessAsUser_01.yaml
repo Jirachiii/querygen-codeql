@@ -1,0 +1,12 @@
+rules:
+  - id: CWE272_Least_Privilege_Violation__w32_char_CreateProcessAsUser_01
+    message: "Potential CWE-272: Least Privilege Violation in CreateProcessAsUserA"
+    severity: ERROR
+    metadata:
+      cwe: "CWE272"
+    languages: [c]
+    patterns:
+      - pattern: |
+          CreateProcessAsUserA(..., "C:\\Program Files\\GoodApp arg1 arg2", ...)
+      - pattern-not: |
+          CreateProcessAsUserA(..., "\"C:\\Program Files\\GoodApp\" arg1 arg2", ...)

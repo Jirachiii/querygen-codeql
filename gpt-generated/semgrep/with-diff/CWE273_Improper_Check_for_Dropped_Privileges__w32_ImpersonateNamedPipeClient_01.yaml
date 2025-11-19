@@ -1,0 +1,17 @@
+rules:
+  - id: CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_01
+    message: "Improper Check for Dropped Privileges: Missing check for return value of ImpersonateNamedPipeClient"
+    severity: ERROR
+    metadata:
+      cwe: "CWE273"
+    languages: [c]
+    patterns:
+      - pattern: |
+          ImpersonateNamedPipeClient($HANDLE);
+      - pattern-not: |
+          if (!ImpersonateNamedPipeClient($HANDLE)) {
+            ... // Handle error
+          }
+          else {
+            ...
+          }

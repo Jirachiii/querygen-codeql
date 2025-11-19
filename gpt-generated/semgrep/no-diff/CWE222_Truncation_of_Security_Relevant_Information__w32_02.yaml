@@ -1,0 +1,22 @@
+rules:
+  - id: CWE222_Truncation_of_Security_Relevant_Information__w32_02
+    message: "Potential CWE-222: Truncation of Security Relevant Information by copying truncated data before logging."
+    severity: ERROR
+    metadata:
+      cwe: "CWE222"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          memcpy($TRUNCATED_ARRAY, $ARRAY, sizeof($TRUNCATED_ARRAY));
+      - pattern-not: |
+          // Directly using the non-truncated array when calling `LogonUserA`.
+          if (LogonUserA(
+                  $ARRAY,
+                  $DOMAIN,
+                  $PASSWORD,
+                  LOGON32_LOGON_NETWORK,
+                  LOGON32_PROVIDER_DEFAULT,
+                  &$PHANDLE) != 0)
+          {
+            ...
+          }

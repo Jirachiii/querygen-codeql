@@ -1,5 +1,6 @@
 # CWEs folder
 CWEs/
+CWEs-examples/
 
 # Large AST files
 *_asts.json

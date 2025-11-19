@@ -1,0 +1,10 @@
+rules:
+  - id: CWE114_Process_Control__w32_char_connect_socket_02
+    message: "Potential dynamic link library loading vulnerability (CWE114)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE114"
+    languages: [c, cpp]
+    patterns:
+      - pattern: hModule = LoadLibraryA($LIBRARY);
+      - pattern-not: strcpy($LIBRARY, "...");

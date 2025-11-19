@@ -1,0 +1,12 @@
+rules:
+  - id: CWE244_Heap_Inspection__w32_char_free_01
+    message: "Heap buffer is freed without clearing sensitive data (CWE-244)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE244"
+    languages: [c]
+    patterns:
+      - pattern: |
+          free($PASSWORD);
+      - pattern-not: |
+          SecureZeroMemory($PASSWORD, strlen($PASSWORD) * sizeof(char));

@@ -1,0 +1,20 @@
+rules:
+  - id: CWE122_Heap_Based_Buffer_Overflow__char_type_overrun_memcpy_02
+    message: "Potential heap-based buffer overflow detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE122"
+    languages: [c]
+    patterns:
+      - pattern: |
+          memcpy(
+            $STRUCT->charFirst,
+            $SRC_STR,
+            sizeof(*$STRUCT)
+          );
+      - pattern-not: |
+          memcpy(
+            $STRUCT->charFirst,
+            $SRC_STR,
+            sizeof($STRUCT->charFirst)
+          );

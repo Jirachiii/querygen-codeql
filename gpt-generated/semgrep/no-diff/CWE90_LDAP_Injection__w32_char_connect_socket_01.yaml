@@ -1,0 +1,12 @@
+rules:
+  - id: CWE90_LDAP_Injection__w32_char_connect_socket_01
+    message: "Potential LDAP Injection vulnerability detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE90"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          recvResult = recv(connectSocket, (char *)(data + dataLen), ..., 0);
+      - pattern-not: |
+          strcat(data, "Doe, XXXXX");

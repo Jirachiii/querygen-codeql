@@ -1,0 +1,16 @@
+rules:
+  - id: CWE127_Buffer_Underread__CWE839_connect_socket_01
+    message: "Buffer Underread due to improper array index validation."
+    severity: ERROR
+    metadata:
+      cwe: "CWE127"
+    languages: [c]
+    patterns:
+      - pattern: |
+          if ($INDEX < $LIMIT) {
+              $FUNC($ARRAY[$INDEX]);
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $LIMIT) {
+              $FUNC($ARRAY[$INDEX]);
+          }

@@ -1,0 +1,22 @@
+rules:
+  - id: CWE124_Buffer_Underwrite__CWE839_connect_socket_01
+    message: "Potential buffer underwrite by failing to check array index lower bound."
+    severity: ERROR
+    metadata:
+      cwe: "CWE124"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          if ($INDEX < $SIZE) {
+              $ARRAY[$INDEX] = $VALUE;
+              ...
+          } else {
+              ...
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $SIZE) {
+              $ARRAY[$INDEX] = $VALUE;
+              ...
+          } else {
+              ...
+          }

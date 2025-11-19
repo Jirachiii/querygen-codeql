@@ -1,0 +1,14 @@
+rules:
+  - id: CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_02
+    message: "Sensitive information not cleared before memory release"
+    severity: ERROR
+    metadata:
+      cwe: "CWE226"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          char * password = (char *)ALLOCA(100*sizeof(char));
+          ...
+          /* FLAW: Release password from the stack without first clearing the buffer */
+      - pattern-not: |
+          SecureZeroMemory(password, ...)

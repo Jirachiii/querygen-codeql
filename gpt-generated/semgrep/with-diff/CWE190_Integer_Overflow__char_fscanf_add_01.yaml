@@ -1,0 +1,20 @@
+rules:
+  - id: CWE190_Integer_Overflow__char_fscanf_add_01
+    message: "Potential integer overflow vulnerability (CWE190)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE190"
+    languages: [c]
+    patterns:
+      - pattern: |
+          char $VAR = ...;
+          ...
+          $VAR = $INPUT;
+          char $RESULT = $VAR + 1;
+      - pattern-not: |
+          char $VAR = ...;
+          ...
+          $VAR = $INPUT;
+          if ($VAR < CHAR_MAX) {
+            char $RESULT = $VAR + 1;
+          }

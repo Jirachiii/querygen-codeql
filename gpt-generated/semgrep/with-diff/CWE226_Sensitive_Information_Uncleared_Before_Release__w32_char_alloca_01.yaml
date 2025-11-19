@@ -1,0 +1,25 @@
+rules:
+  - id: CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_01
+    message: "Sensitive information may not be cleared before release."
+    severity: ERROR
+    metadata:
+      cwe: "CWE226"
+    languages: [c]
+    patterns:
+      - pattern: |
+          char * $PASSWORD = (char *)ALLOCA(...);
+          ...
+          /* Use the password in some way */
+          if (...) {
+              ...
+          }
+          /* FLAW: Release password from the stack without first clearing the buffer */
+      - pattern-not: |
+          char * $PASSWORD = (char *)ALLOCA(...);
+          ...
+          /* Use the password in some way */
+          if (...) {
+              ...
+          }
+          size_t $PASSWORD_LEN = strlen($PASSWORD);
+          SecureZeroMemory($PASSWORD, $PASSWORD_LEN * sizeof(char));

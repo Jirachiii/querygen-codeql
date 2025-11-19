@@ -1,0 +1,14 @@
+rules:
+  - id: CWE196_Unsigned_to_Signed_Conversion_Error__basic_02
+    message: "Potential unsigned to signed conversion error."
+    severity: ERROR
+    metadata:
+      cwe: "CWE196"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          int $SIGNED = $UNSIGNED;
+      - pattern-not: |
+          if ($UNSIGNED > INT_MAX) {
+            ...
+          }

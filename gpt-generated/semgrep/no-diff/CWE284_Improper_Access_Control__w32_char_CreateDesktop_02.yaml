@@ -1,0 +1,12 @@
+rules:
+  - id: CWE284_Improper_Access_Control__w32_char_CreateDesktop_02
+    message: "CreateDesktopA() called with excessive privileges (GENERIC_ALL)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE284"
+    languages: [c, cpp]
+    patterns:
+      - pattern: | 
+          CreateDesktopA($DESKTOP_NAME, $PTR1, $PTR2, $FLAGS, GENERIC_ALL, $PTR3)
+      - pattern-not: | 
+          CreateDesktopA($DESKTOP_NAME, $PTR1, $PTR2, $FLAGS, GENERIC_READ, $PTR3)

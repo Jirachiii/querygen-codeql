@@ -1,0 +1,12 @@
+rules:
+  - id: CWE122_Heap_Based_Buffer_Overflow__char_type_overrun_memcpy_02
+    message: "Potential heap-based buffer overflow detected due to incorrect use of sizeof in memcpy."
+    severity: ERROR
+    metadata:
+      cwe: "CWE122"
+    languages: [c]
+    patterns:
+      - pattern: |
+          memcpy($dest, $src, sizeof(*$struct));
+      - pattern-not: |
+          memcpy($dest, $src, sizeof($struct->charFirst));

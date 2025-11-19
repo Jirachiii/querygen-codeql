@@ -1,0 +1,12 @@
+rules:
+  - id: CWE242_Use_of_Inherently_Dangerous_Function__basic_02
+    message: "Use of inherently dangerous function `gets`. It can lead to buffer overflow vulnerabilities."
+    severity: ERROR
+    metadata:
+      cwe: "CWE242"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          gets($DEST);
+      - pattern-not: |
+          fgets($DEST, $SIZE, stdin);

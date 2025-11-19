@@ -1,0 +1,12 @@
+rules:
+  - id: CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_02
+    message: "Potential cleartext transmission of sensitive information"
+    severity: ERROR
+    metadata:
+      cwe: "CWE319"
+    languages: [c]
+    patterns:
+      - pattern: |
+          recv($SOCKET, (char*)($BUFFER + $LENGTH), ..., 0)
+      - pattern-not: |
+          if(!CryptDecrypt($KEY, 0, 1, 0, $BUFFER, &...))

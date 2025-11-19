@@ -1,0 +1,17 @@
+rules:
+  - id: CWE190_Integer_Overflow__char_fscanf_add_02
+    message: "Potential integer overflow when adding to a value read from input. Ensure that additions are within safe bounds."
+    severity: ERROR
+    metadata:
+      cwe: "CWE190"
+    languages: [c]
+    patterns:
+      - pattern: |
+          fscanf(stdin, "%c", &data);
+          ...
+          char result = data + 1;
+      - pattern-not: |
+          if (data < CHAR_MAX) {
+              char result = data + 1;
+              ...
+          }

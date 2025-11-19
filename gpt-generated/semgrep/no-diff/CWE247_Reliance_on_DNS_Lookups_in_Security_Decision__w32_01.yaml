@@ -1,0 +1,15 @@
+rules:
+  - id: CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_01
+    message: "Reliance on DNS lookups in a security decision can lead to vulnerabilities (CWE-247)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE247"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          if (strcmp($HOSTENT->h_name, $SECRET_HOSTNAME) == 0)
+          {
+              ...
+          }
+      - pattern-not: |
+          fprintf($FILE, "Host name: %s\n", $HOSTENT->h_name);

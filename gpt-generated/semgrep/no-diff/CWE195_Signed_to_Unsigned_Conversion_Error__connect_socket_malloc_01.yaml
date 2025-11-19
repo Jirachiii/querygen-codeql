@@ -1,0 +1,12 @@
+rules:
+  - id: CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_01
+    message: "Potential signed to unsigned conversion error in malloc"
+    severity: ERROR
+    metadata:
+      cwe: "CWE195"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          char * $DATA_BUFFER = (char *)malloc($DATA);
+      - pattern-not: |
+          $DATA = 100-1;

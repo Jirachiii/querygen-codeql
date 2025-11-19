@@ -1,0 +1,13 @@
+rules:
+  - id: CWE222_Truncation_of_Security_Relevant_Information__w32_01
+    message: "Truncation of security-relevant information detected"
+    severity: ERROR
+    metadata:
+      cwe: "CWE222"
+    languages: [c]
+    patterns:
+      - pattern: |
+          memcpy($TRUNCATED_USERNAME, $USERNAME, sizeof($TRUNCATED_USERNAME));
+          $TRUNCATED_USERNAME[$TRUNCATED_USERNAME_SIZE] = '\0';
+      - pattern-not: |
+          // This pattern is intentionally left blank to ensure only the missing memcpy operation leads to a detection.

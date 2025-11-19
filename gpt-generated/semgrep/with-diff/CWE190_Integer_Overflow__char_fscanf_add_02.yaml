@@ -1,0 +1,22 @@
+rules:
+  - id: CWE190_Integer_Overflow__char_fscanf_add_02
+    message: "Potential integer overflow due to unsafe addition."
+    severity: ERROR
+    metadata:
+      cwe: "CWE190"
+    languages: [c]
+    patterns:
+      - pattern: |
+          char $VAR = ...;
+          ...
+          $VAR = fscanf(stdin, "%c", &...);
+          ...
+          char result = $VAR + 1;
+      - pattern-not: |
+          char $VAR = ...;
+          ...
+          $VAR = fscanf(stdin, "%c", &...);
+          ...
+          if ($VAR < CHAR_MAX) {
+              char result = $VAR + 1;
+          }

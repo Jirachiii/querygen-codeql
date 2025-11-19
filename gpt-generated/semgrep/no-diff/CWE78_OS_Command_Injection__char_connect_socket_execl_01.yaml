@@ -1,0 +1,16 @@
+rules:
+  - id: CWE78_OS_Command_Injection__char_connect_socket_execl_01
+    message: "Potential OS Command Injection detected in execl usage."
+    severity: ERROR
+    metadata:
+      cwe: "CWE78"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          EXECL($COMMAND_INT_PATH, $COMMAND_INT_PATH, $COMMAND_ARG1, $COMMAND_ARG3, NULL);
+      - pattern-not: |
+          char * data;
+          char dataBuffer[100] = $COMMAND_ARG2;
+          data = dataBuffer;
+          strcat(data, "*.*");
+          EXECL($COMMAND_INT_PATH, $COMMAND_INT_PATH, $COMMAND_ARG1, $COMMAND_ARG3, NULL);

@@ -1,0 +1,14 @@
+rules:
+  - id: CWE15_External_Control_of_System_or_Configuration_Setting__w32_02
+    message: "External control of system or configuration settings detected. Avoid using external inputs for sensitive configuration settings."
+    severity: ERROR
+    metadata:
+      cwe: "CWE15"
+    languages: [c]
+    patterns:
+      - pattern: |
+          if (!SetComputerNameA($DATA)) {
+            ...
+          }
+      - pattern-not: |
+          $DATA = "hostname";

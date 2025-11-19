@@ -1,0 +1,12 @@
+rules:
+  - id: CWE114_Process_Control__w32_char_connect_socket_02
+    message: "Dynamic link library loaded without specifying a full path, which may lead to CWE-114 vulnerability."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-114"
+    languages: [c]
+    patterns:
+      - pattern: |
+          hModule = LoadLibraryA(data);
+      - pattern-not: |
+          strcpy(data, "...");  # Replace ... with the exact safe path string if necessary

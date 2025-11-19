@@ -1,0 +1,20 @@
+rules:
+  - id: CWE126_Buffer_Overread__CWE129_connect_socket_01
+    message: "Possible buffer overread due to improper bounds checking."
+    severity: ERROR
+    metadata:
+      cwe: "CWE126"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          if ($INDEX >= 0) {
+            ...
+            $BUFFER[$INDEX];
+            ...
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $SIZE) {
+            ...
+            $BUFFER[$INDEX];
+            ...
+          }

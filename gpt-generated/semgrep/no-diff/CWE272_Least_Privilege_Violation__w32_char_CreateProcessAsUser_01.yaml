@@ -1,0 +1,29 @@
+rules:
+  - id: CWE272_Least_Privilege_Violation__w32_char_CreateProcessAsUser_01
+    message: "Potential CWE-272 Least Privilege Violation: CreateProcessAsUserA without quotes"
+    severity: ERROR
+    metadata:
+      cwe: "CWE272"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          CreateProcessAsUserA($_, 
+                               $_, 
+                               $commandLine, 
+                               $_, 
+                               $_, 
+                               $_, 
+                               $_, 
+                               $_, 
+                               $_, 
+                               &$_)
+      - pattern-not: |
+          CreateProcessAsUserA($_, 
+                               $_, 
+                               "\"$EXECUTABLE_PATH\" $_", 
+                               $_, 
+                               $_, 
+                               $_, 
+                               $_, 
+                               $_, 
+                               &$_)

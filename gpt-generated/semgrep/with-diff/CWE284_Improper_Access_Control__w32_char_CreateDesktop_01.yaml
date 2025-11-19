@@ -1,0 +1,12 @@
+rules:
+  - id: CWE284_Improper_Access_Control__w32_char_CreateDesktop_01
+    message: "Improper access control: using GENERIC_ALL in CreateDesktopA"
+    severity: ERROR
+    metadata:
+      cwe: "CWE284"
+    languages: [c]
+    patterns:
+      - pattern: |
+          CreateDesktopA($DESKTOP_NAME, NULL, NULL, 0, GENERIC_ALL, NULL)
+      - pattern-not: |
+          CreateDesktopA($DESKTOP_NAME, NULL, NULL, 0, GENERIC_READ, NULL)

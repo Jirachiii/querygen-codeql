@@ -1,0 +1,18 @@
+rules:
+  - id: CWE222_Truncation_of_Security_Relevant_Information__w32_01
+    message: "Truncation of Security-Relevant Information (CWE-222) detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE222"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          memcpy(truncatedUsername, username, sizeof(truncatedUsername));
+      - pattern-not: |
+          if (LogonUserA(
+              username,
+              DOMAIN,
+              PASSWORD,
+              LOGON32_LOGON_NETWORK,
+              LOGON32_PROVIDER_DEFAULT,
+              &pHandle) != 0)

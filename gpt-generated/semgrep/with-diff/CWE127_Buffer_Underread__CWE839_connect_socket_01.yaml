@@ -1,0 +1,16 @@
+rules:
+  - id: CWE127_Buffer_Underread__CWE839_connect_socket_01
+    message: "Potential buffer underread vulnerability (CWE-127)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-127"
+    languages: [c]
+    patterns:
+      - pattern: |
+          if ($INDEX < $LIMIT) {
+            $RESP = $BUF[$INDEX];
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $LIMIT) {
+            $RESP = $BUF[$INDEX];
+          }

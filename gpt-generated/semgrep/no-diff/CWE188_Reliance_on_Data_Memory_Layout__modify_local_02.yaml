@@ -1,0 +1,12 @@
+rules:
+  - id: CWE188_Reliance_on_Data_Memory_Layout__modify_local_02
+    message: "Reliance on Data Memory Layout detected. Modifying struct fields using pointer arithmetic is dangerous."
+    severity: ERROR
+    metadata:
+      cwe: "CWE188"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          *(int*)($PTR + sizeof(int)) = $VAL;
+      - pattern-not: |
+          $STRUCT.$FIELD = $VAL;

@@ -1,0 +1,14 @@
+rules:
+  - id: CWE176_Improper_Handling_of_Unicode_Encoding__w32_02
+    message: "Improper Handling of Unicode Encoding detected (CWE176). Ensure buffer size is appropriately checked."
+    severity: ERROR
+    metadata:
+      cwe: "CWE176"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, $DATA$, -1, $CONVERTEDTEXT$, $REQUIREDSIZE$ , 0, 0);
+      - pattern-not: |
+          if ($REQUIREDSIZE$ < $BUFFER_SIZE$) {
+            WideCharToMultiByte(CP_ACP, WC_COMPOSITECHECK, $DATA$, -1, $CONVERTEDTEXT$, $REQUIREDSIZE$ , 0, 0);
+          }

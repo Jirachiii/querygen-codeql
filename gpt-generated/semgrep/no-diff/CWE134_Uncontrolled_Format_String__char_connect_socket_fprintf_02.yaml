@@ -1,0 +1,12 @@
+rules:
+  - id: CWE134_Uncontrolled_Format_String__char_connect_socket_fprintf_02
+    message: "Potential uncontrolled format string vulnerability detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE134"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          fprintf($STREAM, $DATA);
+      - pattern-not: |
+          fprintf($STREAM, "%s", $DATA);

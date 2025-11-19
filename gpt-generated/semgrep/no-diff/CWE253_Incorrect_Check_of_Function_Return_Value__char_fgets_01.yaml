@@ -1,0 +1,18 @@
+rules:
+  - id: CWE253_Incorrect_Check_of_Function_Return_Value__char_fgets_01
+    message: "Incorrect check of function return value for fgets detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-253"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          // Vulnerable code checks if result of fgets is less than 0
+          if (fgets($DATA, $SIZE, $STREAM) < 0) {
+            ...
+          }
+      - pattern-not: |
+          // Safe code checks if result of fgets is NULL
+          if (fgets($DATA, $SIZE, $STREAM) == NULL) {
+            ...
+          }

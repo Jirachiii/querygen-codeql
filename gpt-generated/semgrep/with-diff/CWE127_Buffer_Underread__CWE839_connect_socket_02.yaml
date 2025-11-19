@@ -1,0 +1,21 @@
+rules:
+  - id: CWE127_Buffer_Underread__CWE839_connect_socket_02
+    message: "Potential Buffer Under-read due to insufficient bounds checking"
+    severity: ERROR
+    metadata:
+      cwe: "CWE127"
+    languages: [c]
+    patterns:
+      - pattern-either:
+          - pattern: |
+              if ($INDEX < 10) {
+                ... = ...[$INDEX];
+              }
+          - pattern: |
+              if ($INDEX < $LIMIT) {
+                ... = ...[$INDEX];
+              }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $LIMIT) {
+            ... = ...[$INDEX];
+          }

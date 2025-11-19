@@ -1,0 +1,19 @@
+rules:
+  - id: CWE197_Numeric_Truncation_Error__int_connect_socket_to_char_02
+    message: "Potential CWE197: Numeric Truncation Error"
+    severity: ERROR
+    metadata:
+      cwe: "CWE197"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          char charData = (char)$DATA;
+          ...;
+          printHexCharLine(charData);
+      - pattern-not: |
+          int data;
+          ...
+          data = CHAR_MAX-5;
+          ...
+          char charData = (char)data;
+          printHexCharLine(charData);

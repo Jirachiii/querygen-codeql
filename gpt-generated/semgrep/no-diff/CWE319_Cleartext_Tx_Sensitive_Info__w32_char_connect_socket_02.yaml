@@ -1,0 +1,12 @@
+rules:
+  - id: CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_02
+    message: "Detected potential cleartext transmission of sensitive information (CWE-319)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE319"
+    languages: [c, cpp]
+    patterns:
+      - pattern: >
+          recvResult = recv(connectSocket, (char*)(password + passwordLen), ...);
+      - pattern-not: >
+          CryptDecrypt(hKey, 0, 1, 0, payload, &payloadBytes);

@@ -1,0 +1,14 @@
+rules:
+  - id: CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_01
+    message: "Improper Check for Dropped Privileges: The return status of ImpersonateNamedPipeClient() is not checked."
+    severity: ERROR
+    metadata:
+      cwe: "CWE273"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          ImpersonateNamedPipeClient($HANDLE);
+      - pattern-not: |
+          if (!ImpersonateNamedPipeClient($HANDLE)) {
+            ...
+          }

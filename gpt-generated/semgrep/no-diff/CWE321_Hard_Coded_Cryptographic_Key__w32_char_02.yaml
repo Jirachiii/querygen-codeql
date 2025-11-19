@@ -1,0 +1,18 @@
+rules:
+  - id: CWE321_Hard_Coded_Cryptographic_Key__w32_char_02
+    message: "Use of a hard-coded cryptographic key detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE321"
+    languages: [c, cpp]
+    patterns:
+      - pattern: strcpy($KEY, $VALUE);
+      - pattern-not: |
+          {
+            size_t $keyLen = strlen($KEY);
+            if(100-$keyLen > 1) {
+              if (fgets($KEY+$keyLen, (int)(100-$keyLen), stdin) == NULL) {
+                $KEY[$keyLen] = '\0';
+              }
+            }
+          }

@@ -1,0 +1,12 @@
+rules:
+  - id: CWE222_Truncation_of_Security_Relevant_Information__w32_02
+    message: "Truncation of security-relevant information detected. Username is truncated before logging."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-222"
+    languages: [c]
+    patterns:
+      - pattern: |
+          memcpy(truncatedUsername, username, ...);
+      - pattern-not: |
+          LogonUserA(username, ..., ..., ..., ..., ...);

@@ -1,0 +1,12 @@
+rules:
+  - id: CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_01
+    message: "Sensitive information may be transmitted in cleartext over the network."
+    severity: ERROR
+    metadata:
+      cwe: "CWE319"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          recv($CONNECT_SOCKET, (char*)($PASSWORD + $PASSWORD_LEN), $SIZE * sizeof(char), 0);
+      - pattern-not: |
+          CryptDecrypt($HKEY, 0, 1, 0, $PAYLOAD, &$PAYLOAD_BYTES)

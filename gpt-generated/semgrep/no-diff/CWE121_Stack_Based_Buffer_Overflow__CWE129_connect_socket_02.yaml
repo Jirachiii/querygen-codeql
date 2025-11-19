@@ -1,0 +1,22 @@
+rules:
+  - id: CWE121_Stack_Based_Buffer_Overflow__CWE129_connect_socket_02
+    message: "Potential stack-based buffer overflow by improperly checking array index."
+    severity: ERROR
+    metadata:
+      cwe: "CWE121"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          int buffer[...];
+          ...
+          if ($INDEX >= 0) {
+            buffer[$INDEX] = ...;
+            ...
+          }
+      - pattern-not: |
+          int buffer[...];
+          ...
+          if ($INDEX >= 0 && $INDEX < ...) {
+            buffer[$INDEX] = ...;
+            ...
+          }

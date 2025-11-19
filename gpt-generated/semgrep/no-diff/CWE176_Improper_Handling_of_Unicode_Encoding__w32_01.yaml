@@ -1,0 +1,16 @@
+rules:
+  - id: CWE176_Improper_Handling_of_Unicode_Encoding__w32_01
+    message: "Improper Handling of Unicode Encoding that can lead to buffer overflow."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-176"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          WideCharToMultiByte(..., ..., ..., ..., ..., ..., ..., ...);
+      - pattern-not: |
+          if ($REQUIRED_SIZE < ...) {
+            WideCharToMultiByte(..., ..., ..., ..., ..., ..., ..., ...);
+          } else {
+            ...
+          }

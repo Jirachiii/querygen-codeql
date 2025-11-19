@@ -1,0 +1,19 @@
+rules:
+  - id: CWE194_Unexpected_Sign_Extension__connect_socket_malloc_01
+    message: "Potential CWE-194: Unexpected Sign Extension vulnerability detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE194"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          short $DATA;
+          ...
+          $DATA = $VALUE_FROM_NETWORK;
+          ...
+          char *$DATA_BUFFER = (char *)malloc($DATA);
+          ...
+      - pattern-not: |
+          short $DATA;
+          ...
+          $DATA = 100 - 1;

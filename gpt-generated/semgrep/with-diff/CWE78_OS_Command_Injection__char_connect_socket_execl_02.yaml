@@ -1,0 +1,13 @@
+rules:
+  - id: CWE78_OS_Command_Injection__char_connect_socket_execl_02
+    message: "Potential CWE-78: OS Command Injection via execl with unvalidated inputs."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-78"
+    languages: [c]
+    patterns:
+      - pattern-either:
+          - pattern: |
+              EXECL($COMMAND_INT_PATH, $COMMAND_INT_PATH, $COMMAND_ARG1, $COMMAND_ARG3, NULL);
+      - pattern-not: |
+              char * data = "fixed string";

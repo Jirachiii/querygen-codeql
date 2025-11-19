@@ -1,0 +1,24 @@
+rules:
+  - id: CWE127_Buffer_Underread__CWE839_connect_socket_02
+    message: "Possible buffer underread due to improper index validation."
+    severity: ERROR
+    metadata:
+      cwe: "CWE127"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          int buffer[...];
+          ...
+          if ($INDEX < $SIZE) {
+            $DO_SOMETHING(buffer[$INDEX]);
+          } else {
+            ...
+          }
+      - pattern-not: |
+          int buffer[...];
+          ...
+          if ($INDEX >= 0 && $INDEX < $SIZE) {
+            $DO_SOMETHING(buffer[$INDEX]);
+          } else {
+            ...
+          }

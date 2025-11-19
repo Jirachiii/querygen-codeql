@@ -1,0 +1,12 @@
+rules:
+  - id: CWE123_Write_What_Where_Condition__connect_socket_02
+    message: "Detected potential CWE-123: Write-What-Where Condition vulnerability."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-123"
+    languages: [c]
+    patterns:
+      - pattern: |
+          recv($SOCKET, (char*)&$DATA, sizeof($DATA), 0);
+      - pattern-not: |
+          ; /* empty statement needed by some flow variants */

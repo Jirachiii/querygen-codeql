@@ -1,0 +1,12 @@
+rules:
+  - id: CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_02
+    message: "CWE-195: Signed to Unsigned Conversion Error detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE195"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          char * dataBuffer = (char *)malloc(data);
+      - pattern-not: |
+          int data = 100-1;

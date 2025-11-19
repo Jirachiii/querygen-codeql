@@ -1,0 +1,12 @@
+rules:
+  - id: CWE122_Heap_Based_Buffer_Overflow__char_type_overrun_memcpy_01
+    message: "Potential heap-based buffer overflow due to incorrect memcpy size calculation."
+    severity: ERROR
+    metadata:
+      cwe: "CWE122"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          memcpy($BUF, $SRC, sizeof(*$STRUCT));
+      - pattern-not: |
+          memcpy($BUF, $SRC, sizeof($BUF));

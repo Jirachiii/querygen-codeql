@@ -1,0 +1,15 @@
+rules:
+  - id: CWE190_Integer_Overflow__char_fscanf_add_01
+    message: "Potential integer overflow when adding 1 to data"
+    severity: ERROR
+    metadata:
+      cwe: "CWE190"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          char result = $DATA + 1;
+      - pattern-not: |
+          if ($DATA < CHAR_MAX) {
+            char result = $DATA + 1;
+            ...
+          }

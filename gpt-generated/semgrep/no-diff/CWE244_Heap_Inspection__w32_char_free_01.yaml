@@ -1,0 +1,12 @@
+rules:
+  - id: CWE244_Heap_Inspection__w32_char_free_01
+    message: "Potential heap inspection vulnerability: memory freed without clearing sensitive content."
+    severity: ERROR
+    metadata:
+      cwe: "CWE244"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          free($VULN);
+      - pattern-not: |
+          SecureZeroMemory($VULN, ...);

@@ -1,0 +1,12 @@
+rules:
+  - id: CWE284_Improper_Access_Control__w32_char_CreateDesktop_02
+    message: "Improper Access Control: Using CreateDesktopA with GENERIC_ALL can lead to security vulnerabilities."
+    severity: ERROR
+    metadata:
+      cwe: "CWE284"
+    languages: [c]
+    patterns:
+      - pattern: |
+          CreateDesktopA(..., GENERIC_ALL, ...);
+      - pattern-not: |
+          CreateDesktopA(..., GENERIC_READ, ...);

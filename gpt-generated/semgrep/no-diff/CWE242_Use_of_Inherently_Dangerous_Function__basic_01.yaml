@@ -1,0 +1,10 @@
+rules:
+  - id: CWE242_Use_of_Inherently_Dangerous_Function__basic_01
+    message: "Avoid using 'gets' due to its inherent dangers. Use 'fgets' instead for bounded input."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-242"
+    languages: [c, cpp]
+    patterns:
+      - pattern: gets($VAR);
+      - pattern-not: fgets($VAR, ..., stdin);

@@ -1,0 +1,12 @@
+rules:
+  - id: CWE90_LDAP_Injection__w32_char_connect_socket_02
+    message: "LDAP Injection vulnerability detected due to unsafe data concatenation."
+    severity: ERROR
+    metadata:
+      cwe: "CWE90"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          _snprintf(filter, 256-1, "(cn=%s)", $DATA);
+      - pattern-not: |
+          strcat($DATA, "Doe, XXXXX");

@@ -1,0 +1,24 @@
+rules:
+  - id: CWE124_Buffer_Underwrite__CWE839_connect_socket_02
+    message: "Potential buffer underwrite detected due to improper index validation"
+    severity: ERROR
+    metadata:
+      cwe: "CWE124"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          if ($INDEX < 10) {
+            $BUFFER[$INDEX] = 1;
+            ...
+          }
+          else {
+            ...
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < 10) {
+            $BUFFER[$INDEX] = 1;
+            ...
+          }
+          else {
+            ...
+          }

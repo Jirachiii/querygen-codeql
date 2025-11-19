@@ -1,0 +1,14 @@
+rules:
+  - id: CWE114_Process_Control__w32_char_connect_socket_01
+    message: "CWE-114: Dynamic loading of library using untrusted input"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-114"
+    languages: [c]
+    patterns:
+      - pattern: |
+          HMODULE hModule;
+          hModule = LoadLibraryA($LIB_PATH);
+          ...
+      - pattern-not: |
+          $LIB_PATH = "C:\\Windows\\System32\\winsrv.dll";
