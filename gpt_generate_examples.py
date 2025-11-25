@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+"""
+Call GPT to generate example good/bad testcases for a CWE
+"""
+
 import openai
 import re
 
 # Number of function to generate per CWE
-num_functions = 10
+num_functions = 2
 # Number of vulnerable function
 num_vulnerable = int(num_functions/2)
 # Number of safe function
@@ -14,7 +19,7 @@ model = 'gpt-4o'
 cwe_data = [
     {'cwe_number': 197,
      'cwe_name': 'Numeric Truncation',
-     'cwe_desc': 'Losing data when converting large values to smaller types',
+     'cwe_desc': 'Truncation errors occur when a primitive is cast to a primitive of a smaller size and data is lost in the conversion',
      'example': '''void CWE197_Numeric_Truncation_Error_bad()
 {
     int data;
@@ -44,7 +49,7 @@ cwe_data = [
 }'''},
     {'cwe_number': 242,
      'cwe_name': 'Use of Inherently Dangerous Function',
-     'cwe_desc': 'Some functions contain vulnerabilities and should not be used',
+     'cwe_desc': 'The product calls a function that can never be guaranteed to work safely',
      'example': '''void CWE242_Use_of_Inherently_Dangerous_Function_bad()
 {
     if(staticTrue)
@@ -70,7 +75,7 @@ cwe_data = [
 }'''},
     {'cwe_number': 252,
      'cwe_name': 'Unchecked Return Value',
-     'cwe_desc': 'Function return values that can indicate errors are not checked',
+     'cwe_desc': 'The product does not check the return value from a method or function, which can prevent it from detecting unexpected states and conditions',
      'example': '''void CWE252_Unchecked_Return_Value_bad()
 {
     if(GLOBAL_CONST_FIVE==5)
@@ -90,7 +95,7 @@ cwe_data = [
 '''},
     {'cwe_number': 253,
      'cwe_name': 'Incorrect Check of Function Return Value',
-     'cwe_desc': 'Function return values that can indicate errors are checked, but incorrectly',
+     'cwe_desc': 'The product incorrectly checks a return value from a function, which prevents it from detecting errors or exceptional conditions',
      'example': '''void CWE253_Incorrect_Check_of_Function_Return_Value_bad()
 {
     while(1)
@@ -107,7 +112,7 @@ cwe_data = [
 '''},
     {'cwe_number': 364,
      'cwe_name': 'Signal Handler Race Condition',
-     'cwe_desc': 'Signal handlers can interrupt normal program execution at any time. If both the signal handler and main code access the same variable, a race condition can occur. Non-atomic operations can be interrupted mid-sequence',
+     'cwe_desc': 'The product uses a signal handler that introduces a race condition',
      'example': '''structSigAtomic *CWE364_Signal_Handler_Race_Condition__basic_01StructSigAtomicBad = NULL;
 static void helperBad(int sig)
 {
@@ -207,13 +212,13 @@ for cwe in cwe_data:
 
     **Output Format:**
     ```c
-    // BAD - CWE-{cwe_number}: <specific reason why it's vulnerable>
-    void vulnerable_example_1(void) {{
+    // BAD - {cwe_number}
+    void example_1_bad(void) {{
         // implementation
     }}
 
-    // GOOD - <what makes this safe>
-    void safe_example_1(void) {{
+    // GOOD - {cwe_number}
+    void example_1_good(void) {{
         // implementation
     }}
 

@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+"""
+Call GPT to generate Semgrep rule for a particular pair of good/bad testcases
+"""
+
 import openai
 import re
 from pathlib import Path
