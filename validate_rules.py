@@ -91,6 +91,10 @@ def run_semgrep(rule_file: str, target_dir: str) -> Dict:
     Returns Semgrep output as JSON.
     """
     files = glob.glob(target_dir)
+    if len(files) == 0:
+        print("No testfiles found: ", target_dir)
+        return {"results": []}
+
     cmd = [
         "semgrep",
         "--config", rule_file,
@@ -110,7 +114,6 @@ def run_semgrep(rule_file: str, target_dir: str) -> Dict:
         if result.returncode == 0 or result.returncode == 1:  # 0 = no findings, 1 = findings
             return json.loads(result.stdout)
         else:
-            print(result)
             print(f"Semgrep error: {result.stderr}", file=sys.stderr)
             return {"results": []}
 
@@ -225,28 +228,29 @@ def validate_cwe(rule_file: str, cwe_name: str, dir: str) -> Dict:
     """
     Validate rules for a single CWE.
     """
-    print(f"\n{'='*60}")
+    print(f"{'='*60}")
     print(f"Validating: {os.path.basename(rule_file)}")
     print(f"CWE Name: {cwe_name}")
-    print(f"{'='*60}\n")
+    print(f"{'='*60}")
 
-    print(f"Testfiles found:")
-    print(f"  - Bad testfiles: 2")
-    print(f"  - Good testfiles: 2")
+    # Run rule on all files with the corresponding CWE
+    target_dir = str(dir) + f"/{cwe_name}*.c*"
+    # print(f"Testfiles found:", len(glob.glob(target_dir)))
+    # print(f"  - Bad testfiles: ", len(glob.glob(str(dir) + f"/{cwe_name}*_bad.c*")))
+    # print(f"  - Good testfiles: ", len(glob.glob(str(dir) + f"/{cwe_name}*_good.c*")))
 
     # Run Semgrep
     print(f"\nRunning Semgrep...")
-    target_dir = str(dir) + f"/{cwe_name}*.c"
     semgrep_output = run_semgrep(rule_file, target_dir)
 
     # Analyze results
     detected = analyze_semgrep_results(semgrep_output, cwe_name)
 
-    print(f"\nSemgrep Results:")
-    print(f"  - Total findings: {detected['total_findings']}")
-    print(f"  - Files with findings: {len(detected['files_with_findings'])}")
-    print(f"  - Bad testfiles detected: {len(detected['detected_bad'])}")
-    print(f"  - Good testfiles detected: {len(detected['detected_good'])}")
+    # print(f"\nSemgrep Results:")
+    # print(f"  - Total findings: {detected['total_findings']}")
+    # print(f"  - Files with findings: {len(detected['files_with_findings'])}")
+    # print(f"  - Bad testfiles detected: {len(detected['detected_bad'])}")
+    # print(f"  - Good testfiles detected: {len(detected['detected_good'])}")
 
     return {
         "rule_file": rule_file,
@@ -358,7 +362,7 @@ def main():
     print(f"\n{'='*60}")
     print("== OVERALL SUMMARY ==")
     print("- Total findings:", all_findings)
-    print("- Total files scanned:", len(pairs)*2)
+    print("- Total files scanned:", len(pairs)*4)
     print("- Files with findings:", len(all_files_with_findings))
     print("- True Positive:", len(all_tp))
     print("- False Positive:", len(all_fp))

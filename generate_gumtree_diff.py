@@ -34,7 +34,7 @@ def find_bad_files(directory):
     
     # Find all _bad.c and _bad.cpp files
     bad_files = []
-    bad_files.extend(dir_path.glob("*_bad.c"))
+    # bad_files.extend(dir_path.glob("*_bad.c"))
     bad_files.extend(dir_path.glob("*_bad.cpp"))
     
     # Sort for consistent ordering
@@ -114,6 +114,7 @@ def run_gumtree_diff(bad_file, good_file, output_file, dry_run=False):
         '-o',
         str(output_file)
     ]
+    print(' '.join(cmd))
     
     if dry_run:
         print(f"[DRY RUN] Would execute: {' '.join(cmd)}")

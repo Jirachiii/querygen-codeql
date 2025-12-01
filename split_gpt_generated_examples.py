@@ -1,5 +1,9 @@
+"""
+Find all C test files in a directory and split them into GOOD/BAD files so that each file contain one function
+"""
 import re
 import os
+import glob 
 
 def extract_function_pairs(c_file_path):
     """
@@ -41,9 +45,11 @@ def create_split_files(c_file_path, output_dir='split_files'):
     
     # Create a file for each pair
     for idx, (bad_func, good_func) in enumerate(pairs, 1):
-        output_filename = f"{base_name}_part{idx}.c"
-        output_path = os.path.join(output_dir, output_filename)
-        
+        bad_filename = f"{base_name}_part{idx}_bad.c"
+        good_filename = f"{base_name}_part{idx}_good.c"
+
+        # Write bad function to file
+        output_path = os.path.join(output_dir, bad_filename)    
         with open(output_path, 'w', encoding='utf-8') as f:
             # Write header
             f.write(header)
@@ -52,7 +58,14 @@ def create_split_files(c_file_path, output_dir='split_files'):
             # Write BAD function
             f.write(bad_func)
             f.write('\n\n')
-            
+
+        # Write bad function to file
+        output_path = os.path.join(output_dir, good_filename)    
+        with open(output_path, 'w', encoding='utf-8') as f:
+            # Write header
+            f.write(header)
+            f.write('\n\n')
+
             # Write GOOD function
             f.write(good_func)
             f.write('\n')
@@ -64,9 +77,10 @@ def create_split_files(c_file_path, output_dir='split_files'):
 
 # Main execution
 if __name__ == "__main__":
-    dir = "gpt-generated/"
-    input_file = dir + "CWE364_gpt_generated.c"
-    output_directory = dir + "CWE364_Signal_Handler_Race_Condition"
-    
-    num_files = create_split_files(input_file, output_directory)
-    print(f"\nSuccessfully split into {num_files} files in '{output_directory}/' directory")
+    dir = "gpt-generated/examples"
+    files = glob.glob(os.path.join(dir, f"*.c"), recursive=True)
+    for input_file in files:
+        output_directory = 'CWEs-examples/gpt-generated'
+        
+        num_files = create_split_files(input_file, output_directory)
+        print(f"\nSuccessfully split into {num_files} files in '{output_directory}/' directory")

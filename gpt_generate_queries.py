@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 input_dir = 'CWEs-examples'
-output_dir = 'CWEs-examples/no-diff'
+output_dir = 'CWEs-examples/with-diff'
 
 llm = openai.OpenAI()
 model = 'gpt-4o'
@@ -137,7 +137,7 @@ Format as valid YAML that can be saved directly as a .yaml file."""
     response = llm.chat.completions.create(
             model=model,
             messages=[
-                {"role": "user", "content": PROMPT_TEMPLATE}
+                {"role": "user", "content": PROMPT_TEMPLATE_WITH_DIFF}
             ]
         )
     
