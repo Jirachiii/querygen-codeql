@@ -1,0 +1,29 @@
+rules:
+  - id: CWE222_Truncation_of_Security_Relevant_Information__w32_02
+    message: "Truncation of security-relevant information detected: truncated username used for LogonUserA."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-222"
+    languages: [c, cpp]
+    patterns:
+      # 1) Copy full username into a smaller/truncated buffer
+      - pattern: |
+          memcpy($TRUNC, $USER, sizeof($TRUNC));
+      # 2) Later, use the truncated buffer as the username argument to LogonUserA
+      - pattern: |
+          LogonUserA(
+            $TRUNC,
+            ...,
+            ...,
+            ...,
+            ...,
+            ...);
+      # 3) Ensure we are not directly using the full username with LogonUserA (good case)
+      - pattern-not: |
+          LogonUserA(
+            $USER,
+            ...,
+            ...,
+            ...,
+            ...,
+            ...);

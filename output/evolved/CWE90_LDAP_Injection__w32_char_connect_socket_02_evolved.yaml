@@ -1,0 +1,17 @@
+rules:
+  - id: CWE90_LDAP_Injection__w32_char_connect_socket_02
+    message: "Possible LDAP Injection due to untrusted data concatenation."
+    severity: ERROR
+    metadata:
+      cwe: "CWE90"
+    languages: [c, cpp]
+    patterns:
+      # LDAP search filter built from some data variable
+      - pattern: |
+          _snprintf($FILTER, ..., "(cn=%s)", $DATA);
+      # Exclude the known safe pattern where DATA is built from a fixed string
+      - pattern-not: |
+          strcat($DATA, "Doe, XXXXX");
+      # Also exclude the variant where DATA is assigned from a fixed string literal
+      - pattern-not: |
+          $DATA = "Doe, XXXXX";

@@ -1,0 +1,12 @@
+rules:
+  - id: CWE242_Use_of_Inherently_Dangerous_Function__basic_02
+    message: "Use of the inherently dangerous function 'gets'. Consider using 'fgets' as a safer alternative."
+    severity: ERROR
+    metadata:
+      cwe: "CWE242"
+    languages: [c, cpp]
+    patterns:
+      - pattern: |
+          $RESULT = gets($BUFFER);
+      - pattern-not: |
+          $RESULT = fgets($BUFFER, $SIZE, stdin);

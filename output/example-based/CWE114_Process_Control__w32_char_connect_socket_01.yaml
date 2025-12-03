@@ -1,0 +1,25 @@
+rules:
+  - id: CWE114_Process_Control__w32_char_connect_socket_01
+    message: "Dynamic library loading without specifying a full path may lead to a security vulnerability (CWE-114)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-114"
+    languages: [c]
+    patterns:
+      - pattern: |
+          HMODULE hModule;
+          ...
+          hModule = LoadLibraryA($DATA);
+          if (hModule != NULL) {
+              FreeLibrary(hModule);
+              ...
+          }
+      - pattern-not: |
+          HMODULE hModule;
+          ...
+          strcpy($DATA, "C:\\Windows\\System32\\winsrv.dll");
+          hModule = LoadLibraryA($DATA);
+          if (hModule != NULL) {
+              FreeLibrary(hModule);
+              ...
+          }

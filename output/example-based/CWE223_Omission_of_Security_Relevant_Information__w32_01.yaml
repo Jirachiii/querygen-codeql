@@ -1,0 +1,12 @@
+rules:
+  - id: CWE223_Omission_of_Security_Relevant_Information__w32_01
+    message: "Omission of security relevant information (username not logged)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-223"
+    languages: [c]
+    patterns:
+      - pattern: |
+          fprintf(stderr, "Attempted login\n");
+      - pattern-not: |
+          fprintf(stderr, "Attempted login by %s\n", username);

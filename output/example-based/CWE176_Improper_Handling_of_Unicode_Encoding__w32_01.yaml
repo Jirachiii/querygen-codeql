@@ -1,0 +1,16 @@
+rules:
+  - id: CWE176_Improper_Handling_of_Unicode_Encoding__w32_01
+    message: "Improper Handling of Unicode Encoding (CWE176)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE176"
+    languages: [c]
+    patterns:
+      - pattern: >
+          WideCharToMultiByte(..., ..., ..., -1, ..., ...)
+      - pattern-not: >
+          if ($REQUIRED_SIZE < 10) { 
+            WideCharToMultiByte(..., ..., ..., -1, ..., $REQUIRED_SIZE, ...)
+          } else {
+            ...
+          }

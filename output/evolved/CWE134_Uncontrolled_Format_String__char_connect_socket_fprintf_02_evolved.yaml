@@ -1,0 +1,19 @@
+rules:
+  - id: CWE134_Uncontrolled_Format_String__char_connect_socket_fprintf_02
+    message: "Uncontrolled format string in fprintf function"
+    severity: ERROR
+    metadata:
+      cwe: "CWE134"
+    languages: [c, cpp]
+    patterns:
+      # Match fprintf where the format string is fully controlled by $DATA
+      - pattern: |
+          fprintf($F, $DATA);
+
+      # Exclude safe usages where a constant format string is specified
+      - pattern-not: |
+          fprintf($F, "%s", $DATA);
+      - pattern-not: |
+          fprintf($F, "%s\n", $DATA);
+      - pattern-not: |
+          fprintf($F, "%s\r\n", $DATA);

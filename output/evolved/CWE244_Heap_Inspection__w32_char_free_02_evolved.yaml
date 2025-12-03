@@ -1,0 +1,16 @@
+rules:
+  - id: CWE244_Heap_Inspection__w32_char_free_02
+    message: "Potential CWE244: Failure to Clear Heap Before Release"
+    severity: ERROR
+    metadata:
+      cwe: "CWE244"
+    languages: [c, cpp]
+    patterns:
+      # Core sink: a heap-based password (or similarly named buffer) is freed
+      # without being securely cleared first.
+      - pattern: |
+          free($PW);
+      # Exclude cases where the same buffer is cleared with SecureZeroMemory
+      # anywhere in the function before it is freed.
+      - pattern-not: |
+          SecureZeroMemory($PW, ...);

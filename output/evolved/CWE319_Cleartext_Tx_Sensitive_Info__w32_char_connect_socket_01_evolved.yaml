@@ -1,0 +1,74 @@
+rules:
+  - id: CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_01
+    message: "Potential cleartext transmission of sensitive information"
+    severity: ERROR
+    metadata:
+      cwe: "CWE319"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: password comes from a socket recv and is used
+      # directly in LogonUserA without going through CryptDecrypt.
+      - pattern: |
+          {
+            char * $PASSWORD;
+            char $BUF[100] = "";
+            $PASSWORD = $BUF;
+            ...
+            /* POTENTIAL FLAW: Reading sensitive data from the network */
+            $RECV_RESULT = recv($SOCK, (char *)($PASSWORD + $LEN), (100 - $LEN - 1) * sizeof(char), 0);
+            ...
+            if (LogonUserA(
+                      $USERNAME,
+                      $DOMAIN,
+                      $PASSWORD,
+                      LOGON32_LOGON_NETWORK,
+                      LOGON32_PROVIDER_DEFAULT,
+                      &$PHANDLE) != 0) {
+              ...
+            }
+          }
+      # Exclude case where the password data is decrypted with CryptDecrypt
+      # before being used in LogonUserA (goodB2G).
+      - pattern-not: |
+          {
+            char * $PASSWORD;
+            char $BUF[100] = "";
+            $PASSWORD = $BUF;
+            ...
+            $RECV_RESULT = recv($SOCK, (char *)($PASSWORD + $LEN), (100 - $LEN - 1) * sizeof(char), 0);
+            ...
+            if(!CryptDecrypt($KEY, 0, 1, 0, $PAYLOAD, &$PAYLOAD_BYTES)) {
+              break;
+            }
+            ...
+            if (LogonUserA(
+                      $USERNAME,
+                      $DOMAIN,
+                      $PASSWORD,
+                      LOGON32_LOGON_NETWORK,
+                      LOGON32_PROVIDER_DEFAULT,
+                      &$PHANDLE) != 0) {
+              ...
+            }
+          }
+      # Exclude case where the password comes from a hardcoded value
+      # (goodG2B), even though it is used directly in LogonUserA.
+      - pattern-not: |
+          {
+            char * $PASSWORD;
+            char $BUF[100] = "";
+            $PASSWORD = $BUF;
+            /* FIX: Use a hardcoded password (it was not sent over the network)
+            * INCIDENTAL FLAW: CWE-259 Hard Coded Password */
+            strcpy($PASSWORD, $HARDCODED);
+            ...
+            if (LogonUserA(
+                      $USERNAME,
+                      $DOMAIN,
+                      $PASSWORD,
+                      LOGON32_LOGON_NETWORK,
+                      LOGON32_PROVIDER_DEFAULT,
+                      &$PHANDLE) != 0) {
+              ...
+            }
+          }

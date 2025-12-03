@@ -1,0 +1,22 @@
+rules:
+  - id: CWE176_Improper_Handling_of_Unicode_Encoding__w32_02
+    message: "Improper handling of Unicode encoding: WideCharToMultiByte used without verifying destination buffer size."
+    severity: ERROR
+    metadata:
+      cwe: "CWE176"
+    languages: [c, cpp]
+    patterns:
+      # Find the typical pattern where requiredSize is first obtained with cbMultiByte = 0
+      - pattern: |
+          $RET = WideCharToMultiByte($CP, $FLAGS, $SRC, -1, $DEST, 0, 0, 0);
+          ...
+          WideCharToMultiByte($CP, $FLAGS, $SRC, -1, $DEST, $RET, 0, 0);
+      # Exclude the safe variant where the size is checked (e.g., if(requiredSize < sizeof(dest)))
+      - pattern-not: |
+          if ($RET < $LIMIT) {
+            WideCharToMultiByte($CP, $FLAGS, $SRC, -1, $DEST, $RET, 0, 0);
+          }
+      - pattern-not: |
+          if ($RET <= $LIMIT) {
+            WideCharToMultiByte($CP, $FLAGS, $SRC, -1, $DEST, $RET, 0, 0);
+          }

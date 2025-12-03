@@ -1,0 +1,16 @@
+rules:
+  - id: CWE123_Write_What_Where_Condition__connect_socket_01
+    message: "Potential Write-What-Where Condition vulnerability (CWE-123)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE123"
+    languages: [c]
+    patterns:
+      - pattern-either:
+          # Detects the vulnerable code pattern related to writing over linked list pointers
+          - pattern: |
+              recv($F, (char*)&$DATA, sizeof($DATA), 0)
+          - pattern: |
+              linkedListPrev = $DATA->list->prev
+      - pattern-not: |
+          ; /* empty statement needed by some flow variants */

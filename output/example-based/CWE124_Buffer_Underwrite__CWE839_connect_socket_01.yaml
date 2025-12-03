@@ -1,0 +1,16 @@
+rules:
+  - id: CWE124_Buffer_Underwrite__CWE839_connect_socket_01
+    message: "Potential buffer underwrite detected"
+    severity: ERROR
+    metadata:
+      cwe: "CWE124"
+    languages: [c]
+    patterns:
+      - pattern: |
+          if ($INDEX < $LIMIT) {
+            $BUFFER[$INDEX] = 1;
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $LIMIT) {
+            $BUFFER[$INDEX] = 1;
+          }

@@ -1,0 +1,16 @@
+rules:
+  - id: CWE188_Reliance_on_Data_Memory_Layout__modify_local_01
+    message: "Reliance on data memory layout which can cause vulnerabilities"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-188"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: writing through a casted pointer using
+      # base + sizeof(type) instead of accessing a named field.
+      - pattern: |
+          *($T*)($BASE + sizeof($T)) = $VAL;
+      # Exclude normal field access (good example) where the struct
+      # field is written directly via its name.
+      - pattern-not: |
+          $S.$FIELD = $VAL;

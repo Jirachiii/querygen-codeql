@@ -1,0 +1,23 @@
+rules:
+  - id: CWE15_External_Control_of_System_or_Configuration_Setting__w32_01
+    message: "Potential external control of system or configuration setting. Avoid using external unsanitized input to set system configurations."
+    severity: ERROR
+    metadata:
+      cwe: "CWE15"
+    languages: [c, cpp]
+    patterns:
+      # Core sink: setting the computer name from some data buffer
+      - pattern: |
+          if (!SetComputerNameA($DATA)) {
+            ...
+          }
+      # Exclude the safe variant where DATA is explicitly set to a literal "hostname"
+      - pattern-not: |
+          {
+            ...
+            strcpy($DATA, "hostname");
+            ...
+            if (!SetComputerNameA($DATA)) {
+              ...
+            }
+          }

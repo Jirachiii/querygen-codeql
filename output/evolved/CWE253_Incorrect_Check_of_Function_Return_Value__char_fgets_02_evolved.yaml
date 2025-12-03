@@ -1,0 +1,57 @@
+rules:
+  - id: CWE253_Incorrect_Check_of_Function_Return_Value__char_fgets_02
+    message: "Incorrect check of return value for fgets() leading to CWE253 vulnerability."
+    severity: ERROR
+    metadata:
+      cwe: "CWE253"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: using fgets() directly in a relational comparison (<, <=, >, >=)
+      # instead of checking against NULL.
+      - pattern-either:
+          - pattern: |
+              if ($RET < $X) {
+                ...
+              }
+          - pattern: |
+              if ($RET <= $X) {
+                ...
+              }
+          - pattern: |
+              if ($RET > $X) {
+                ...
+              }
+          - pattern: |
+              if ($RET >= $X) {
+                ...
+              }
+          - pattern: |
+              if ($X > $RET) {
+                ...
+              }
+          - pattern: |
+              if ($X >= $RET) {
+                ...
+              }
+          - pattern: |
+              if ($X < $RET) {
+                ...
+              }
+          - pattern: |
+              if ($X <= $RET) {
+                ...
+              }
+      # Ensure one side of the comparison is a call to fgets(...)
+      - pattern-either:
+          - pattern: $RET = fgets(...); if ($RET == NULL) { ... }  # safe pattern (will be excluded)
+          - pattern: $RET = fgets(...); if ($RET != NULL) { ... }  # safe pattern (will be excluded)
+      - pattern: $RET = fgets(...); if ($RET < $X) { ... }  # included to bind $RET to fgets, but still relational
+      # Exclude correct NULL checks directly on fgets(...)
+      - pattern-not: |
+          if (fgets(...) == NULL) {
+            ...
+          }
+      - pattern-not: |
+          if (fgets(...) != NULL) {
+            ...
+          }

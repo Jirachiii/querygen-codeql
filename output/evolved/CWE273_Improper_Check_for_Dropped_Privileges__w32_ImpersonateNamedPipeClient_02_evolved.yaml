@@ -1,0 +1,44 @@
+rules:
+  - id: CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_02
+    message: "Improper check for dropped privileges in ImpersonateNamedPipeClient call"
+    severity: ERROR
+    metadata:
+      cwe: "CWE273"
+    languages: [c, cpp]
+    patterns:
+      # Find any use of ImpersonateNamedPipeClient(...)
+      - pattern: |
+          ImpersonateNamedPipeClient($HANDLE);
+
+      # Exclude the safe pattern where the return value is checked in an if-condition
+      - pattern-not: |
+          if (!ImpersonateNamedPipeClient($HANDLE)) {
+            ...
+          }
+
+      # Exclude the case where the call appears as part of a larger expression
+      # (e.g., in an if-condition or assignment), which implies the return
+      # value is used/checked.
+      - pattern-not: |
+          $RET = ImpersonateNamedPipeClient($HANDLE);
+
+      - pattern-not: |
+          if (ImpersonateNamedPipeClient($HANDLE)) {
+            ...
+          }
+
+      - pattern-not: |
+          while (ImpersonateNamedPipeClient($HANDLE)) {
+            ...
+          }
+
+      - pattern-not: |
+          for ($INIT; ImpersonateNamedPipeClient($HANDLE); $UPDATE) {
+            ...
+          }
+
+      - pattern-not: |
+          $X = $Y ? ImpersonateNamedPipeClient($HANDLE) : $Z;
+
+      - pattern-not: |
+          $FUNC(ImpersonateNamedPipeClient($HANDLE), ...);

@@ -1,0 +1,26 @@
+rules:
+  - id: CWE321_Hard_Coded_Cryptographic_Key__w32_char_02
+    message: "Use of hard-coded cryptographic key."
+    severity: ERROR
+    metadata:
+      cwe: "CWE321"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable action: copy preprocessor-defined constant into key buffer
+      - pattern: |
+          strcpy($KEY, CRYPTO_KEY);
+      # Exclude the known safe pattern where the key is obtained from console input
+      - pattern-not: |
+          {
+            size_t $LEN = strlen($KEY);
+            if (100 - $LEN > 1) {
+              /* FIX: Obtain the hash input from the console */
+              if (fgets($KEY + $LEN, (int)(100 - $LEN), stdin) == NULL) {
+                ...
+              }
+              $LEN = strlen($KEY);
+              if ($LEN > 0) {
+                $KEY[$LEN-1] = '\0';
+              }
+            }
+          }

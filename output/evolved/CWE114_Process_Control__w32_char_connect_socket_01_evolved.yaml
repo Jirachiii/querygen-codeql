@@ -1,0 +1,47 @@
+rules:
+  - id: CWE114_Process_Control__w32_char_connect_socket_01
+    message: "Dynamic library loading without specifying a hardcoded full path may lead to a security vulnerability (CWE-114)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-114"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable pattern: loading library from a non-literal (e.g., socket data, env var, user input)
+      - pattern: |
+          {
+            HMODULE $H;
+            ...
+            $H = LoadLibraryA($DATA);
+            if ($H != NULL) {
+              FreeLibrary($H);
+              ...
+            }
+          }
+      # Exclude cases where the argument is a direct hardcoded full path string
+      - pattern-not: |
+          {
+            HMODULE $H;
+            ...
+            $H = LoadLibraryA("C:\\Windows\\System32\\winsrv.dll");
+            if ($H != NULL) {
+              FreeLibrary($H);
+              ...
+            }
+          }
+      # Exclude cases where the data passed to LoadLibraryA is set immediately before
+      # via strcpy to the known safe full path string
+      - pattern-not: |
+          {
+            HMODULE $H;
+            ...
+            char $BUF[100] = "";
+            char * $DATA = $BUF;
+            ...
+            strcpy($DATA, "C:\\Windows\\System32\\winsrv.dll");
+            ...
+            $H = LoadLibraryA($DATA);
+            if ($H != NULL) {
+              FreeLibrary($H);
+              ...
+            }
+          }

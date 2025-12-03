@@ -1,0 +1,34 @@
+rules:
+  - id: CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_01
+    message: "Reliance on DNS Lookups in Security Decision (CWE247)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE247"
+    languages: [c, cpp]
+    patterns:
+      - pattern-either:
+          # Original-style pattern with struct pointer HOST_INFO
+          - pattern: |
+              if (strcmp($HOST_INFO->h_name, $SECRET_HOSTNAME) == 0) {
+                  $DO_SOMETHING;
+              }
+          - pattern: |
+              if ($COMPARISON) {
+                  if (strcmp($HOST_INFO->h_name, $SECRET_HOSTNAME) == 0) {
+                      $DO_SOMETHING;
+                  }
+              }
+          # More generic pattern matching any hostent-like pointer with h_name field
+          - pattern: |
+              if (strcmp($HOSTPTR->h_name, $SECRET_HOSTNAME) == 0) {
+                  $DO_SOMETHING;
+              }
+          - pattern: |
+              if ($COND) {
+                  if (strcmp($HOSTPTR->h_name, $SECRET_HOSTNAME) == 0) {
+                      $DO_SOMETHING;
+                  }
+              }
+      # Allow logging-only usage; suppress findings when used only in fprintf logging
+      - pattern-not: |
+          fprintf($LOG_FILE, "Host name: %s\n", $HOSTPTR->h_name);

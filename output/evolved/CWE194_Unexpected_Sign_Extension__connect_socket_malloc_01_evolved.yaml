@@ -1,0 +1,56 @@
+rules:
+  - id: CWE194_Unexpected_Sign_Extension__connect_socket_malloc_01
+    message: "CWE194: Unexpected sign extension when using possibly-negative short in malloc size"
+    severity: ERROR
+    metadata:
+      cwe: "CWE194"
+      source: "connect_socket / atoi"
+      sink: "malloc"
+    languages: [c, cpp]
+    patterns:
+      # 1) Source: read from socket into a buffer, then atoi()
+      - pattern: |
+          ...
+          char $BUF[...];
+          ...
+          recv(..., $BUF, ..., ...);
+          ...
+          int $TEMP = atoi($BUF);
+          ...
+      # 2) Conversion: int -> short with range check that may set a negative value; short must be named $DATA
+      - pattern-either:
+          - pattern: |
+              ...
+              short $DATA;
+              ...
+              if ($TEMP > SHRT_MAX || $TEMP < SHRT_MIN) {
+                $DATA = -1;
+              } else {
+                $DATA = $TEMP;
+              }
+              ...
+          - pattern: |
+              ...
+              short $DATA;
+              ...
+              if ($TEMP > SHRT_MAX || $TEMP < SHRT_MIN) {
+                $DATA = -1;
+              }
+              else {
+                $DATA = $TEMP;
+              }
+              ...
+      # 3) Sink: use that short in a size check and then as malloc argument
+      - pattern: |
+          ...
+          if ($DATA < $LIM) {
+            char *$BUF2 = (char *)malloc($DATA);
+            ...
+          }
+      # 4) Exclude the simple good pattern where the short is set to a constant small positive value
+      - pattern-not: |
+          short $DATA = 100 - 1;
+          if ($DATA < 100) {
+            char *$BUF2 = (char *)malloc($DATA);
+            ...
+          }

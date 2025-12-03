@@ -1,0 +1,44 @@
+rules:
+  - id: CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_01
+    message: "Potential cleartext transmission of sensitive information"
+    severity: ERROR
+    metadata:
+      cwe: "CWE319"
+    languages: [c]
+    patterns:
+      - pattern: |
+          {
+            char * password;
+            password = $DATA_SOURCE;
+            ...
+            if (LogonUserA(
+              $USERNAME,
+              $DOMAIN,
+              password,
+              LOGON32_LOGON_NETWORK,
+              LOGON32_PROVIDER_DEFAULT,
+              &$PHANDLE
+            ) != 0) {
+              ...
+            }
+          }
+      - pattern-not: |
+          {
+            char * password;
+            password = $DATA_SOURCE;
+            ...
+            if(!CryptDecrypt($KEY, 0, 1, 0, $PAYLOAD, &$PAYLOAD_BYTES)) {
+              break;
+            }
+            ...
+            if (LogonUserA(
+              $USERNAME,
+              $DOMAIN,
+              password,
+              LOGON32_LOGON_NETWORK,
+              LOGON32_PROVIDER_DEFAULT,
+              &$PHANDLE
+            ) != 0) {
+              ...
+            }
+          }

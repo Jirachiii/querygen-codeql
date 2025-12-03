@@ -1,0 +1,18 @@
+rules:
+  - id: CWE191_Integer_Underflow__char_fscanf_multiply_02
+    message: "Potential integer underflow detected when multiplying a negative value by 2."
+    severity: ERROR
+    metadata:
+      cwe: "CWE191"
+    languages: [c]
+    patterns:
+      - pattern: |
+          if ($VAR < 0) {
+              char $RESULT = $VAR * 2;
+          }
+      - pattern-not: |
+          if ($VAR < 0) {
+              if ($VAR > (CHAR_MIN / 2)) {
+                  char $RESULT = $VAR * 2;
+              }
+          }

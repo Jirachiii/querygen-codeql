@@ -1,0 +1,37 @@
+rules:
+  - id: CWE190_Integer_Overflow__char_fscanf_add_01
+    message: "Potential integer overflow vulnerability (CWE190): adding 1 to a char value without checking against CHAR_MAX."
+    severity: ERROR
+    metadata:
+      cwe: "CWE190"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: read into a char from fscanf (or any input) and later add 1 without a guard
+      - pattern: |
+          {
+            char $VAR;
+            ...
+            $VAR = $INPUT;
+            ...
+            char $RESULT = $VAR + 1;
+          }
+      # Do not flag if there is an explicit CHAR_MAX guard around the addition
+      - pattern-not: |
+          {
+            char $VAR;
+            ...
+            $VAR = $INPUT;
+            ...
+            if ($VAR < CHAR_MAX) {
+              char $RESULT = $VAR + 1;
+            }
+          }
+      # Do not flag obviously safe constant initialization (goodG2B-style)
+      - pattern-not: |
+          {
+            char $VAR;
+            ...
+            $VAR = 2;
+            ...
+            char $RESULT = $VAR + 1;
+          }

@@ -1,0 +1,14 @@
+rules:
+  - id: CWE252_Unchecked_Return_Value__char_fgets_01
+    message: "Unchecked return value from fgets"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-252"
+    languages: [c]
+    patterns:
+      - pattern: |
+          fgets($BUFFER, $SIZE, stdin);
+      - pattern-not: |
+          if (fgets($BUFFER, $SIZE, stdin) == NULL) {
+            ...
+          }

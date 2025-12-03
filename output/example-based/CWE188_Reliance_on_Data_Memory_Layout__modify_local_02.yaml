@@ -1,0 +1,23 @@
+rules:
+  - id: CWE188_Reliance_on_Data_Memory_Layout__modify_local_02
+    message: "Reliance on Data Memory Layout vulnerability detected (CWE-188)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-188"
+    languages: [c]
+    patterns:
+      - pattern: |
+          {
+            ...
+            char *charPtr;
+            ...
+            charPtr = &structCharInt.charFirst;
+            *(int*)(charPtr + sizeof(int)) = 5;
+            ...
+          }
+      - pattern-not: |
+          {
+            ...
+            structCharInt.intSecond = 5;
+            ...
+          }

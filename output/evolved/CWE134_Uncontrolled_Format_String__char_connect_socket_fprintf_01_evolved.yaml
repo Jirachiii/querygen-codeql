@@ -1,0 +1,14 @@
+rules:
+  - id: CWE134_Uncontrolled_Format_String__char_connect_socket_fprintf_01
+    message: "Uncontrolled format string vulnerability."
+    severity: ERROR
+    metadata:
+      cwe: "CWE134"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable pattern: data is used directly as the format string.
+      - pattern: |
+          fprintf(stdout, $FMT, ...);
+      # Exclude safe uses where the first variadic argument is a constant format string.
+      - pattern-not: |
+          fprintf(stdout, "$FMT", ...);

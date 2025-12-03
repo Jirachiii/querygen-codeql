@@ -1,0 +1,57 @@
+rules:
+  - id: CWE222_Truncation_of_Security_Relevant_Information__w32_01
+    message: "Truncation of security-relevant username information before authentication"
+    severity: ERROR
+    metadata:
+      cwe: "CWE222"
+      category: security
+      technology: [windows, winapi]
+    languages: [c, cpp]
+    patterns:
+      # 1) A username buffer that appears to be security-relevant
+      - pattern: |
+          char $USERNAME[$N1];
+      # 2) A (smaller) truncated username buffer
+      - pattern: |
+          char $TRUNCATED[$N2];
+      # 3) The username is explicitly null-terminated using USERNAME_SIZE (or similar)
+      - pattern: |
+          $USERNAME[$IDX] = '\0';
+      # 4) The username is copied into the truncated buffer using memcpy
+      - pattern: |
+          memcpy($TRUNCATED, $USERNAME, sizeof($TRUNCATED));
+      # 5) The truncated username is then passed as the username argument to LogonUserA/LogonUserW
+      - pattern-either:
+          - pattern: |
+              LogonUserA(
+                $TRUNCATED,
+                $DOMAIN,
+                $PASSWORD,
+                $LOGON_TYPE,
+                $PROVIDER,
+                $HANDLE);
+          - pattern: |
+              LogonUserW(
+                $TRUNCATED,
+                $DOMAIN,
+                $PASSWORD,
+                $LOGON_TYPE,
+                $PROVIDER,
+                $HANDLE);
+      # 6) Make sure we are not already using the full username in the authentication call
+      - pattern-not: |
+          LogonUserA(
+            $USERNAME,
+            $DOMAIN,
+            $PASSWORD,
+            $LOGON_TYPE,
+            $PROVIDER,
+            $HANDLE);
+      - pattern-not: |
+          LogonUserW(
+            $USERNAME,
+            $DOMAIN,
+            $PASSWORD,
+            $LOGON_TYPE,
+            $PROVIDER,
+            $HANDLE);

@@ -1,0 +1,41 @@
+rules:
+  - id: CWE272_Least_Privilege_Violation__w32_char_CreateProcessAsUser_02
+    message: "Potential least privilege violation: unquoted executable path in CreateProcessAsUserA command line."
+    severity: ERROR
+    metadata:
+      cwe: "CWE272"
+    languages: [c, cpp]
+    patterns:
+      # Match CreateProcessAsUserA with a literal command line argument
+      - pattern: |
+          CreateProcessAsUserA(
+              $HANDLE,
+              $LPCTSTR,
+              $CMD,
+              $SECURITY_ATTRIBUTES1,
+              $SECURITY_ATTRIBUTES2,
+              $INHERIT_HANDLES,
+              $CREATION_FLAGS,
+              $LPVOID,
+              $LPCURRENTDIRECTORY,
+              &$STARTUPINFO,
+              &$PROCESS_INFORMATION
+          )
+      # Require that the command line is a string literal containing a space
+      - pattern: |
+          $CMD = "C:\\Program Files\\GoodApp arg1 arg2"
+      # Exclude the safe pattern where the executable path is quoted
+      - pattern-not: |
+          CreateProcessAsUserA(
+              $HANDLE,
+              $LPCTSTR,
+              "\"$EXE\" $ARGS",
+              $SECURITY_ATTRIBUTES1,
+              $SECURITY_ATTRIBUTES2,
+              $INHERIT_HANDLES,
+              $CREATION_FLAGS,
+              $LPVOID,
+              $LPCURRENTDIRECTORY,
+              &$STARTUPINFO,
+              &$PROCESS_INFORMATION
+          )

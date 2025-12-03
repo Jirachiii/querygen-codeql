@@ -1,0 +1,26 @@
+rules:
+  - id: CWE191_Integer_Underflow__char_fscanf_multiply_02
+    message: "Potential integer underflow detected when multiplying a negative value by 2."
+    severity: ERROR
+    metadata:
+      cwe: "CWE191"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: multiplying a potentially negative char by 2 without an underflow guard
+      - pattern: |
+          if ($X < 0) {
+            char $RESULT = $X * 2;
+          }
+      # Exclude the guarded/checked pattern: data is compared against CHAR_MIN/2 before multiplication
+      - pattern-not: |
+          if ($X < 0) {
+            if ($X > (CHAR_MIN / 2)) {
+              char $RESULT = $X * 2;
+            }
+          }
+      - pattern-not: |
+          if ($X < 0) {
+            if ($X > ((CHAR_MIN) / 2)) {
+              char $RESULT = $X * 2;
+            }
+          }

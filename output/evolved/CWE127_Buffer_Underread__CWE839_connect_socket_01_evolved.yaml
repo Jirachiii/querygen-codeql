@@ -1,0 +1,30 @@
+rules:
+  - id: CWE127_Buffer_Underread__CWE839_connect_socket_01
+    message: "Potential buffer underread vulnerability (CWE-127): array index is not checked for negativity"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-127"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: index is only upper-bounded, not lower-bounded
+      - pattern: |
+          if ($IDX < $LIMIT) {
+            $SINK(...[$IDX]...);
+          }
+      # Exclude cases where index is properly checked with a non‑negative lower bound
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < $LIMIT) {
+            $SINK(...[$IDX]...);
+          }
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < ($LIMIT)) {
+            $SINK(...[$IDX]...);
+          }
+      - pattern-not: |
+          if (0 <= $IDX && $IDX < $LIMIT) {
+            $SINK(...[$IDX]...);
+          }
+      - pattern-not: |
+          if (0 <= $IDX && $IDX < ($LIMIT)) {
+            $SINK(...[$IDX]...);
+          }

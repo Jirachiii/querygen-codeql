@@ -1,0 +1,16 @@
+rules:
+  - id: CWE253_Incorrect_Check_of_Function_Return_Value__char_fgets_02
+    message: "Incorrect check of return value for fgets() leading to CWE253 vulnerability."
+    severity: ERROR
+    metadata:
+      cwe: "CWE253"
+    languages: [c]
+    patterns:
+      - pattern: >
+          if (fgets(...) < 0) {
+            ...
+          }
+      - pattern-not: >
+          if (fgets(...) == NULL) {
+            ...
+          }

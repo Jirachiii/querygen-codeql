@@ -1,0 +1,36 @@
+rules:
+  - id: CWE196_Unsigned_to_Signed_Conversion_Error__basic_02
+    message: "Potential unsigned to signed conversion error leading to negative values (missing INT_MAX bounds check)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE196"
+    languages: [c, cpp]
+    patterns:
+      # 1. Look for assignments from an unsigned int variable to a signed int variable
+      - pattern-either:
+          - pattern: |
+              int $SIGNED = $UNSIGNED;
+          - pattern: |
+              $SIGNED = (int)$UNSIGNED;
+          - pattern: |
+              $SIGNED = $UNSIGNED;
+      # 2. Ensure the source variable is declared as an unsigned integer type
+      - pattern: |
+          unsigned $TYPE $UNSIGNED;
+      # 3. Exclude cases where there is a proper bounds check against INT_MAX for that unsigned variable
+      - pattern-not: |
+          if ($UNSIGNED > INT_MAX) {
+              exit(1);
+          }
+      - pattern-not: |
+          if (INT_MAX < $UNSIGNED) {
+              exit(1);
+          }
+      - pattern-not: |
+          if ($UNSIGNED > INT_MAX) {
+              $SOMETHING;
+          }
+      - pattern-not: |
+          if (INT_MAX < $UNSIGNED) {
+              $SOMETHING;
+          }

@@ -1,0 +1,53 @@
+rules:
+  - id: CWE126_Buffer_Overread__CWE129_connect_socket_01
+    message: "Possible buffer over-read detected: array index checked only for non-negativity"
+    severity: ERROR
+    metadata:
+      cwe: "CWE126"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: only lower-bound check (>= 0) before array access
+      - pattern: |
+          if ($IDX >= 0) {
+            ...
+            $ARR[$IDX];
+            ...
+          }
+      # Exclude proper lower-and-upper-bound checks in a single condition
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < $UB) {
+            ...
+            $ARR[$IDX];
+            ...
+          }
+      - pattern-not: |
+          if (0 <= $IDX && $IDX < $UB) {
+            ...
+            $ARR[$IDX];
+            ...
+          }
+      - pattern-not: |
+          if ($IDX > -1 && $IDX < $UB) {
+            ...
+            $ARR[$IDX];
+            ...
+          }
+      # Exclude variants where the upper bound is an explicit constant in parens
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < ($UB)) {
+            ...
+            $ARR[$IDX];
+            ...
+          }
+      - pattern-not: |
+          if (0 <= $IDX && $IDX < ($UB)) {
+            ...
+            $ARR[$IDX];
+            ...
+          }
+      - pattern-not: |
+          if ($IDX > -1 && $IDX < ($UB)) {
+            ...
+            $ARR[$IDX];
+            ...
+          }

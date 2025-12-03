@@ -1,0 +1,16 @@
+rules:
+  - id: CWE123_Write_What_Where_Condition__connect_socket_02
+    message: "Detected potential CWE-123: Write-What-Where Condition vulnerability via recv() overwriting a struct."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-123"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable pattern: recv overwriting an entire object/struct by casting
+      # its address to (char *) and using sizeof(object).
+      - pattern: |
+          recv($SOCKET, (char *)&$DATA, sizeof($DATA), 0);
+      # Exclude the good variants that intentionally do *not* call recv on the struct
+      # and instead use an empty statement guarded by FIX comments.
+      - pattern-not: |
+          ; /* empty statement needed by some flow variants */

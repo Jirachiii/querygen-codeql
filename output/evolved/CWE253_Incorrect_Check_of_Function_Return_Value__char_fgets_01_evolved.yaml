@@ -1,0 +1,52 @@
+rules:
+  - id: CWE253_Incorrect_Check_of_Function_Return_Value__char_fgets_01
+    message: "Incorrect check of function return value for fgets (should compare against NULL)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE253"
+    languages: [c, cpp]
+    patterns:
+      # Vulnerable: treating fgets' pointer return value as an integer and
+      # comparing it with 0 or a negative value (or using relational ops)
+      - pattern-either:
+          - pattern: |
+              if (fgets($DATA, $SIZE, $STREAM) < $X) {
+                ...
+              }
+          - pattern: |
+              if (fgets($DATA, $SIZE, $STREAM) <= $X) {
+                ...
+              }
+          - pattern: |
+              if (fgets($DATA, $SIZE, $STREAM) > $X) {
+                ...
+              }
+          - pattern: |
+              if (fgets($DATA, $SIZE, $STREAM) >= $X) {
+                ...
+              }
+          - pattern: |
+              if ($X > fgets($DATA, $SIZE, $STREAM)) {
+                ...
+              }
+          - pattern: |
+              if ($X >= fgets($DATA, $SIZE, $STREAM)) {
+                ...
+              }
+          - pattern: |
+              if ($X < fgets($DATA, $SIZE, $STREAM)) {
+                ...
+              }
+          - pattern: |
+              if ($X <= fgets($DATA, $SIZE, $STREAM)) {
+                ...
+              }
+      # Exclude the correct / intended usage: equality comparison to NULL
+      - pattern-not: |
+          if (fgets($DATA, $SIZE, $STREAM) == NULL) {
+            ...
+          }
+      - pattern-not: |
+          if (NULL == fgets($DATA, $SIZE, $STREAM)) {
+            ...
+          }

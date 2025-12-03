@@ -1,0 +1,30 @@
+rules:
+  - id: CWE194_Unexpected_Sign_Extension__connect_socket_malloc_01
+    message: "Potential CWE194: Unexpected Sign Extension vulnerability"
+    severity: ERROR
+    metadata:
+      cwe: "CWE194"
+    languages: [c]
+    patterns:
+      - pattern: |
+          char inputBuffer[...];
+          ...
+          recv(..., inputBuffer, ..., ...);
+          ...
+          int tempInt = atoi(inputBuffer);
+          if (tempInt > SHRT_MAX || tempInt < SHRT_MIN) {
+            short data = -1;
+          } else {
+            short data = tempInt;
+          }
+          ...
+          if (data < ...) {
+            char *dataBuffer = (char *)malloc(data);
+            ...
+          }
+      - pattern-not: |
+          short data = 100 - 1;
+          if (data < 100) {
+            char *dataBuffer = (char *)malloc(data);
+            ...
+          }

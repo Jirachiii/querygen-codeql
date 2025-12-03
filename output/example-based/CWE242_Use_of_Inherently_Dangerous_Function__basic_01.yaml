@@ -1,0 +1,10 @@
+rules:
+  - id: CWE242_Use_of_Inherently_Dangerous_Function__basic_01
+    message: "Use of gets() is inherently dangerous and can lead to buffer overflows. Use fgets() instead."
+    severity: ERROR
+    metadata:
+      cwe: "CWE242"
+    languages: [c]
+    patterns:
+      - pattern: result = gets(...)
+      - pattern-not: result = fgets(..., ..., stdin)

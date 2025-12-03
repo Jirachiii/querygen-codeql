@@ -1,0 +1,31 @@
+rules:
+  - id: CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_02
+    message: "Potential signed to unsigned conversion error when using malloc with data from an insecure or non-validated source"
+    severity: ERROR
+    metadata:
+      cwe: "CWE195"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: using an `int` (possibly negative) as size for malloc
+      - pattern: |
+          int $DATA;
+          ...
+          $DATA = $SRC;
+          ...
+          if ($DATA < 100) {
+            char * $BUF = (char *)malloc($DATA);
+            if ($BUF == NULL) { exit(-1); }
+            ...
+          }
+      # Exclude the explicit good constant initialization pattern (goodG2B1/goodG2B2 etc.)
+      - pattern-not: |
+          int $DATA;
+          ...
+          /* FIX: Use a positive integer less than &InitialDataSize&*/
+          $DATA = 100-1;
+          ...
+          if ($DATA < 100) {
+            char * $BUF = (char *)malloc($DATA);
+            if ($BUF == NULL) { exit(-1); }
+            ...
+          }
