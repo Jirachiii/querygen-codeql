@@ -1,0 +1,21 @@
+rules:
+  - id: CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_01
+    message: "Reliance on DNS Lookups in Security Decision (CWE247)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE247"
+    languages: [c]
+    patterns:
+      - pattern-either:
+          - pattern: |
+              if (strcmp($HOST_INFO->h_name, $SECRET_HOSTNAME) == 0) {
+                  $DO_SOMETHING;
+              } 
+          - pattern: |
+              if ($COMPARISON) {
+                  if (strcmp($HOST_INFO->h_name, $SECRET_HOSTNAME) == 0) {
+                      $DO_SOMETHING;
+                  }
+              }
+      - pattern-not: |
+          fprintf($LOG_FILE, "Host name: %s\n", $HOST_INFO->h_name);

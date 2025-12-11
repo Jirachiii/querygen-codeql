@@ -1,0 +1,20 @@
+rules:
+  - id: CWE252_Unchecked_Return_Value__char_fgets_01
+    message: "Unchecked return value from fgets"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-252"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable pattern: direct call to fgets with stdin
+      - pattern: |
+          fgets($BUFFER, $SIZE, stdin);
+      # Exclude the common safe pattern where fgets is checked against NULL in an if
+      - pattern-not: |
+          if (fgets($BUFFER, $SIZE, stdin) == NULL) {
+            ...
+          }
+      - pattern-not: |
+          if (fgets($BUFFER, $SIZE, stdin) != NULL) {
+            ...
+          }

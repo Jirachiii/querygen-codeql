@@ -1,0 +1,17 @@
+rules:
+  - id: CWE247_Reliance_on_DNS_Lookups_in_Security_Decision__w32_02
+    message: "Reliance on DNS Lookups in Security Decision detected."
+    severity: ERROR
+    metadata:
+      cwe: "CWE247"
+    languages: [c]
+    patterns:
+      - pattern-either:
+          - pattern: |
+              if (strcmp($HOST_INFO->h_name, $SECRET_HOSTNAME) == 0) {
+                ...
+              }
+      - pattern-not: |
+          FILE *pFile = fopen("log.txt", "a+");
+          fprintf(pFile, "Host name: %s\n", $HOST_INFO->h_name);
+          fclose(pFile);

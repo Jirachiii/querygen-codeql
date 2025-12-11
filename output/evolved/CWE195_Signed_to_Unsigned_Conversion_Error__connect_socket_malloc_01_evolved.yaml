@@ -1,0 +1,38 @@
+rules:
+  - id: CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_01
+    message: "Potential Signed to Unsigned Conversion Error (CWE-195): allocating with possibly negative signed int"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-195"
+    languages: [c, cpp]
+    patterns:
+      # Core bad shape: signed int initialized to -1, later used as malloc size
+      - pattern: |
+          {
+            int $DATA;
+            ...
+            $DATA = -1;
+            ...
+            if ($COND) {
+              ...
+              char *$BUF = (char *)malloc($DATA);
+              ...
+            }
+          }
+      # Exclude the good pattern where $DATA is explicitly reassigned to a
+      # positive compile-time constant (or simple constant expression) before malloc.
+      # This covers the safe example: data = 100-1;
+      - pattern-not: |
+          {
+            int $DATA;
+            ...
+            $DATA = -1;
+            ...
+            $DATA = $POS;
+            ...
+            if ($COND) {
+              ...
+              char *$BUF = (char *)malloc($DATA);
+              ...
+            }
+          }

@@ -1,0 +1,24 @@
+rules:
+  - id: CWE319_Cleartext_Tx_Sensitive_Info__w32_char_connect_socket_02
+    message: "Potential cleartext transmission of sensitive information: password received over socket and used directly in LogonUserA without decryption"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-319"
+    languages: [c, cpp]
+    patterns:
+      # 1) Source: password is filled from recv() over a socket
+      - pattern: |
+          recv($SOCKET, (char*)($PASSWORD + $LEN), ..., 0)
+      # 2) Sink: same password is used directly in LogonUserA
+      - pattern: |
+          LogonUserA($USER, $DOMAIN, $PASSWORD, ..., ..., &...)
+      # 3) Exclude the cases where this password is later decrypted
+      #    (goodB2G variants): CryptDecrypt is applied to the same storage
+      - pattern-not: |
+          if(!CryptDecrypt($KEY, 0, 1, 0, $PASSWORD, &...))
+      - pattern-not: |
+          if(!CryptDecrypt($KEY, 0, 1, 0, $PAYLOAD, &...))
+      - pattern-not: |
+          CryptDecrypt($KEY, 0, 1, 0, $PASSWORD, &...)
+      - pattern-not: |
+          CryptDecrypt($KEY, 0, 1, 0, $PAYLOAD, &...)

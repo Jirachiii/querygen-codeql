@@ -1,0 +1,36 @@
+rules:
+  - id: CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_01
+    message: "Sensitive information on the stack (e.g., password) is not cleared before the function returns."
+    severity: ERROR
+    metadata:
+      cwe: "CWE226"
+    languages: [c, cpp]
+    # Strategy:
+    # 1. Find stack allocations via ALLOCA assigned to a pointer (likely sensitive, e.g., password).
+    # 2. Function returns (or block ends) without a SecureZeroMemory call on that buffer.
+    patterns:
+      - pattern: |
+          void $FUNC(...){
+            ...
+            char * $PW = (char *)ALLOCA(...);
+            ...
+          }
+      # Exclude cases where the allocated buffer is cleared with SecureZeroMemory
+      - pattern-not: |
+          void $FUNC(...){
+            ...
+            char * $PW = (char *)ALLOCA(...);
+            ...
+            size_t $LEN = strlen($PW);
+            ...
+            SecureZeroMemory($PW, $LEN * sizeof(char));
+            ...
+          }
+      - pattern-not: |
+          void $FUNC(...){
+            ...
+            char * $PW = (char *)ALLOCA(...);
+            ...
+            SecureZeroMemory($PW, ...);
+            ...
+          }

@@ -1,0 +1,16 @@
+rules:
+  - id: CWE121_Stack_Based_Buffer_Overflow__CWE129_connect_socket_02
+    message: "Potential stack-based buffer overflow due to improper bounds checking."
+    severity: ERROR
+    metadata:
+      cwe: "CWE121"
+    languages: [c]
+    patterns:
+      - pattern: |
+          if ($INDEX >= 0) {
+            $ARRAY[$INDEX] = 1;
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $SIZE) {
+            $ARRAY[$INDEX] = 1;
+          }

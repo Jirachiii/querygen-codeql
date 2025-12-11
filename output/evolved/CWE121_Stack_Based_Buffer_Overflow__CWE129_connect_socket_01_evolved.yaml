@@ -1,0 +1,25 @@
+rules:
+  - id: CWE121_Stack_Based_Buffer_Overflow__CWE129_connect_socket_01
+    message: "Potential stack-based buffer overflow due to improper array index handling (no upper bound check)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE121"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: index is only checked for non-negativity, then used to index an array
+      - pattern: |
+          if ($IDX >= 0) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }
+      # Exclude the canonical safe pattern where both lower and upper bounds are checked
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < $LIMIT) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < ($LIMIT)) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }

@@ -1,0 +1,21 @@
+rules:
+  - id: CWE252_Unchecked_Return_Value__char_fgets_02
+    message: "Unchecked return value from fgets"
+    severity: ERROR
+    metadata:
+      cwe: "CWE252"
+    languages: [c, cpp]
+    # Detect any call to fgets(...)
+    # but ignore cases where that call is directly checked against NULL
+    # in an if-condition, as in the SAFE test case.
+    patterns:
+      - pattern: |
+          fgets($DATA, $SIZE, $STREAM);
+      - pattern-not: |
+          if (fgets($DATA, $SIZE, $STREAM) == NULL) {
+            ...
+          }
+      - pattern-not: |
+          if (NULL == fgets($DATA, $SIZE, $STREAM)) {
+            ...
+          }

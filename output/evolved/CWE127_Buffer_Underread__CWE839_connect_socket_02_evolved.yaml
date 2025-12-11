@@ -1,0 +1,38 @@
+rules:
+  - id: CWE127_Buffer_Underread__CWE839_connect_socket_02
+    message: "Potential buffer under-read: array index is not checked for negativity"
+    severity: ERROR
+    metadata:
+      cwe: "CWE127"
+    languages: [c, cpp]
+    patterns:
+      - pattern-either:
+          # Simple constant upper-bound check (e.g., if (data < 10))
+          - pattern: |
+              if ($IDX < $UBOUND) {
+                ... = $ARR[$IDX];
+              }
+          # Upper-bound check with an else branch (e.g., if (data < 10) {...} else {...})
+          - pattern: |
+              if ($IDX < $UBOUND) {
+                $S1
+              } else {
+                $S2
+              }
+      # Exclude cases where the index is also checked to be non-negative
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < $UBOUND) {
+            ... = $ARR[$IDX];
+          }
+      - pattern-not: |
+          if (0 <= $IDX && $IDX < $UBOUND) {
+            ... = $ARR[$IDX];
+          }
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < ($UBOUND)) {
+            ... = $ARR[$IDX];
+          }
+      - pattern-not: |
+          if (0 <= $IDX && $IDX < ($UBOUND)) {
+            ... = $ARR[$IDX];
+          }

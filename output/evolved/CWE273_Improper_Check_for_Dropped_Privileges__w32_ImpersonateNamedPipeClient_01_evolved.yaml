@@ -1,0 +1,41 @@
+rules:
+  - id: CWE273_Improper_Check_for_Dropped_Privileges__w32_ImpersonateNamedPipeClient_01
+    message: "Improper Check for Dropped Privileges: Missing or incorrect check for return value of ImpersonateNamedPipeClient"
+    severity: ERROR
+    metadata:
+      cwe: "CWE273"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable pattern: call to ImpersonateNamedPipeClient
+      # whose return value is ignored (not used in a condition or assignment).
+      - pattern: |
+          ImpersonateNamedPipeClient($HANDLE);
+
+      # Exclude the correct good pattern where the return value is checked
+      # directly in an if-condition and both branches are present.
+      - pattern-not: |
+          if (!ImpersonateNamedPipeClient($HANDLE)) {
+            ...
+          }
+          else {
+            ...
+          }
+      - pattern-not: |
+          if (ImpersonateNamedPipeClient($HANDLE)) {
+            ...
+          }
+          else {
+            ...
+          }
+
+      # Exclude common safe idioms where the result is stored and then checked
+      - pattern-not: |
+          $RET = ImpersonateNamedPipeClient($HANDLE);
+      - pattern-not: |
+          if ($RET) {
+            ...
+          }
+      - pattern-not: |
+          if (!$RET) {
+            ...
+          }

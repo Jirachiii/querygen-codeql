@@ -1,0 +1,37 @@
+rules:
+  - id: CWE124_Buffer_Underwrite__CWE839_connect_socket_02
+    message: "Potential buffer underwrite (array index not checked for non-negativity)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE124"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: only an upper bound check (like `if (data < 10)`)
+      # followed by an array write using the same index variable, without
+      # a corresponding lower-bound (`>= 0`) check in the same condition.
+      - pattern: |
+          if ($IDX < $LIMIT) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }
+      # Exclude cases where the same condition also validates the lower bound.
+      - pattern-not: |
+          if ($IDX >= 0 && $IDX < $LIMIT) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }
+      - pattern-not: |
+          if (0 <= $IDX && $IDX < $LIMIT) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }
+      - pattern-not: |
+          if ($IDX < $LIMIT && $IDX >= 0) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }
+      - pattern-not: |
+          if ($IDX < $LIMIT && 0 <= $IDX) {
+            $ARR[$IDX] = $VAL;
+            ...
+          }

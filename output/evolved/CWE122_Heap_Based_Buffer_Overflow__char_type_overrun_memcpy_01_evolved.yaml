@@ -1,0 +1,21 @@
+rules:
+  - id: CWE122_Heap_Based_Buffer_Overflow__char_type_overrun_memcpy_01
+    message: "Potential heap-based buffer overflow: using sizeof(struct) as memcpy length when copying into a struct field."
+    severity: ERROR
+    metadata:
+      cwe: "CWE122"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: memcpy into a struct field but size is sizeof(*structVar) or sizeof(structType)
+      - pattern: |
+          memcpy($DST, $SRC, sizeof($SIZE_EXPR));
+      # Ensure destination is a struct field (-> or .), i.e., a member inside a struct
+      - pattern: |
+          $STRUCT->$FIELD
+      - pattern-inside: |
+          memcpy($STRUCT->$FIELD, $SRC, sizeof($SIZE_EXPR));
+      # Exclude the safe pattern where the size is exactly that field itself
+      - pattern-not: |
+          memcpy($DST, $SRC, sizeof($DST));
+      - pattern-not: |
+          memcpy($STRUCT->$FIELD, $SRC, sizeof($STRUCT->$FIELD));

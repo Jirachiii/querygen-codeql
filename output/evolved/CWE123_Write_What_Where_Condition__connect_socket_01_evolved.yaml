@@ -1,0 +1,31 @@
+rules:
+  - id: CWE123_Write_What_Where_Condition__connect_socket_01
+    message: "Potential Write-What-Where Condition vulnerability (CWE-123): externally-controlled data overwrites linked list pointers"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-123"
+    languages: [c, cpp]
+    patterns:
+      - pattern-either:
+          # Source: overwrite the struct (or similar) from a socket
+          - pattern: |
+              recv($SOCK, (char *)&$DATA, sizeof($DATA), $FLAGS)
+          - pattern: |
+              recv($SOCK, (char*)&$DATA, sizeof($DATA), $FLAGS)
+      # Sink: use the (possibly overwritten) struct as a linked list node
+      - pattern: |
+          linkedListPrev = $DATA.list.prev;
+      - pattern: |
+          linkedListNext = $DATA.list.next;
+      - pattern: |
+          linkedListPrev->next = linkedListNext;
+      - pattern: |
+          linkedListNext->prev = linkedListPrev;
+      # Exclude the explicit "good" variant that does NOT perform the recv()
+      - pattern-not: |
+          static void goodG2B(...) {
+            ...
+            /* FIX: don't overwrite linked list pointers */
+            ;
+            ...
+          }

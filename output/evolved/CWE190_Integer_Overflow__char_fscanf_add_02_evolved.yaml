@@ -1,0 +1,36 @@
+rules:
+  - id: CWE190_Integer_Overflow__char_fscanf_add_02
+    message: "Potential integer overflow due to unsafe addition of 1 to a char read from fscanf."
+    severity: ERROR
+    metadata:
+      cwe: "CWE190"
+    languages: [c, cpp]
+    patterns:
+      # 1) Source: char variable populated via fscanf from stdin with "%c"
+      - pattern: |
+          char $DATA;
+          ...
+          fscanf(stdin, "%c", &$DATA);
+          ...
+          char $RES = $DATA + 1;
+
+      # 2) Exclude safe pattern where the addition is guarded by CHAR_MAX check
+      - pattern-not: |
+          char $DATA;
+          ...
+          fscanf(stdin, "%c", &$DATA);
+          ...
+          if ($DATA < CHAR_MAX) {
+            char $RES = $DATA + 1;
+          }
+
+      # Also exclude the common variant where the result is printed inside the same block
+      - pattern-not: |
+          char $DATA;
+          ...
+          fscanf(stdin, "%c", &$DATA);
+          ...
+          if ($DATA < CHAR_MAX) {
+            char $RES = $DATA + 1;
+            printHexCharLine($RES);
+          }

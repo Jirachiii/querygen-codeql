@@ -1,0 +1,39 @@
+rules:
+  - id: CWE272_Least_Privilege_Violation__w32_char_CreateProcessAsUser_01
+    message: "CWE-272: CreateProcessAsUserA called with an unquoted executable path containing spaces"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-272"
+      description: "Unquoted executable path in CreateProcessAsUserA command line may allow execution of unintended binaries (e.g., Program.exe)."
+    languages: [c, cpp]
+    patterns:
+      # Match CreateProcessAsUserA where the lpCommandLine argument is a string literal
+      - pattern: |
+          CreateProcessAsUserA($hUser,
+                               $lpAppName,
+                               $cmd,
+                               $lpProcessAttributes,
+                               $lpThreadAttributes,
+                               $bInheritHandles,
+                               $dwCreationFlags,
+                               $lpEnvironment,
+                               $lpCurrentDirectory,
+                               $lpStartupInfo,
+                               $lpProcessInformation)
+      # Restrict $cmd to be a string literal containing "Program Files"
+      - pattern: |
+          $cmd = "C:\\Program Files\\$REST"
+      # Exclude safe usage where the executable path is quoted, e.g.
+      # "\"C:\\Program Files\\GoodApp\" arg1 arg2"
+      - pattern-not: |
+          CreateProcessAsUserA($hUser,
+                               $lpAppName,
+                               "\"C:\\Program Files\\$APP\" $REST",
+                               $lpProcessAttributes,
+                               $lpThreadAttributes,
+                               $bInheritHandles,
+                               $dwCreationFlags,
+                               $lpEnvironment,
+                               $lpCurrentDirectory,
+                               $lpStartupInfo,
+                               $lpProcessInformation)

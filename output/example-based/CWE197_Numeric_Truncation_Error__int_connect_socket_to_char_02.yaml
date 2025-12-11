@@ -1,0 +1,12 @@
+rules:
+  - id: CWE197_Numeric_Truncation_Error__int_connect_socket_to_char_02
+    message: "Potential numeric truncation error when converting int to char."
+    severity: ERROR
+    metadata:
+      cwe: "CWE197"
+    languages: [c]
+    patterns:
+      - pattern: |
+          char $CHAR_DATA = (char)$DATA;
+      - pattern-not: |
+          int $DATA = CHAR_MAX - $OFFSET;

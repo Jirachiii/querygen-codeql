@@ -1,0 +1,28 @@
+rules:
+  - id: CWE321_Hard_Coded_Cryptographic_Key__w32_char_01
+    message: "Found use of a hardcoded cryptographic key."
+    severity: ERROR
+    metadata:
+      cwe: "CWE321"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: copying a hardcoded cryptographic key (string literal or macro)
+      # into a variable that is later used as a crypto key.
+      - pattern-either:
+          # Direct hardcoded string literal copied into key buffer
+          - pattern: |
+              strcpy($KEY, "Hardcoded")
+          # Hardcoded macro (e.g., #define CRYPTO_KEY "Hardcoded") copied into key buffer
+          - pattern: |
+              strcpy($KEY, $CRYPTO_KEY)
+      # Allowlist: cases where the key is instead obtained from the console via fgets.
+      # This excludes the "good" variant that reads the crypto key from stdin.
+      - pattern-not: |
+          if (fgets($KEY + $OFF, (int)(100 - $LEN), stdin) == NULL) {
+            ...
+          }
+      - pattern-not: |
+          if (fgets($KEY + $OFF, (int)(100 - $LEN), stdin) == NULL)
+          {
+            ...
+          }

@@ -1,0 +1,12 @@
+rules:
+  - id: CWE244_Heap_Inspection__w32_char_free_02
+    message: "Potential CWE244: Failure to Clear Heap Before Release"
+    severity: ERROR
+    metadata:
+      cwe: "CWE244"
+    languages: [c]
+    patterns:
+      - pattern: |
+          free($PASSWORD);
+      - pattern-not: |
+          SecureZeroMemory($PASSWORD, $LENGTH);

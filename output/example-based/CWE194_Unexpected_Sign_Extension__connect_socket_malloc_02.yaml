@@ -1,0 +1,15 @@
+rules:
+  - id: CWE194_Unexpected_Sign_Extension__connect_socket_malloc_02
+    message: "Detected potentially dangerous use of signed value in malloc. CWE-194: Unexpected Sign Extension."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-194"
+    languages: [c]
+    patterns:
+      - pattern: |
+          char *$VAR = (char *)malloc($DATA);
+          if ($VAR == NULL) {exit(-1);}
+      - pattern-not: |
+          short $DATA;
+          $DATA = $POSITIVE_INT;
+          char *$VAR = (char *)malloc($DATA);

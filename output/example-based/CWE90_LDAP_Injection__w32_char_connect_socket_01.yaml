@@ -1,0 +1,12 @@
+rules:
+  - id: CWE90_LDAP_Injection__w32_char_connect_socket_01
+    message: "Potential LDAP Injection vulnerability (CWE-90)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-90"
+    languages: [c]
+    patterns:
+      - pattern: >
+          _snprintf(filter, ..., "(cn=%s)", data);
+      - pattern-not: >
+          strcat(data, "Doe, XXXXX");

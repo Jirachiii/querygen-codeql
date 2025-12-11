@@ -1,0 +1,15 @@
+rules:
+  - id: CWE188_Reliance_on_Data_Memory_Layout__modify_local_01
+    message: "Reliance on data memory layout which can cause vulnerabilities"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-188"
+    languages: [c]
+    patterns:
+      # Detects incorrect assumptions about data layout
+      - pattern: |
+          char *$PTR = &($STRUCT.$FIELD1);
+          *(int*)($PTR + sizeof(int)) = $VAL;
+      # Excludes correct usage without assumptions
+      - pattern-not: |
+          $STRUCT.$FIELD2 = $VAL;

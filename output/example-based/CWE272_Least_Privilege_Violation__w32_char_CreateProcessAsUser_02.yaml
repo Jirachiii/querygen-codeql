@@ -1,0 +1,36 @@
+rules:
+  - id: CWE272_Least_Privilege_Violation__w32_char_CreateProcessAsUser_02
+    message: "Potential least privilege violation due to missing quotes in executable path."
+    severity: ERROR
+    metadata:
+      cwe: "CWE272"
+    languages: [c]
+    patterns:
+      - pattern: |
+          CreateProcessAsUserA(
+              $HANDLE,
+              $NULL,
+              "$UNQUOTED_PATH $ARGS",
+              $SECURITY_ATTRIBUTES1,
+              $SECURITY_ATTRIBUTES2,
+              FALSE,
+              $DWORD,
+              $LPVOID,
+              $LPCURRENTDIRECTORY,
+              &$STARTUPINFO,
+              &$PROCESS_INFORMATION
+          )
+      - pattern-not: |
+          CreateProcessAsUserA(
+              $HANDLE,
+              $NULL,
+              "\"$QUOTED_PATH\" $ARGS",
+              $SECURITY_ATTRIBUTES1,
+              $SECURITY_ATTRIBUTES2,
+              FALSE,
+              $DWORD,
+              $LPVOID,
+              $LPCURRENTDIRECTORY,
+              &$STARTUPINFO,
+              &$PROCESS_INFORMATION
+          )

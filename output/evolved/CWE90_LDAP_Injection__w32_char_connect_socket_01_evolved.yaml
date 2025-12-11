@@ -1,0 +1,15 @@
+rules:
+  - id: CWE90_LDAP_Injection__w32_char_connect_socket_01
+    message: "Potential LDAP Injection vulnerability (CWE-90)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-90"
+    languages: [c, cpp]
+    patterns:
+      # Core LDAP sink pattern
+      - pattern: |
+          _snprintf($FILTER, $N, "(cn=%s)", $DATA);
+
+      # Exclude the known safe pattern where DATA is set to a fixed, benign value
+      - pattern-not: |
+          strcat($DATA, "Doe, XXXXX");

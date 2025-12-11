@@ -1,0 +1,27 @@
+rules:
+  - id: CWE188_Reliance_on_Data_Memory_Layout__modify_local_02
+    message: "Reliance on Data Memory Layout vulnerability detected (CWE-188): writing to a struct field via char pointer + sizeof(int)"
+    severity: ERROR
+    metadata:
+      cwe: "CWE-188"
+    languages: [c, cpp]
+    patterns:
+      # Core bad pattern: write through a casted pointer based on
+      # char pointer + sizeof(int)
+      - pattern: |
+          {
+            ...
+            char *$CHARPTR;
+            ...
+            $CHARPTR = &$STRUCT.$FIELD1;
+            ...
+            *($TYPE *)($CHARPTR + sizeof(int)) = $VAL;
+            ...
+          }
+      # Ensure the safe, direct field assignment form is not what we're seeing
+      - pattern-not: |
+          {
+            ...
+            $STRUCT.$FIELD2 = $VAL;
+            ...
+          }

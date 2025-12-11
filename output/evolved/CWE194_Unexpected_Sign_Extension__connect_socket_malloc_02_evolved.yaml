@@ -1,0 +1,31 @@
+rules:
+  - id: CWE194_Unexpected_Sign_Extension__connect_socket_malloc_02
+    message: "Detected potentially dangerous use of signed value in malloc without enforcing a positive bound. CWE-194: Unexpected Sign Extension."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-194"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable sink: malloc called with a short-typed size, with the
+      # canonical NULL-check+exit(-1) pattern used in the testcases.
+      - pattern: |
+          short $DATA;
+          ...
+          if ($DATA < 100) {
+            char *$VAR = (char *)malloc($DATA);
+            if ($VAR == NULL) {exit(-1);}
+            ...
+          }
+      # Exclude the good variants where the short is explicitly set to a
+      # known-positive small bound (e.g., 100-1). This matches the SAFE code.
+      - pattern-not: |
+          short $DATA;
+          ...
+          /* FIX: Use a positive integer less than &InitialDataSize&*/
+          $DATA = 100-1;
+          ...
+          if ($DATA < 100) {
+            char *$VAR = (char *)malloc($DATA);
+            if ($VAR == NULL) {exit(-1);}
+            ...
+          }

@@ -1,0 +1,39 @@
+rules:
+  - id: CWE226_Sensitive_Information_Uncleared_Before_Release__w32_char_alloca_02
+    message: "Sensitive information allocated on the stack is not cleared before going out of scope."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-226"
+      confidence: MEDIUM
+    languages: [c, cpp]
+    patterns:
+      # 1) Find a stack allocation of a buffer named `password` using ALLOCA
+      - pattern: |
+          {
+            ...
+            char *$PW = (char *)ALLOCA($N * sizeof(char));
+            ...
+          }
+      # 2) Ensure that `password` is actually used in a security‑sensitive sink
+      #    (here, LogonUserA). This makes sure the buffer is indeed sensitive.
+      - pattern: |
+          LogonUserA(..., $PW, ...);
+      # 3) Exclude cases where the password buffer is securely wiped before scope exit
+      - pattern-not: |
+          {
+            ...
+            char *$PW = (char *)ALLOCA($N * sizeof(char));
+            ...
+            $LEN = strlen($PW);
+            ...
+            SecureZeroMemory($PW, $LEN * sizeof(char));
+            ...
+          }
+      - pattern-not: |
+          {
+            ...
+            char *$PW = (char *)ALLOCA($N * sizeof(char));
+            ...
+            SecureZeroMemory($PW, ...);
+            ...
+          }

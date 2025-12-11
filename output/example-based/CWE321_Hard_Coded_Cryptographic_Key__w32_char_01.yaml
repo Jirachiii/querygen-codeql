@@ -1,0 +1,13 @@
+rules:
+  - id: CWE321_Hard_Coded_Cryptographic_Key__w32_char_01
+    message: "Found use of a hardcoded cryptographic key."
+    severity: ERROR
+    metadata:
+      cwe: "CWE321"
+    languages: [c]
+    patterns:
+      - pattern:  strcpy($KEY, "Hardcoded")
+      - pattern-not: |
+          if (fgets($KEY, ..., stdin) != NULL) {
+            ...
+          }

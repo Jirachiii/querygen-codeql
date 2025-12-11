@@ -1,0 +1,16 @@
+rules:
+  - id: CWE126_Buffer_Overread__CWE129_connect_socket_02
+    message: "Potential buffer overread due to missing upper bound check."
+    severity: ERROR
+    metadata:
+      cwe: "CWE126"
+    languages: [c]
+    patterns:
+      - pattern: |
+          if ($INDEX >= 0) {
+            $VAR = $ARRAY[$INDEX];
+          }
+      - pattern-not: |
+          if ($INDEX >= 0 && $INDEX < $UPPER_BOUND) {
+            $VAR = $ARRAY[$INDEX];
+          }

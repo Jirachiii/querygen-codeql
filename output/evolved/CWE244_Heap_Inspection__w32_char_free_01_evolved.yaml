@@ -1,0 +1,36 @@
+rules:
+  - id: CWE244_Heap_Inspection__w32_char_free_01
+    message: "Heap memory containing a password is freed without securely clearing it first (CWE-244)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE244"
+    languages: [c, cpp]
+    patterns:
+      # Core sink: free of something named like a password
+      - pattern: |
+          free($PW);
+      # Heuristic: only consider variables that look like they hold passwords
+      - pattern-either:
+          - pattern: |
+              char *$PW = (char *)malloc(...);
+          - pattern: |
+              char *$PW = malloc(...);
+          - pattern: |
+              char $PW[...];
+      # Variable name must suggest password-like data
+      - pattern-either:
+          - pattern: |
+              char *password = ...;
+          - pattern: |
+              char *passwd = ...;
+          - pattern: |
+              char *pwd = ...;
+          - pattern: |
+              char password[...] = ...;
+          - pattern: |
+              char passwd[...] = ...;
+          - pattern: |
+              char pwd[...] = ...;
+      # Exclude cases where SecureZeroMemory is used on the same buffer before free
+      - pattern-not: |
+          SecureZeroMemory($PW, ...);

@@ -1,0 +1,16 @@
+rules:
+  - id: CWE196_Unsigned_to_Signed_Conversion_Error__basic_01
+    message: "Potential unsigned to signed conversion vulnerability (CWE-196)."
+    severity: ERROR
+    metadata:
+      cwe: "CWE196"
+    languages: [c, cpp]
+    patterns:
+      # Core vulnerable pattern: assignment from unsigned to signed
+      - pattern: |
+          int $SIGNED = $UNSIGNED;
+      # Exclude cases where the source has been range-checked against INT_MAX
+      - pattern-not: |
+          if ($UNSIGNED > INT_MAX) {
+            exit(1);
+          }

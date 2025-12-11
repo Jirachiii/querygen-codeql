@@ -1,0 +1,48 @@
+rules:
+  - id: CWE78_OS_Command_Injection__char_connect_socket_execl_02
+    message: "Potential CWE-78: OS Command Injection via execl/EXECL with externally controlled data."
+    severity: ERROR
+    metadata:
+      cwe: "CWE-78"
+    languages: [c, cpp]
+    patterns:
+      - pattern-either:
+          # execl/EXECL call where an argument (command string) is a non-literal (e.g., data)
+          - pattern: |
+              EXECL($CMD_PATH, $CMD_PATH2, $ARG1, $ARG3, NULL);
+          - pattern: |
+              execl($CMD_PATH, $CMD_PATH2, $ARG1, $ARG3, NULL);
+      # Exclude clearly safe cases where data is initialized to/assigned from only fixed strings
+      - pattern-not: |
+          char *$DATA = "fixed string";
+      - pattern-not: |
+          char *$DATA = COMMAND_ARG2;
+      - pattern-not: |
+          char $BUF[100] = COMMAND_ARG2;
+      - pattern-not: |
+          $FUNC()
+          {
+            char *$DATA;
+            char $BUF[100] = COMMAND_ARG2;
+            $DATA = $BUF;
+            if (0) {
+              /* dead code or benign logging */
+              ...
+            } else {
+              /* FIX: Append a fixed string to data (not user / external input) */
+              strcat($DATA, "*.*");
+            }
+            EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);
+          }
+      - pattern-not: |
+          $FUNC()
+          {
+            char *$DATA;
+            char $BUF[100] = COMMAND_ARG2;
+            $DATA = $BUF;
+            if (1) {
+              /* FIX: Append a fixed string to data (not user / external input) */
+              strcat($DATA, "*.*");
+            }
+            EXECL(COMMAND_INT_PATH, COMMAND_INT_PATH, COMMAND_ARG1, COMMAND_ARG3, NULL);
+          }
