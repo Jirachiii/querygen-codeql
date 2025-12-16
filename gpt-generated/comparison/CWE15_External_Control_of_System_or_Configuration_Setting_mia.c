@@ -67,6 +67,18 @@ void example_1_bad(void) {
     }
 }
 
+// [MIA PASS] Perplexity: 1.36
+// GOOD - 15
+void example_1_good(void) {
+    const char *configValue = "HardCodedValue";
+
+    // Use a fixed, internal configuration value
+    if (!SetComputerNameA(configValue)) {
+        printf("Failed to set computer name\n");
+        exit(1);
+    }
+}
+
 // BAD - 15
 void example_2_bad(void) {
     char *data;
@@ -86,19 +98,6 @@ void example_2_bad(void) {
             printf("Failed to set environment variable\n");
             exit(1);
         }
-    }
-}
-
-
-// [MIA PASS] Perplexity: 1.36
-// GOOD - 15
-void example_1_good(void) {
-    const char *configValue = "HardCodedValue";
-
-    // Use a fixed, internal configuration value
-    if (!SetComputerNameA(configValue)) {
-        printf("Failed to set computer name\n");
-        exit(1);
     }
 }
 

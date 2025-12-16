@@ -5,6 +5,7 @@
 
 // [MIA PASS] Perplexity: 1.35
 // BAD - 78
+// The functions don't share context; this is just to illustrate command injection.
 void example_1_bad(void)
 {
     char command[256];
@@ -16,20 +17,6 @@ void example_1_bad(void)
     snprintf(command, sizeof(command), "ls %s", userInput);
     system(command);
 }
-
-// BAD - 78
-void example_2_bad(void)
-{
-    char buf[128];
-    printf("Enter file to delete: ");
-    fgets(buf, sizeof(buf), stdin);
-    buf[strcspn(buf, "\n")] = '\0'; // Remove newline
-    /* POTENTIAL FLAW: Using user input in a command execution without validation */
-    char command[160];
-    sprintf(command, "rm %s", buf);
-    system(command);
-}
-
 
 // [MIA PASS] Perplexity: 1.44
 // GOOD - 78
@@ -51,6 +38,22 @@ void example_1_good(void)
         printf("Invalid index.\n");
     }
 }
+
+// BAD - 78
+void example_2_bad(void)
+{
+    char buf[128];
+    printf("Enter file to delete: ");
+    fgets(buf, sizeof(buf), stdin);
+    buf[strcspn(buf, "\n")] = '\0'; // Remove newline
+    /* POTENTIAL FLAW: Using user input in a command execution without validation */
+    char command[160];
+    sprintf(command, "rm %s", buf);
+    system(command);
+}
+
+
+
 
 // GOOD - 78
 void example_2_good(void)

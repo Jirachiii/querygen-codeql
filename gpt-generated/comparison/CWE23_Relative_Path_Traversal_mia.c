@@ -22,6 +22,7 @@
 
 // [MIA PASS] Perplexity: 1.15
 // BAD - 23
+// This pair has completely different sources of input and the good example's validation is not throughout enough to mitigate the vulnerability.
 void example_1_bad(void) {
     char *data;
     char dataBuffer[FILENAME_MAX_LEN] = BASEPATH;
@@ -88,6 +89,33 @@ void example_1_bad(void) {
     }
 }
 
+
+// [MIA PASS] Perplexity: 1.12
+// GOOD - 23
+void example_1_good(void) {
+    char *data;
+    char dataBuffer[FILENAME_MAX_LEN] = BASEPATH;
+    data = dataBuffer;
+    
+    printf("Enter file name: ");
+    if (fgets(data + strlen(BASEPATH), FILENAME_MAX_LEN - strlen(BASEPATH), stdin)) {
+        data[strcspn(data, "\n")] = 0;  // Remove newline character
+    }
+
+    // Validate the file path
+    // No ".." allowed
+    // Not enough for full mitigation of cwe23
+    if (strstr(data, "..") == NULL) {
+        FILE *file = fopen(data, "wb+");
+        if (file != NULL) {
+            fprintf(file, "Test content");
+            fclose(file);
+        }
+    } else {
+        printf("Invalid file path!\n");
+    }
+}
+
 // BAD - 23
 void example_2_bad(void) {
     char dataBuffer[FILENAME_MAX_LEN];
@@ -106,31 +134,6 @@ void example_2_bad(void) {
     }
 }
 
-
-// [MIA PASS] Perplexity: 1.12
-// GOOD - 23
-void example_1_good(void) {
-    char *data;
-    char dataBuffer[FILENAME_MAX_LEN] = BASEPATH;
-    data = dataBuffer;
-    
-    printf("Enter file name: ");
-    if (fgets(data + strlen(BASEPATH), FILENAME_MAX_LEN - strlen(BASEPATH), stdin)) {
-        data[strcspn(data, "\n")] = 0;  // Remove newline character
-    }
-
-    // Validate the file path
-    if (strstr(data, "..") == NULL) {
-        FILE *file = fopen(data, "wb+");
-        if (file != NULL) {
-            fprintf(file, "Test content");
-            fclose(file);
-        }
-    } else {
-        printf("Invalid file path!\n");
-    }
-}
-
 // GOOD - 23
 void example_2_good(void) {
     char dataBuffer[FILENAME_MAX_LEN];
@@ -143,6 +146,8 @@ void example_2_good(void) {
     }
 
     // Check for dangerous characters
+    // No ".." and must start with BASEPATH
+    // Not enough for full mitigation of cwe23
     if (strstr(data, "..") == NULL && strncmp(data, BASEPATH, strlen(BASEPATH)) == 0) {
         FILE *file = fopen(data, "wb+");
         if (file != NULL) {
