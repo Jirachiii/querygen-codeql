@@ -1,6 +1,8 @@
 # CWEs folder
 CWEs/
 CWEs-examples/
+juliet-test-suite-c/
+vectordb/
 
 # Large AST files
 *_asts.json

@@ -77,17 +77,6 @@ void example_1_bad(void) {
     close(acceptSocket);
 }
 
-// BAD - 194
-void example_2_bad(void) {
-    short data = -1;
-    data = -300;  // Explicitly setting a negative number
-
-    size_t size = (size_t)data;  // Incorrect handling of sign extension
-
-    performUnsafeOperation(size);
-}
-
-
 // [MIA PASS] Perplexity: 1.10
 // GOOD - 194
 void example_1_good(void) {
@@ -144,6 +133,17 @@ void example_1_good(void) {
     close(listenSocket);
     close(acceptSocket);
 }
+
+// BAD - 194
+void example_2_bad(void) {
+    short data = -1;
+    data = -300;  // Explicitly setting a negative number
+
+    size_t size = (size_t)data;  // Incorrect handling of sign extension
+
+    performUnsafeOperation(size);
+}
+
 
 // GOOD - 194
 void example_2_good(void) {

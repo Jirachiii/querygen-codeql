@@ -25,23 +25,6 @@ void example_1_bad(void) {
     printf("%s\n", dest);
 }
 
-// BAD - 195
-void example_2_bad(void) {
-    int count;
-    unsigned int u_count;
-
-    // FLAW: Initialize count with a negative value, then assign to an unsigned int
-    count = -10;
-    u_count = count;
-
-    if (u_count > 100) {
-        // Attempting to loop with a very large number due to sign conversion
-        for (unsigned int i = 0; i < u_count; i++) {
-            printf("This is a potential infinite loop!\n");
-        }
-    }
-}
-
 
 // [MIA PASS] Perplexity: 1.30
 // GOOD - 195
@@ -63,6 +46,23 @@ void example_1_good(void) {
         dest[data] = '\0'; // strncpy() does not always NULL terminate
     }
     printf("%s\n", dest);
+}
+
+// BAD - 195
+void example_2_bad(void) {
+    int count;
+    unsigned int u_count;
+
+    // FLAW: Initialize count with a negative value, then assign to an unsigned int
+    count = -10;
+    u_count = count;
+
+    if (u_count > 100) {
+        // Attempting to loop with a very large number due to sign conversion
+        for (unsigned int i = 0; i < u_count; i++) {
+            printf("This is a potential infinite loop!\n");
+        }
+    }
 }
 
 // GOOD - 195

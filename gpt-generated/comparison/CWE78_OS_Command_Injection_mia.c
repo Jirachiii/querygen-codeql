@@ -5,7 +5,7 @@
 
 // [MIA PASS] Perplexity: 1.35
 // BAD - 78
-// The functions don't share context; this is just to illustrate command injection.
+// The functions don't share context
 void example_1_bad(void)
 {
     char command[256];

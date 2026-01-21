@@ -38,6 +38,7 @@ void example_2_bad(const char* formatString)
 }
 
 // GOOD - 134
+// Does not have the same format as the bad example
 void example_2_good(const char* fixedFormat, ...)
 {
     char buffer[256];

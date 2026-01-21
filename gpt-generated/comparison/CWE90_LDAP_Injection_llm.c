@@ -13,6 +13,7 @@
 
 // [LLM PASS]
 // BAD - 90
+// Where are all the commentttttts?
 void example_1_bad(void) {
     char *data;
     char dataBuffer[256] = "";

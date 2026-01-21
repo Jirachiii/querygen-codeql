@@ -9,4 +9,4 @@ rules:
       - pattern: |
           hModule = LoadLibraryA(data);
       - pattern-not: |
-          strcpy(data, "...");  # Replace ... with the exact safe path string if necessary
+          strcpy(data, "..."); 

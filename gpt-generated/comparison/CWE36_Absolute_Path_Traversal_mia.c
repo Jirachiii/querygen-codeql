@@ -64,6 +64,7 @@ void example_1_bad(void) {
 
 // [MIA PASS] Perplexity: 1.12
 // GOOD - 36
+// The check for ".." is not foolproof and can only serve as a basic example.
 void example_1_good(void) {
     char buffer[FILENAME_MAX] = BASEPATH;
     char *data = buffer + strlen(BASEPATH);
@@ -125,7 +126,7 @@ void example_2_good(void) {
         snprintf(safePath, FILENAME_MAX, "%s%s", safeDir, userInput);
         if (strstr(safePath, "..") == NULL) { // Check to ensure path does not contain directory traversal
             FILE *file = fopen(safePath, "r");
-            if (file) {
+           0 if (file) {
                 printf("Safely opened file: %s\n", safePath);
                 fclose(file);
             }
