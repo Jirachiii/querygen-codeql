@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validate new examples by running them through available Semgrep rules.
+Validate Semgrep rules against Juliet test cases by checking for False Positives (FP) and False Negatives (FN).
 """
 
 import os
@@ -11,9 +11,9 @@ import json
 from typing import List, Dict, Tuple, Optional
 
 # --- Configuration ---
-SOURCE_DIR = "gpt-generated/examples"
+SOURCE_DIR = "CWEs"
 RULES_DIR = "gpt-generated/semgrep/with-diff"
-C_EXTENSION = ".c*"
+C_EXTENSION = "*.c*"
 YAML_EXTENSION = ".yaml"
 
 # Regex to find CWE code (e.g., CWE15) in a filename
@@ -28,12 +28,90 @@ def get_cwe_code(filename: str) -> Optional[str]:
     match = CWE_CODE_REGEX.search(os.path.basename(filename))
     return match.group(0) if match else None
 
-def find_semgrep_rules(cwe_code: str, rules_dir: str) -> List[str]:
+def find_matching_files(cwe_code: str, rules_dir: str) -> List[str]:
     """Finds all YAML rule files matching the CWE code in the rules directory."""
     # Search recursively for files starting with the CWE code
-    search_pattern = os.path.join(rules_dir, f"**/{cwe_code}*{YAML_EXTENSION}")
+    search_pattern = os.path.join(rules_dir, f"**/{cwe_code}*{C_EXTENSION}")
     rule_files = glob.glob(search_pattern, recursive=True)
     return rule_files
+
+from typing import Tuple, List, Dict
+
+def split_file_into_region(file_path: str) -> Tuple[List[Dict], str]:
+    """
+    Splits a Juliet test file into a dictionary grouping the BAD and GOOD regions.
+    Returns IMMEDIATELY upon finding the first complete pair (ignoring main).
+    """
+    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+        lines = f.readlines()
+
+    header_lines = []
+    
+    # Initialize the single pair object for this file
+    current_pair = {
+        'filepath': file_path
+    }
+    
+    # State tracking
+    mode = 'header'
+    nesting_depth = 0
+    block_lines = []
+    block_start_line = 0
+    
+    for i, line in enumerate(lines):
+        line_num = i + 1
+        stripped = line.strip()
+
+        # 1. Check for State Transitions
+        if mode in ['header', 'gap']:
+            if stripped.startswith('#ifndef OMITBAD'):
+                mode = 'bad'
+                nesting_depth = 1
+                block_start_line = line_num + 1
+                block_lines = []
+                continue
+            
+            elif stripped.startswith('#ifndef OMITGOOD'):
+                mode = 'good'
+                nesting_depth = 1
+                block_start_line = line_num + 1
+                block_lines = []
+                continue
+            
+            elif mode == 'header':
+                header_lines.append(line)
+
+        # 2. Process Block Content
+        elif mode in ['bad', 'good']:
+            if stripped.startswith('#if'):
+                nesting_depth += 1
+            elif stripped.startswith('#endif'):
+                nesting_depth -= 1
+            
+            # Check if we have closed the block
+            if nesting_depth == 0:
+                # Save the region
+                region_data = {
+                    'start_line': block_start_line,
+                    'end_line': line_num - 1,
+                    'code': "".join(block_lines).strip()
+                }
+                current_pair[mode] = region_data
+                
+                # Check immediately if we have a full pair. 
+                # If so, return NOW to avoid overwriting with main().
+                if 'bad' in current_pair and 'good' in current_pair:
+                    return [current_pair], "".join(header_lines).strip()
+                # --- FIX END ---
+
+                # Reset state
+                mode = 'gap'
+                block_lines = []
+            else:
+                block_lines.append(line)
+
+    # Fallback: If we reach here, we never found a complete pair
+    return [], ""
 
 def split_file_into_pairs(filepath: str) -> Tuple[List[Dict], str]:
     """
@@ -45,7 +123,9 @@ def split_file_into_pairs(filepath: str) -> Tuple[List[Dict], str]:
     
     lines = content.splitlines()
     pairs = []
-    current_pair = {}
+    current_pair = {
+        'filepath': filepath
+    }
     header = ""
     in_header = True
     
@@ -99,111 +179,150 @@ def split_file_into_pairs(filepath: str) -> Tuple[List[Dict], str]:
 
     return [p for p in pairs if 'bad' in p and 'good' in p], header.strip()
 
-def run_semgrep_and_analyze(c_file_path: str, rule_files: List[str], pairs: List[Dict]):
+def run_semgrep_and_analyze(test_dir: str, rule_files: List[str], pairs: List[Dict]) -> Tuple[int, int, int, int]:
     """
-    Runs Semgrep and analyzes the results for False Positives (FP) and 
-    False Negatives (FN).
-    """
-    print(f"\n--- Running Semgrep on {os.path.basename(c_file_path)} ---")
+    Runs Semgrep and returns analysis metrics.
     
+    Returns: 
+        (fn_count, fp_count, total_findings, outside_findings)
+    """
+    fn_count = 0
+    fp_count = 0
+    total_findings = 0
+    outside_findings = 0
+
     if not rule_files:
-        print("No matching Semgrep rules found. Cannot run analysis.")
-        return
+        print("  Warning: No rules provided.")
+        return 0, 0, 0, 0
 
     # Build the semgrep command
     command = ['semgrep']
     for rule in rule_files:
         command.extend(['--config', rule])
-    command.extend([c_file_path, '--json'])
+    
+    # Force scan of all files (ignoring .gitignore)
+    command.append('--no-git-ignore')
+    
+    command.extend([test_dir, '--json'])
 
     try:
         # Execute Semgrep
         process = subprocess.run(command, capture_output=True, text=True, check=False)
         
-        # Check if Semgrep ran successfully (return code 0 or 1 for findings)
         if process.returncode not in [0, 1]:
-            print(f"Semgrep execution failed with return code {process.returncode}.")
-            print(f"Stderr:\n{process.stderr}")
-            return
+            print(f"  Error: Semgrep failed (Exit Code {process.returncode})")
+            return 0, 0, 0, 0
         
         # Parse JSON output
         semgrep_results = json.loads(process.stdout)
         findings = semgrep_results.get('results', [])
+        total_findings = len(findings)
         
-        # Analyze findings
-        problem_pairs = []
+        # Track which findings have been "claimed" by a valid region
+        claimed_finding_indices = set()
+        
+        for pair in pairs:
+            file_path = pair['filepath']
+            
+            # Get findings specifically for this file to speed up checking
+            # (In a large scan, filtering this first is more efficient)
+            file_findings_indices = [i for i, f in enumerate(findings) if f['path'] in file_path or file_path in f['path']]
+            
+            # --- Check BAD Region (Expect Findings) ---
+            bad_func = pair.get('bad')
+            if bad_func:
+                bad_region_findings = []
+                for idx in file_findings_indices:
+                    f = findings[idx]
+                    if bad_func['start_line'] <= f['start']['line'] <= bad_func['end_line']:
+                        bad_region_findings.append(idx)
+                
+                # Logic: If NO findings in bad region -> False Negative
+                if not bad_region_findings:
+                    fn_count += 1
+                else:
+                    # Mark these findings as "accounted for"
+                    claimed_finding_indices.update(bad_region_findings)
 
-        for i, pair in enumerate(pairs):
-            pair_id = i + 1
-            bad_func = pair['bad']
-            good_func = pair['good']
-            
-            # --- FN Check: Did Semgrep miss the BAD function? ---
-            bad_found = any(bad_func['start_line'] <= f['start']['line'] <= bad_func['end_line'] 
-                            for f in findings if f['path'] == c_file_path)
-            
-            if not bad_found:
-                problem_pairs.append({
-                    'type': 'False Negative (FN)',
-                    'message': f"Pair {pair_id}: Semgrep failed to find a vulnerability in the BAD function.",
-                    'code': bad_func['code']
-                })
-            
-            # --- FP Check: Did Semgrep incorrectly flag the GOOD function? ---
-            good_found = any(good_func['start_line'] <= f['start']['line'] <= good_func['end_line'] 
-                             for f in findings if f['path'] == c_file_path)
-            
-            if good_found:
-                problem_pairs.append({
-                    'type': 'False Positive (FP)',
-                    'message': f"Pair {pair_id}: Semgrep incorrectly flagged the GOOD function as vulnerable.",
-                    'code': good_func['code']
-                })
+            # --- Check GOOD Region (Expect NO Findings) ---
+            good_func = pair.get('good')
+            if good_func:
+                good_region_findings = []
+                for idx in file_findings_indices:
+                    f = findings[idx]
+                    if good_func['start_line'] <= f['start']['line'] <= good_func['end_line']:
+                        good_region_findings.append(idx)
+                
+                # Logic: If YES findings in good region -> False Positive
+                if good_region_findings:
+                    fp_count += 1
+                    # Mark these findings as "accounted for" (even though they are FPs, they are inside a region)
+                    claimed_finding_indices.update(good_region_findings)
 
-        # --- Reporting ---
-        print("\n--- Problematic Test Case Pairs ---")
-        if not problem_pairs:
-            print("All pairs passed the basic Semgrep validation (No FPs/FNs found).")
-        else:
-            for p in problem_pairs:
-                print(f"\n[ISSUE: {p['type']}] - {p['message']}")
+        # Calculate findings that never matched a Bad or Good region
+        outside_findings_list = [f for i, f in enumerate(findings) if i not in claimed_finding_indices]
+        outside_findings = len(outside_findings_list)
 
-    except FileNotFoundError:
-        print("\nERROR: Semgrep command not found. Please ensure Semgrep is installed and in your PATH.")
-    except json.JSONDecodeError:
-        print("ERROR: Failed to parse Semgrep JSON output.")
-        print(f"Stdout:\n{process.stdout}")
+        if outside_findings > 0:
+            print(f"\n  [DEBUG] Found {outside_findings} findings outside known BAD/GOOD regions.")
+            print("  Here are the first 5 examples to help you debug:")
+            for i, f in enumerate(outside_findings_list[:5]):
+                path = f['path']
+                line = f['start']['line']
+                # Extract code snippet if available
+                code_snippet = f.get('extra', {}).get('lines', '').strip()
+                print(f"    {i+1}. File: {os.path.basename(path)} | Line: {line}")
+                print(f"       Code: {code_snippet}")
+                print("-" * 40)
+
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"  Error during analysis: {e}")
+        return 0, 0, 0, 0
+
+    return fn_count, fp_count, total_findings, outside_findings
 
 def main():
     """Main execution flow for the validation pipeline."""
-    search_pattern = os.path.join(SOURCE_DIR, f"**/*{C_EXTENSION}")
-    c_files = glob.glob(search_pattern, recursive=True)
-    c_files = ['gpt-generated/examples/CWE114_Process_Control_validated.c']
-    for c_file_path in c_files:
+    search_pattern = os.path.join(RULES_DIR, f"**/*{YAML_EXTENSION}")
+    rule_files = glob.glob(search_pattern, recursive=True)
+    rule_files = ['gpt-generated/semgrep/with-diff/CWE114_Process_Control__w32_char_connect_socket_02.yaml']
+    # For each C file in the dir
+    for rule_file_path in rule_files:
     
         # 1. Get CWE code from the C file
-        cwe_code = get_cwe_code(c_file_path)
+        cwe_code = get_cwe_code(rule_file_path)
         if not cwe_code:
-            print(f"Error: Could not extract CWE code from filename: {c_file_path}")
+            print(f"Error: Could not extract CWE code from filename: {rule_file_path}")
             return
         print('Processing', cwe_code)
+        # Directory with C files for this CWE
+        matching_dirs = glob.glob(os.path.join(SOURCE_DIR, cwe_code + '_*'))
+        if not matching_dirs:
+            print(f"No directory found for {cwe_code}")
+            continue
+        test_dir = matching_dirs[0]
 
         # 2. Find matching Semgrep rule files
-        rule_files = find_semgrep_rules(cwe_code, RULES_DIR)
-        print(f"Found {len(rule_files)} rule(s) for {cwe_code}: {[os.path.basename(r) for r in rule_files]}")
+        c_files = find_matching_files(cwe_code, SOURCE_DIR)
+        print(f"Found {len(c_files)} C file(s) for {cwe_code}: {[os.path.basename(r) for r in rule_files]}")
 
         # 3. Split the C file into BAD/GOOD pairs
-        pairs, header = split_file_into_pairs(c_file_path)
-        print(f"Found {len(pairs)} BAD/GOOD function pairs in the source file.")
+        all_pairs = []
+        for c_file_path in c_files:
+            pairs, header = split_file_into_region(c_file_path)
+            all_pairs.extend(pairs)
+        print(f"Found {len(all_pairs)} BAD/GOOD region pairs in the source files.")
         
-        if not pairs:
+        if not all_pairs:
             print("Error: Could not parse any BAD/GOOD pairs. Check file format.")
             return
 
         # 4. Run Semgrep and analyze results
-        run_semgrep_and_analyze(c_file_path, rule_files, pairs)
+        fn, fp, total, outside = run_semgrep_and_analyze(test_dir, [rule_file_path], all_pairs)
 
+        print(f"  Results -> Total Findings: {total}")
+        print(f"             False Negatives (Missed Bad Regions): {fn}")
+        print(f"             False Positives (Flagged Good Regions): {fp}")
+        print(f"             Findings Outside Regions (Header/Main/etc): {outside}")
 if __name__ == '__main__':
     main()
